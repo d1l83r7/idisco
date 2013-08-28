@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GeoLocation</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="obtener_coordenadas">Obtener coordenadas</string>
+    <string name="latitud">Latitud:</string>
+    <string name="longitud">Longitud:</string>
+    <string name="gps_signal_not_found">Señal GPS no econtrada</string>
+    <string name="search_signal_gps">Buscando señal GPS</string>
+    <string name="search">Buscando</string>
+    <string name="gps_signal_found">Señal GPS encontrada</string>
+</resources>
