@@ -10,4 +10,6 @@
     <string name="search_signal_gps">Buscando señal GPS</string>
     <string name="search">Buscando</string>
     <string name="gps_signal_found">Señal GPS encontrada</string>
+    <string name="btviewmap">Ver mapa</string>
+    <string name="vermapa">Ver Mapa</string>
 </resources>
