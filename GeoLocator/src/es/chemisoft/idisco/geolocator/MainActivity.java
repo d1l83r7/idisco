@@ -29,6 +29,7 @@ public class MainActivity extends Activity implements Runnable {
 	private final double defaultLongitude = 2.173662;
 	private final double defaultLatitude = 41.401536;
 	private Button btVerMapa;
+	private Button btVerRuta;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +48,23 @@ public class MainActivity extends Activity implements Runnable {
 		});
         
         btVerMapa = (Button)findViewById(R.id.bt_verMapa);
-        btVerMapa.setEnabled(false);
+        btVerMapa.setEnabled(true);
         btVerMapa.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				viewMap();
+				verMapa();
+				
+			}
+		});
+        
+        btVerRuta = (Button)findViewById(R.id.bt_verRuta);
+        btVerRuta.setEnabled(false);
+        btVerRuta.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				verRuta();
 				
 			}
 		});
@@ -85,14 +97,14 @@ public class MainActivity extends Activity implements Runnable {
 		//si está activado el GPS
 		if (gpsEnabled) {
 			Looper.prepare();
-			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,tvLatitud,tvLongitud,handler,btVerMapa,currentLongitude,currentLatitude);
+			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,tvLatitud,tvLongitud,handler,btVerMapa,btVerRuta,currentLongitude,currentLatitude);
 			locationManager.requestLocationUpdates(
 	                LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
 			Looper.loop(); 
 			Looper.myLooper().quit(); 
 		//Si está activada la RED 3G
 		} else if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,tvLatitud,tvLongitud,handler,btVerMapa,currentLongitude,currentLatitude);
+			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,tvLatitud,tvLongitud,handler,btVerMapa,btVerRuta,currentLongitude,currentLatitude);
 			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0,0,mLocationListener);
 			Looper.loop();
 			Looper.myLooper().quit();
@@ -102,14 +114,23 @@ public class MainActivity extends Activity implements Runnable {
 		}
 	}
 	
-	public void viewMap(){
-		 Intent i = new Intent(getBaseContext(),MapaActivity.class);
+	public void verRuta(){
+		 Intent i = new Intent(getBaseContext(),RutaActivity.class);
 		 i.putExtra("defaultLatitude", defaultLatitude);
 		 i.putExtra("defaultLongitude", defaultLongitude);
 		 i.putExtra("currentLongitude", currentLongitude);
 		 i.putExtra("currentLatitude", currentLatitude);
 		 startActivity(i);
 	 }
+	
+	public void verMapa(){
+		Intent i = new Intent(getBaseContext(),MapaActivity.class);
+		 i.putExtra("defaultLatitude", defaultLatitude);
+		 i.putExtra("defaultLongitude", defaultLongitude);
+		 i.putExtra("currentLongitude", currentLongitude);
+		 i.putExtra("currentLatitude", currentLatitude);
+		 startActivity(i);
+	}
 	
 	private void crearToast(String msg){
 		Toast.makeText(getBaseContext(),msg,Toast.LENGTH_LONG).show();

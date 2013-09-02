@@ -22,6 +22,7 @@ public class MiLocalizadorListener implements LocationListener{
 	private Activity activity;
 	private ProgressDialog dialogoDuranteBusquedaGPS;
 	private Button btVerMapa;
+	private Button btVerRuta;
 	private Double currentLongitude;
 	private Double currentLatitude;
 	
@@ -31,6 +32,7 @@ public class MiLocalizadorListener implements LocationListener{
 			TextView tvLatitud,
 			MiHandler handler,
 			Button btVerMapa,
+			Button btVerRuta,
 			Double currentLongitude,
 			Double currentLatitude){
 		this.context = activity.getBaseContext();
@@ -40,6 +42,7 @@ public class MiLocalizadorListener implements LocationListener{
 		this.tvLatitud = tvLatitud;
 		this.tvLongitud = tvLongitud;
 		this.btVerMapa = btVerMapa;
+		this.btVerRuta = btVerRuta;
 		this.currentLatitude =currentLatitude;
 		this.currentLongitude = currentLongitude;
 	}
@@ -61,6 +64,7 @@ public class MiLocalizadorListener implements LocationListener{
 					tvLatitud.setText("Latitud: "+String.valueOf(currentLatitude.doubleValue()));
 			        tvLongitud.setText("Longitud: "+String.valueOf(currentLongitude.doubleValue()));
 			        btVerMapa.setEnabled(true);
+			        btVerRuta.setEnabled(true);
 				}
 			});
         }

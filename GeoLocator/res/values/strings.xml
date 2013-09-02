@@ -12,4 +12,7 @@
     <string name="gps_signal_found">Señal GPS encontrada</string>
     <string name="btviewmap">Ver mapa</string>
     <string name="vermapa">Ver Mapa</string>
+     <string name="verruta">Ver Ruta</string>
+    <string name="api_key">AIzaSyCwvmaAVxzgZ1dCBVjAXQ44wYMJmkghuU0</string>
+	<string name="debugable">true</string>
 </resources>
