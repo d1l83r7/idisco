@@ -13,6 +13,8 @@
     <string name="btviewmap">Ver mapa</string>
     <string name="vermapa">Ver Mapa</string>
      <string name="verruta">Ver Ruta</string>
-    <string name="api_key">AIzaSyCwvmaAVxzgZ1dCBVjAXQ44wYMJmkghuU0</string>
+    <string name="api_key">AIzaSyCgZgcxt6Jxos1N0FtSIJw2ErdqRrrowY4</string>
 	<string name="debugable">true</string>
+	<string name="rb_coche">Coche</string>
+	<string name="rb_caminando">Caminando</string>
 </resources>

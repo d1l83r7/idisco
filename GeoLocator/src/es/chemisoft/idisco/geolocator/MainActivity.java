@@ -1,5 +1,7 @@
 package es.chemisoft.idisco.geolocator;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,6 +13,7 @@ import android.os.Looper;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import es.chemisoft.idisco.geolocator.handler.MiHandler;
@@ -24,12 +27,14 @@ public class MainActivity extends Activity implements Runnable {
 	private TextView tvLatitud = null;
 	private TextView tvLongitud = null;
 	private MiHandler handler = null;
-	private Double currentLongitude = new Double(2.345678);
-	private Double currentLatitude = new Double(41.384950);
+	private Double currentLongitude = null;
+	private Double currentLatitude = null;
 	private final double defaultLongitude = 2.173662;
 	private final double defaultLatitude = 41.401536;
 	private Button btVerMapa;
 	private Button btVerRuta;
+	private RadioButton rbCoche;
+	private RadioButton rbCaminando;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +53,7 @@ public class MainActivity extends Activity implements Runnable {
 		});
         
         btVerMapa = (Button)findViewById(R.id.bt_verMapa);
-        btVerMapa.setEnabled(true);
+        btVerMapa.setEnabled(false);
         btVerMapa.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -68,6 +73,12 @@ public class MainActivity extends Activity implements Runnable {
 				
 			}
 		});
+        rbCoche = (RadioButton)findViewById(R.id.rb_coche);
+        rbCoche.setChecked(true);
+        rbCoche.setEnabled(false);
+        
+        rbCaminando = (RadioButton)findViewById(R.id.rb_caminando);
+        rbCaminando.setEnabled(false);
     }
 
     @Override
@@ -97,14 +108,14 @@ public class MainActivity extends Activity implements Runnable {
 		//si está activado el GPS
 		if (gpsEnabled) {
 			Looper.prepare();
-			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,tvLatitud,tvLongitud,handler,btVerMapa,btVerRuta,currentLongitude,currentLatitude);
+			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,tvLatitud,tvLongitud,handler,btVerMapa,btVerRuta,currentLongitude,currentLatitude,rbCaminando,rbCoche);
 			locationManager.requestLocationUpdates(
 	                LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
 			Looper.loop(); 
 			Looper.myLooper().quit(); 
 		//Si está activada la RED 3G
 		} else if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,tvLatitud,tvLongitud,handler,btVerMapa,btVerRuta,currentLongitude,currentLatitude);
+			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,tvLatitud,tvLongitud,handler,btVerMapa,btVerRuta,currentLongitude,currentLatitude,rbCoche,rbCaminando);
 			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0,0,mLocationListener);
 			Looper.loop();
 			Looper.myLooper().quit();
@@ -115,21 +126,32 @@ public class MainActivity extends Activity implements Runnable {
 	}
 	
 	public void verRuta(){
+		List<Double> l = (List<Double>)btVerMapa.getTag();
+		Double dLong = l.get(0);
+		Double dLat = l.get(1);
 		 Intent i = new Intent(getBaseContext(),RutaActivity.class);
 		 i.putExtra("defaultLatitude", defaultLatitude);
 		 i.putExtra("defaultLongitude", defaultLongitude);
-		 i.putExtra("currentLongitude", currentLongitude);
-		 i.putExtra("currentLatitude", currentLatitude);
+		 i.putExtra("currentLongitude", dLat);
+		 i.putExtra("currentLatitude", dLong);
+		 if(rbCoche.isChecked())
+			i.putExtra("driving", "S");
+		 else
+			i.putExtra("driving", "N");
 		 startActivity(i);
 	 }
 	
 	public void verMapa(){
+		List<Double> l = (List<Double>)btVerMapa.getTag();
+		Double dLong = l.get(0);
+		Double dLat = l.get(1);
+		
 		Intent i = new Intent(getBaseContext(),MapaActivity.class);
-		 i.putExtra("defaultLatitude", defaultLatitude);
-		 i.putExtra("defaultLongitude", defaultLongitude);
-		 i.putExtra("currentLongitude", currentLongitude);
-		 i.putExtra("currentLatitude", currentLatitude);
-		 startActivity(i);
+		i.putExtra("defaultLatitude", defaultLatitude);
+		i.putExtra("defaultLongitude", defaultLongitude);
+		i.putExtra("currentLongitude", dLong);
+		i.putExtra("currentLatitude", dLat);
+		startActivity(i);
 	}
 	
 	private void crearToast(String msg){
