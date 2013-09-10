@@ -1,4 +1,7 @@
 package es.chemisoft.idisco.geolocator.listener;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -8,6 +11,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import es.chemisoft.idisco.geolocator.R;
@@ -25,6 +29,8 @@ public class MiLocalizadorListener implements LocationListener{
 	private Button btVerRuta;
 	private Double currentLongitude;
 	private Double currentLatitude;
+	private RadioButton rbCoche;
+	private RadioButton rbCaminando;
 	
 	public MiLocalizadorListener(Activity activity,
 			ProgressDialog dialogoDuranteBusquedaGPS, 
@@ -34,7 +40,9 @@ public class MiLocalizadorListener implements LocationListener{
 			Button btVerMapa,
 			Button btVerRuta,
 			Double currentLongitude,
-			Double currentLatitude){
+			Double currentLatitude,
+			RadioButton rbCoche,
+			RadioButton rbCaminando){
 		this.context = activity.getBaseContext();
 		this.resources = activity.getResources();
 		this.activity = activity;
@@ -45,6 +53,8 @@ public class MiLocalizadorListener implements LocationListener{
 		this.btVerRuta = btVerRuta;
 		this.currentLatitude =currentLatitude;
 		this.currentLongitude = currentLongitude;
+		this.rbCaminando = rbCaminando;
+		this.rbCoche = rbCoche;
 	}
 	
     @SuppressLint("UseValueOf") 
@@ -64,7 +74,14 @@ public class MiLocalizadorListener implements LocationListener{
 					tvLatitud.setText("Latitud: "+String.valueOf(currentLatitude.doubleValue()));
 			        tvLongitud.setText("Longitud: "+String.valueOf(currentLongitude.doubleValue()));
 			        btVerMapa.setEnabled(true);
+			        List<Double>d = new ArrayList<Double>();
+			        d.add(currentLatitude);
+			        d.add(currentLongitude);
+			        btVerMapa.setTag(d);
 			        btVerRuta.setEnabled(true);
+			        btVerRuta.setTag(d);
+			        rbCaminando.setEnabled(true);
+			        rbCoche.setEnabled(true);
 				}
 			});
         }
