@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/detallediscoteca_tv_nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/detallediscoteca_tv_hint_nombreDiscoteca" />
+
+    <TextView
+        android:id="@+id/detallediscoteca_tv_descripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/detallediscoteca_tv_hint_descripcionDiscoteca" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+		<RadioGroup
+         android:id="@+id/rdgGrupo"
+         android:orientation="horizontal"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:checkedButton="@+id/rdbOne">
+
+         <RadioButton
+             android:id="@+id/detallediscoteca_rb_caminando"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/detallediscoteca_rb_text_caminando" />
+
+         <RadioButton
+             android:id="@+id/detallediscoteca_rb_coche"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/detallediscoteca_rb_text_coche" />
+
+     </RadioGroup>
+        <Button
+            android:id="@+id/detallediscoteca_bt_ruta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buscardiscoteca_bt_mostrarRuta" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/detallediscoteca_bt_atras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buscardiscoteca_bt_atras" />
+
+</LinearLayout>
