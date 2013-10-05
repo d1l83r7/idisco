@@ -1,35 +1,82 @@
 package es.uparty.asynctask;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.os.AsyncTask;
+import android.util.Log;
 import es.uparty.dto.DiscotecaDTO;
 
 public class ObtenerDisctecasAsyncTask extends
-		AsyncTask<Double, Integer, List<DiscotecaDTO>> {
+		AsyncTask<String, Integer, List<DiscotecaDTO>> {
 
 	private List<DiscotecaDTO> listaDiscotecas = null;
-	
+	private final static String OBTENERDICOTECASASYNCTASK_TAG = "OBTENERDICOTECASASYNCTASK_TAG";
 	@Override
-	protected List<DiscotecaDTO> doInBackground(Double... arg0) {
-		// TODO Auto-generated method stub
+	protected List<DiscotecaDTO> doInBackground(String... params) {
+		try{
+			JSONObject jsonObject = abrirConexion(params[0]);
+			listaDiscotecas = JSONObjectToListDiscotecasDTO(jsonObject);	
+		}catch(JSONException jsone){
+			Log.d(OBTENERDICOTECASASYNCTASK_TAG, "Error: "+jsone.getMessage());
+		}
 		
-		DiscotecaDTO discotecaDTO = new DiscotecaDTO();
-		discotecaDTO.setDescripcio("Descripción del Apolo");
-		discotecaDTO.setNombre("Apolo");
-		discotecaDTO.setLatitud("41.3744");
-		discotecaDTO.setLongitud("2.16772");
-		listaDiscotecas.add(discotecaDTO);
-		
-		discotecaDTO = new DiscotecaDTO();
-		discotecaDTO.setDescripcio("Descripción del City Hall");
-		discotecaDTO.setNombre("City Hall");
-		discotecaDTO.setLatitud("41.38770024");
-		discotecaDTO.setLongitud("2.168136835");
-		listaDiscotecas.add(discotecaDTO);
 		
 		return listaDiscotecas;
+	}
+	
+	private List<DiscotecaDTO> JSONObjectToListDiscotecasDTO(JSONObject jsonObject)throws JSONException{
+		List<DiscotecaDTO> l = new ArrayList<DiscotecaDTO>();
+		JSONArray JArray = jsonObject.getJSONArray("elements");
+		for(int i=0;i<JArray.length();i++){
+			JSONObject json = JArray.getJSONObject(i);
+			DiscotecaDTO discotecaDTO = new DiscotecaDTO();
+			discotecaDTO.setDescripcio(json.getString("descripcion"));
+			discotecaDTO.setNombre(json.getString("nombre"));
+			discotecaDTO.setLatitud(json.getString("latitud"));
+			discotecaDTO.setLongitud(json.getString("longitud"));
+			l.add(discotecaDTO);
+		}
+		return l;
+	}
+	
+	private JSONObject abrirConexion(String url){
+		try{
+			HttpPost httppost = new HttpPost(url);
+			HttpClient httpclient = new DefaultHttpClient();
+	
+			HttpResponse response = httpclient.execute(httppost);
+			HttpEntity entity = response.getEntity();
+			InputStream is = null;
+			is = entity.getContent();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
+			StringBuilder sb = new StringBuilder();
+			sb.append(reader.readLine() + "\n");
+			String line = "0";
+			while ((line = reader.readLine()) != null) {
+			    sb.append(line + "\n");
+			}
+			is.close();
+			reader.close();
+			String result = sb.toString();
+			JSONObject jsonObject = new JSONObject(result);
+			return jsonObject;
+		}catch(Exception e){
+			Log.d(OBTENERDICOTECASASYNCTASK_TAG, "Error: "+e.getMessage());
+			return null;
+		}
 	}
 
 	@Override
@@ -49,5 +96,5 @@ public class ObtenerDisctecasAsyncTask extends
 		// TODO Auto-generated method stub
 		super.onProgressUpdate(values);
 	}
-
+	
 }
