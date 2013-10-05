@@ -32,7 +32,8 @@ public class BuscarDiscotecaActivity extends ListActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.buscardiscoteca);
 		ObtenerDisctecasAsyncTask obtenerDisctecasAsyncTask = new ObtenerDisctecasAsyncTask();
-		obtenerDisctecasAsyncTask.execute(new Double(0.0));
+		String url = "http://192.168.1.8:9000/getDiscotecas";
+		obtenerDisctecasAsyncTask.execute(url);
 		try{
 			listaDiscotecas = obtenerDisctecasAsyncTask.get();
 		}catch(InterruptedException ie){
