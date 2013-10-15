@@ -31,16 +31,6 @@ public class BuscarDiscotecaActivity extends ListActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.buscardiscoteca);
-		ObtenerDisctecasAsyncTask obtenerDisctecasAsyncTask = new ObtenerDisctecasAsyncTask();
-		String url = "http://radiant-ravine-3483.herokuapp.com/getDiscotecas";
-		obtenerDisctecasAsyncTask.execute(url);
-		try{
-			listaDiscotecas = obtenerDisctecasAsyncTask.get();
-		}catch(InterruptedException ie){
-			Log.e(TAG_BUSCAR_DISCOTECA, ie.getMessage());
-		}catch(ExecutionException e){
-			Log.e(TAG_BUSCAR_DISCOTECA, e.getMessage());
-		}
 		
 		botonBuscar = (Button)findViewById(R.id.buscardiscoteca_bt_buscar);
 		botonBuscar.setOnClickListener(new View.OnClickListener() {
@@ -50,16 +40,24 @@ public class BuscarDiscotecaActivity extends ListActivity{
 				EditText editText = (EditText)findViewById(R.id.buscardiscoteca_et_nombreDiscoteca);
 				String nombreDiscoteca = editText.getText().toString();
 				Log.d(TAG_BUSCAR_DISCOTECA, "Nombre discoteca: "+nombreDiscoteca);
+				
+				ObtenerDisctecasAsyncTask obtenerDisctecasAsyncTask = new ObtenerDisctecasAsyncTask();
+				String url = "http://radiant-ravine-3483.herokuapp.com/getDiscotecasByName?name="+nombreDiscoteca;
+				obtenerDisctecasAsyncTask.execute(url);
+				try{
+					listaDiscotecas = obtenerDisctecasAsyncTask.get();
+				}catch(InterruptedException ie){
+					Log.e(TAG_BUSCAR_DISCOTECA, ie.getMessage());
+				}catch(ExecutionException e){
+					Log.e(TAG_BUSCAR_DISCOTECA, e.getMessage());
+				}
 				if(listaDiscotecas!=null){
 					for(DiscotecaDTO dto: listaDiscotecas){
-						String nombreDiscotecaMinusculas = nombreDiscoteca.toLowerCase();
-						if(dto.getNombre().toLowerCase().contains(nombreDiscotecaMinusculas)){
 							ArrayAdapter<String> adapter = (ArrayAdapter<String>)lv.getAdapter();
 							adapter.add(dto.getNombre());
 						}
 					}
 				}
-			}
 		});
 		botonAtras = (Button)findViewById(R.id.buscardiscoteca_bt_atras);
 		botonAtras.setOnClickListener(new View.OnClickListener() {
