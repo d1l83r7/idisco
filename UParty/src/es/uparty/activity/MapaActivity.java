@@ -39,7 +39,7 @@ public class MapaActivity extends FragmentActivity {
         LatLng point = new LatLng(dLat, dLong);
         
         ObtenerDisctecasAsyncTask obtenerDiscotecas = new ObtenerDisctecasAsyncTask();
-        obtenerDiscotecas.execute("http://192.168.1.8:9000/getDiscotecas");
+        obtenerDiscotecas.execute("http://radiant-ravine-3483.herokuapp.com/getDiscotecas");
         List<DiscotecaDTO> lDisco = null;
         try{
         	lDisco = obtenerDiscotecas.get();

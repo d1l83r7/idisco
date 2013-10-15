@@ -27,8 +27,8 @@ public class GPSGenericActivity extends Activity implements Runnable {
 	        	crearToast(getResources().getString(R.string.gps_signal_not_found));
 	        }
 	    };
-	    dialogoDuranteBusquedaGPS = ProgressDialog.show(this, this.getResources().getString(R.string.search), 
-				this.getResources().getString(R.string.search_signal_gps), true, true, dialogCancel);
+//	    dialogoDuranteBusquedaGPS = ProgressDialog.show(this, this.getResources().getString(R.string.search), 
+//				this.getResources().getString(R.string.search_signal_gps), true, true, dialogCancel);
 		Thread thread = new Thread(this);
 		thread.start();
 	}
@@ -47,6 +47,7 @@ public class GPSGenericActivity extends Activity implements Runnable {
 			Looper.myLooper().quit(); 
 		//Si está activada la RED 3G
 		} else if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+			Looper.prepare();
 			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,this,option,dto,coche);
 			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0,0,mLocationListener);
 			Looper.loop();

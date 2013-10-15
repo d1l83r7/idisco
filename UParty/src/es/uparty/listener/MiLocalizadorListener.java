@@ -59,7 +59,7 @@ public class MiLocalizadorListener implements LocationListener{
             activity.runOnUiThread(new Runnable() {
 				@Override
 				public void run() {
-					dialogoDuranteBusquedaGPS.hide();
+//					dialogoDuranteBusquedaGPS.hide();
 					if(option==0){
 				        Intent i = new Intent(context,MapaActivity.class);
 				        i.putExtra(Constants.LATITUDE, currentLatitude);

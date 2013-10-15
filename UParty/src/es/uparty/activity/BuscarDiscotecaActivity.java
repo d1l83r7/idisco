@@ -32,7 +32,7 @@ public class BuscarDiscotecaActivity extends ListActivity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.buscardiscoteca);
 		ObtenerDisctecasAsyncTask obtenerDisctecasAsyncTask = new ObtenerDisctecasAsyncTask();
-		String url = "http://192.168.1.8:9000/getDiscotecas";
+		String url = "http://radiant-ravine-3483.herokuapp.com/getDiscotecas";
 		obtenerDisctecasAsyncTask.execute(url);
 		try{
 			listaDiscotecas = obtenerDisctecasAsyncTask.get();
