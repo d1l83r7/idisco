@@ -11,6 +11,9 @@ import models.DiscotecaDTO;
 import play.db.DB;
 import play.mvc.Controller;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 public class DiscotecaGenericController extends Controller {
 
 	protected static List<DiscotecaDTO> ejecutarSQL(String sql){
@@ -39,5 +42,19 @@ public class DiscotecaGenericController extends Controller {
 		}
 		
 		return l;
+	}
+	
+	protected static JsonArray listDicotecaDTOToJSonArray(List<DiscotecaDTO> l){
+		JsonArray array = new JsonArray();
+		for(DiscotecaDTO dto: l){
+			JsonObject ob = new JsonObject();
+			ob.addProperty("idDiscoteca", dto.getIdDiscoteca());
+			ob.addProperty("nombre", dto.getNombre());
+			ob.addProperty("latitud", dto.getLatitud());
+			ob.addProperty("longitud", dto.getLongitud());
+			ob.addProperty("descripcion", dto.getDescripcion());
+			array.add(ob);	
+		}
+		return array;
 	}
 }
