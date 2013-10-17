@@ -3,15 +3,18 @@ package es.uparty.activity;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import es.uparty.R;
@@ -22,7 +25,7 @@ import es.uparty.dto.DiscotecaDTO;
 public class MapaActivity extends FragmentActivity {
 
 	private final static String TAG_MAPA = "TAG_MAPA";
-
+	List<DiscotecaDTO> lDisco = null;
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -40,7 +43,7 @@ public class MapaActivity extends FragmentActivity {
         
         ObtenerDisctecasAsyncTask obtenerDiscotecas = new ObtenerDisctecasAsyncTask();
         obtenerDiscotecas.execute("http://radiant-ravine-3483.herokuapp.com/getDiscotecas");
-        List<DiscotecaDTO> lDisco = null;
+        
         try{
         	lDisco = obtenerDiscotecas.get();
         }catch(ExecutionException e){
@@ -69,5 +72,24 @@ public class MapaActivity extends FragmentActivity {
         		myMap.addMarker(moptions);
         	}
         }
-    }	
+        myMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
+			
+			@Override
+			public void onInfoWindowClick(Marker marker) {
+				String text = marker.getTitle();
+				if(lDisco!=null){
+					Intent i = new Intent(getBaseContext(),DetallDiscotecaActivity.class);
+					String nombreDiscotecaMinusculas = text.toLowerCase();
+					for(DiscotecaDTO dto: lDisco){
+						if(dto.getNombre().toLowerCase().equals(nombreDiscotecaMinusculas)){
+							i.putExtra(Constants.DISCOTECADTO, dto);
+							i.putExtra(Constants.ORIGEN, Constants.ORIGEN_MAPA);
+							startActivity(i);
+						}
+					}
+				}
+				
+			}
+		});
+    }
 }

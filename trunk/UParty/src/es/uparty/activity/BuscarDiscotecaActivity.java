@@ -84,6 +84,7 @@ public class BuscarDiscotecaActivity extends ListActivity{
 								String nombreDiscotecaMinusculas = tv.getText().toString().toLowerCase();
 								if(dto.getNombre().toLowerCase().equals(nombreDiscotecaMinusculas)){
 									i.putExtra(Constants.DISCOTECADTO, dto);
+									i.putExtra(Constants.ORIGEN, Constants.ORIGEN_BUSQUEDA);
 									startActivity(i);
 								}
 							}

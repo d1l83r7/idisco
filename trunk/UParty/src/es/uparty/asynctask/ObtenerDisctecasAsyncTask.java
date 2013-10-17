@@ -43,6 +43,7 @@ public class ObtenerDisctecasAsyncTask extends
 		for(int i=0;i<JArray.length();i++){
 			JSONObject json = JArray.getJSONObject(i);
 			DiscotecaDTO discotecaDTO = new DiscotecaDTO();
+			discotecaDTO.setId(json.getString("idDiscoteca"));
 			discotecaDTO.setDescripcio(json.getString("descripcion"));
 			discotecaDTO.setNombre(json.getString("nombre"));
 			discotecaDTO.setLatitud(json.getString("latitud"));
