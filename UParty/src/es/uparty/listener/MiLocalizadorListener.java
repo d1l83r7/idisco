@@ -28,12 +28,12 @@ public class MiLocalizadorListener implements LocationListener{
 	private int option = 0;
 	private DiscotecaDTO dto=null;
 	private static final String TAG_LOGATION_LISTENER = "TAG_LOGATION_LISTENER";
-	private boolean coche = false;
+	private int modoRuta = 0;
 	public MiLocalizadorListener(Activity activity,
 			ProgressDialog dialogoDuranteBusquedaGPS,
 			Context context,int option,
 			DiscotecaDTO dto,
-			boolean coche){
+			int modoRuta){
 		this.context = activity.getBaseContext();
 		this.resources = activity.getResources();
 		this.activity = activity;
@@ -41,7 +41,7 @@ public class MiLocalizadorListener implements LocationListener{
 		this.context = context;
 		this.option = option;
 		this.dto = dto;
-		this.coche = coche;
+		this.modoRuta = modoRuta;
 	}
 	
     @SuppressLint("UseValueOf") 
@@ -71,10 +71,12 @@ public class MiLocalizadorListener implements LocationListener{
 						 i.putExtra(Constants.LONGITUD_DESTINO, Double.parseDouble(dto.getLongitud()));
 						 i.putExtra(Constants.LATITUD_ORIGEN, currentLatitude);
 						 i.putExtra(Constants.LONGITUD_ORIGEN, currentLongitude);
-						 if(coche)
-							i.putExtra("driving", "S");
-						 else
-							i.putExtra("driving", "N");
+						 if(modoRuta==0)
+							i.putExtra("mode", "driving");
+						 else if(modoRuta==1)
+							i.putExtra("mode", "walking");
+						 else if(modoRuta==2)
+							i.putExtra("mode", "transit");
 						 context.startActivity(i);
 					}
 				}

@@ -1,9 +1,8 @@
 package es.uparty.activity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
-import org.apache.http.HttpConnection;
 
 import android.graphics.Color;
 import android.location.Location;
@@ -39,7 +38,7 @@ public class RutaActivity extends FragmentActivity {
 			double defaultLongitude = extras.getDouble(Constants.LONGITUD_DESTINO);
 			double currentLatitude = extras.getDouble(Constants.LATITUD_ORIGEN);
 			double currentLongitude = extras.getDouble(Constants.LONGITUD_ORIGEN);
-			String driving = extras.getString("driving");
+			String mode = extras.getString("mode");
 			Log.d(RUTAACTIVITY_TAG, "latitud por defecto: "+String.valueOf(defaultLatitude));
 			Log.d(RUTAACTIVITY_TAG, "longitud por defecto: "+String.valueOf(defaultLongitude));
 			Log.d(RUTAACTIVITY_TAG, "latitud actual: "+String.valueOf(currentLatitude));
@@ -66,7 +65,7 @@ public class RutaActivity extends FragmentActivity {
 
 			try{
 			traceRoute(currentLatitude, currentLongitude, defaultLatitude,
-					defaultLongitude,driving);
+					defaultLongitude,mode);
 			}catch(Exception e){
 				Log.d(RUTAACTIVITY_TAG, e.getMessage());
 			}
@@ -75,10 +74,10 @@ public class RutaActivity extends FragmentActivity {
 	}
 
 	private void traceRoute(Double sourceLat, Double sourceLong,
-			Double destinationLat, Double destinationLong,String driving)throws Exception {
+			Double destinationLat, Double destinationLong,String mode)throws Exception {
 		List<GeoPoint> l = getDirectionData(String.valueOf(sourceLat),
 				String.valueOf(sourceLong), String.valueOf(destinationLat),
-				String.valueOf(destinationLong),driving);
+				String.valueOf(destinationLong),mode);
 		
 		PolylineOptions rectLine = new PolylineOptions().width(3).color(Color.RED);
 		
@@ -100,17 +99,24 @@ public class RutaActivity extends FragmentActivity {
 	}
 
 	private List<GeoPoint> getDirectionData(String sourceLat, String sourceLong,
-			String destinationLat, String destinationLong, String driving)throws Exception {
+			String destinationLat, String destinationLong, String mode)throws Exception {
 		StringBuilder urlString = new StringBuilder();
 	    urlString.append("http://maps.googleapis.com/maps/api/directions/json?");
 	    urlString.append("origin=");// from
 	    urlString.append(sourceLat+","+sourceLong);
 	    urlString.append("&destination=");// to
 	    urlString.append(destinationLat+","+destinationLong);
-	    if(driving.equals("S"))
+	    if(mode.equals("driving"))
 	    	urlString.append("&mode=driving");
-	    else
-	    	urlString.append("&mode=walking");	    	
+	    else if(mode.equals("walking"))
+	    	urlString.append("&mode=walking");
+	    else if(mode.equals("transit")){
+	    	urlString.append("&mode=transit");
+	    	Date d = new Date();
+	    	String departure_time = String.valueOf(d.getTime());
+	    	urlString.append("&departure_time=");
+	    	urlString.append(departure_time.substring(0,10));
+	    }
 	    urlString.append("&sensor=true");
 	    urlString.append("&units=imperial");
 	    ConnectionAsyncTask con = new ConnectionAsyncTask();

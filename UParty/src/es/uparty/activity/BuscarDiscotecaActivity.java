@@ -42,7 +42,8 @@ public class BuscarDiscotecaActivity extends ListActivity{
 				Log.d(TAG_BUSCAR_DISCOTECA, "Nombre discoteca: "+nombreDiscoteca);
 				
 				ObtenerDisctecasAsyncTask obtenerDisctecasAsyncTask = new ObtenerDisctecasAsyncTask();
-				String url = "http://radiant-ravine-3483.herokuapp.com/getDiscotecasByName?name="+nombreDiscoteca;
+//				String url = "http://radiant-ravine-3483.herokuapp.com/getDiscotecasByName?name="+nombreDiscoteca;
+				String url = "http://192.168.1.14:9000/getDiscotecasByName?name="+nombreDiscoteca;
 				obtenerDisctecasAsyncTask.execute(url);
 				try{
 					listaDiscotecas = obtenerDisctecasAsyncTask.get();

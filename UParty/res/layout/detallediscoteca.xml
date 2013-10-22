@@ -37,15 +37,21 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:text="@string/detallediscoteca_rb_text_coche" />
+         
+         <RadioButton
+             android:id="@+id/detallediscoteca_rb_transp_publico"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/detallediscoteca_rb_text_trans_publico" />
 
      </RadioGroup>
-        <Button
+        
+    </LinearLayout>
+<Button
             android:id="@+id/detallediscoteca_bt_ruta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/buscardiscoteca_bt_mostrarRuta" />
-    </LinearLayout>
-
     <Button
         android:id="@+id/detallediscoteca_bt_atras"
         android:layout_width="wrap_content"
