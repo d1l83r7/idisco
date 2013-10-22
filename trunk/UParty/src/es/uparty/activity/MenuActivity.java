@@ -20,7 +20,7 @@ public class MenuActivity extends GPSGenericActivity {
 			@Override
 			public void onClick(View v) {
 				//Codigo que se ejecuta al clickar el botón
-				buscaGPS(0,null,false);
+				buscaGPS(0,null,0);
 				
 			}
 		});

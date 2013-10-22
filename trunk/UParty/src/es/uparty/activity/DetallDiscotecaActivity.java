@@ -16,8 +16,9 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 	private Button btAtras;
 	private Button btRuta;
 	private DiscotecaDTO dto = null;
-	RadioButton rbCoche = null;
-	RadioButton rbPie = null;
+	private RadioButton rbCoche = null;
+	private RadioButton rbPie = null;
+	private RadioButton rbTranPublico = null;
 			
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 					i = new Intent(getBaseContext(),BuscarDiscotecaActivity.class);
 					startActivity(i);	
 				}else if(origen.equals(Constants.ORIGEN_MAPA)){
-					buscaGPS(0,null,false);
+					buscaGPS(0,null,0);
 				}
 			}
 		});
@@ -53,10 +54,14 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 		btRuta.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				boolean coche = false;
+				int modeRuta = 0;
 				if(rbCoche.isChecked())
-					coche = true;
-				buscaGPS(1, dto,coche);
+					modeRuta = 0;
+				else if(rbPie.isChecked())
+					modeRuta = 1;
+				else if(rbTranPublico.isChecked())
+					modeRuta = 2;
+				buscaGPS(1, dto,modeRuta);
 			}
 		});
 		
@@ -64,5 +69,7 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 		rbPie.setChecked(true);
 		rbCoche = (RadioButton)findViewById(R.id.detallediscoteca_rb_coche);
 		rbCoche.setChecked(false);
+		rbTranPublico = (RadioButton)findViewById(R.id.detallediscoteca_rb_transp_publico);
+		rbTranPublico.setChecked(false);
 	}
 }

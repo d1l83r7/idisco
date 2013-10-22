@@ -17,4 +17,5 @@
     <string name="buscardiscoteca_bt_mostrarRuta">Mostrar ruta</string>
     <string name="detallediscoteca_rb_text_coche">En coche</string>
     <string name="detallediscoteca_rb_text_caminando">A pie</string>
+    <string name="detallediscoteca_rb_text_trans_publico">En Transporte público</string>
 </resources>
