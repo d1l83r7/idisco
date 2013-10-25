@@ -27,6 +27,6 @@
     <string name="configuracion_bt_volver">Volver</string>
     <string name="configuracion_bt_guardar">Guardar</string>
     
-    <string name="configuracion_tv_distancia">Distancia máxima</string>
+    <string name="configuracion_tv_distancia">Distancia máxima: 0m</string>
     
 </resources>
