@@ -3,7 +3,9 @@ package es.uparty.activity;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -42,9 +44,22 @@ public class MapaActivity extends FragmentActivity {
         LatLng point = new LatLng(dLat, dLong);
         
         ObtenerDisctecasAsyncTask obtenerDiscotecas = new ObtenerDisctecasAsyncTask();
-        String url = "http://radiant-ravine-3483.herokuapp.com/getDiscotecas";
+//        String url = "http://radiant-ravine-3483.herokuapp.com/getDiscotecas";
 //        String url  = "http://192.168.1.14:9000/getDiscotecas";
-        obtenerDiscotecas.execute(url);
+        
+        SharedPreferences sp = getSharedPreferences(Constants.NOMBRE_FICHERO_PREFERENCIAS, Context.MODE_PRIVATE);
+        String dist = sp.getString(Constants.PREF_DISTANCIA, "10000");
+        
+        
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append("http://radiant-ravine-3483.herokuapp.com/");
+        sb.append("getDiscotecasCercanas?");
+        sb.append("distancia="+dist+"&");
+        sb.append("latitud="+String.valueOf(dLat)+"&");
+        sb.append("longitud="+String.valueOf(dLong));
+        
+        obtenerDiscotecas.execute(sb.toString());
         
         try{
         	lDisco = obtenerDiscotecas.get();
