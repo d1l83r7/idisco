@@ -2,11 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#DF0101"
+        android:textSize="30sp"
+        android:text="@string/buscardiscoteca_tv_buscar_discoteca" 
+        android:textColor="#000000"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:background="#000000" >
 
         <EditText
             android:id="@+id/buscardiscoteca_et_nombreDiscoteca"
@@ -14,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10" 
+            android:textColor="#F2F2F2"
             android:hint="@string/buscardiscoteca_et_hind_nombre">
 
             <requestFocus />
@@ -31,20 +43,35 @@
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="327dp" >
+        android:layout_height="wrap_content"
+        >
     </ListView>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
+         <LinearLayout
+        	android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="#DF0101"
+            android:gravity="end" >>
 
         <Button
             android:id="@+id/buscardiscoteca_bt_atras"
             style="?android:attr/buttonStyleSmall"
+            android:text="@string/buscardiscoteca_bt_atras"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/buscardiscoteca_bt_atras" />
+            android:layout_weight="0.5"
+            android:background="#DF0101"
+            android:textColor="#000000" />
 
     </LinearLayout>
+        
+    </RelativeLayout>
+
+   
 
 </LinearLayout>
