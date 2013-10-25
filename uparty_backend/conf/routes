@@ -9,7 +9,9 @@ POST	/getDiscotecas							GetDiscotecas.getDiscotecas
 GET     /getDiscotecasByName					GetDiscotecasByName.getDiscotecasByName
 POST    /getDiscotecasByName					GetDiscotecasByName.getDiscotecasByName
 GET     /getDistanciaToDisco					GetDistanciaToDisco.getDistanciasToDisco
-GET     /getDistanciaToDisco					GetDistanciaToDisco.getDistanciasToDisco
+POST     /getDistanciaToDisco					GetDistanciaToDisco.getDistanciasToDisco
+GET     /getDiscotecasCercanas					GetDiscotecasCercanas.getDiscotecasCercanas
+POST     /getDiscotecasCercanas					GetDiscotecasCercanas.getDiscotecasCercanas
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
