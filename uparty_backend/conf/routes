@@ -14,8 +14,8 @@ GET     /getDiscotecasCercanas					GetDiscotecasCercanas.getDiscotecasCercanas
 POST    /getDiscotecasCercanas					GetDiscotecasCercanas.getDiscotecasCercanas
 GET     /altaDiscoteca							AltaDiscoteca.verAltaDiscoteca
 POST    /altaDiscoteca							AltaDiscoteca.verAltaDiscoteca
-GET     /gestionDiscotecas						GetDiscotecasByName.verGetDiscotecasByNameHTml
-POST    /gestionDiscotecas						GetDiscotecasByName.verGetDiscotecasByNameHTml
+GET     /gestionDiscotecas						GetDiscotecasByName.verGetDiscotecasByNameHtml
+POST    /gestionDiscotecas						GetDiscotecasByName.verGetDiscotecasByNameHtml
 GET     /menuDiscotecas							MenuDiscotecas.verMenuDiscotecas
 POST    /menuDiscotecas							MenuDiscotecas.verMenuDiscotecas
 
