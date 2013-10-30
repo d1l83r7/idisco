@@ -13,7 +13,7 @@ import es.uparty.utils.Utils;
 public class GetDiscotecasCercanas extends DiscotecaGenericController {
 	public static void getDiscotecasCercanas(String distancia, String latitud, String longitud){
 		String sql = "SELECT * FROM DISCOTECAS";
-		List<DiscotecaDTO> l = ejecutarSQL(sql);
+		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
 		double longOrigen = Double.parseDouble(longitud);
 		double latOrigen = Double.parseDouble(latitud);
 		

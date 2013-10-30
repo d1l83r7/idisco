@@ -17,7 +17,7 @@ public class GetDiscotecas extends DiscotecaGenericController {
 	
 	public static void getDiscotecas(){
 		String sql = "SELECT * FROM DISCOTECAS";
-		List<DiscotecaDTO> l = ejecutarSQL(sql);
+		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
 		JsonArray array = listDicotecaDTOToJSonArray(l);
 		renderJSON(array);
 	}
