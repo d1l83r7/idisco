@@ -1,0 +1,70 @@
+#{extends 'main.html' /}
+#{set title:'Gestion discotecas' /}
+
+<script language="javascript">
+function eliminaDiscoteca(idDiscoteca){
+	document.getElementById('gestioDiscotecasForm').action = "@{BajaDiscoteca.eliminaDiscoteca()}";
+	document.getElementById('idDiscoteca').value=idDiscoteca;
+	document.getElementById('gestioDiscotecasForm').submit();
+}
+function editaDiscoteca(idDiscoteca){
+	document.getElementById('gestioDiscotecasForm').action = "@{AltaDiscoteca.editaDiscoteca()}";
+	document.getElementById('idDiscoteca').value=idDiscoteca;
+	document.getElementById('gestioDiscotecasForm').submit();
+}
+function volver(){
+	document.getElementById('gestioDiscotecasForm').action='/menuDiscotecas';
+	document.getElementById('gestioDiscotecasForm').submit();
+}
+
+</script>
+ 
+<form id="gestioDiscotecasForm" action="@{GetDiscotecasByName.getDiscotecasByNameHTml()}" method="POST">
+	<table>
+		<tr>
+			<td colspan="3"><h1>Busqueda de discotecas</h1></td> 
+		</tr>
+		<tr>
+			<td colspan="3">
+				<fieldset>
+					<table>
+						<tr>
+							<td>Nombre de la discoteca</td>
+							<td><input type="text" name="name"/></td>
+							<td><input type="submit" value="Busca"/></td>
+						</tr>
+					</table>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<table>
+						<tr>
+							<td bgcolor="#FF0000">Nombre</td>
+							<td bgcolor="#FF0000">Descripcion</td>
+							<td bgcolor="#FF0000">Latitud</td>
+							<td bgcolor="#FF0000">Longitud</td>
+							<td colspan="2" bgcolor="#FF0000">Acciones</td>
+						</tr>
+					#{list items:l, as:'disco' }
+						<tr>
+				        	<td bgcolor="#D8D8D8">${disco.nombre}</td>
+				        	<td bgcolor="#D8D8D8">${disco.descripcion}</td>
+				        	<td bgcolor="#D8D8D8">${disco.latitud}</td>
+				        	<td bgcolor="#D8D8D8">${disco.longitud}</td>
+				        	<td><input type="submit" value="Edita" onclick="editaDiscoteca('${disco.idDiscoteca}')" /></td>
+				        	<td><input type="submit" value="Elimina" onclick="eliminaDiscoteca('${disco.idDiscoteca}')"  /></td>
+				        </tr>
+				    #{/list}
+				</table>
+				    
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3"><input type="button" value="Volver" onclick="javascript:volver();"/></td>
+		</tr>
+	</table>
+	<input name="idDiscoteca" id="idDiscoteca" type="hidden"/>
+</form>
