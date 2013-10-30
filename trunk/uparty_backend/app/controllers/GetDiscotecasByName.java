@@ -21,7 +21,7 @@ public class GetDiscotecasByName extends DiscotecaGenericController {
 		render();
 	}
 	
-	public static void getDiscotecasByNameHTml(String name){
+	public static void getDiscotecasByNameHtml(String name){
 		
 		String sql = "SELECT * FROM DISCOTECAS WHERE LOWER(NOMBRE) LIKE '%"+name.toLowerCase()+"%'";
 		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
