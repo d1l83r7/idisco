@@ -16,7 +16,7 @@ public class GetDistanciaToDisco extends DiscotecaGenericController {
 		double latOrigen = Double.parseDouble(latitud);
 		double longOrigen = Double.parseDouble(longitud);
 		
-		List<DiscotecaDTO> l = ejecutarSQL(sql);
+		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
 		for(DiscotecaDTO dto:l){
 			
 			JsonObject ob = new JsonObject();

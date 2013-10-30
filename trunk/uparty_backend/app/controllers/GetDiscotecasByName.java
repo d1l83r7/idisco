@@ -12,8 +12,19 @@ import com.google.gson.JsonObject;
 public class GetDiscotecasByName extends DiscotecaGenericController {
 	public static void getDiscotecasByName(String name){
 		String sql = "SELECT * FROM DISCOTECAS WHERE LOWER(NOMBRE) LIKE '%"+name.toLowerCase()+"%'";
-		List<DiscotecaDTO> l = ejecutarSQL(sql);
+		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
 		JsonArray array = listDicotecaDTOToJSonArray(l);
 		renderJSON(array);
+	}
+	
+	public static void verGetDiscotecasByNameHTml(){
+		render();
+	}
+	
+	public static void getDiscotecasByNameHTml(String name){
+		
+		String sql = "SELECT * FROM DISCOTECAS WHERE LOWER(NOMBRE) LIKE '%"+name.toLowerCase()+"%'";
+		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
+		render(l);
 	}
 }

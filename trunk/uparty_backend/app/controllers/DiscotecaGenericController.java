@@ -16,7 +16,7 @@ import com.google.gson.JsonObject;
 
 public class DiscotecaGenericController extends Controller {
 
-	protected static List<DiscotecaDTO> ejecutarSQL(String sql){
+	protected static List<DiscotecaDTO> seleccionarDiscotecas(String sql){
 		List<DiscotecaDTO> l = new ArrayList<DiscotecaDTO>();
 		Connection conn = DB.getConnection();
 		try{
@@ -42,6 +42,95 @@ public class DiscotecaGenericController extends Controller {
 		}
 		
 		return l;
+	}
+	
+	protected static boolean modificarDiscoteca(DiscotecaDTO dto){
+		String sql = "UPDATE discotecas "+
+				   		"SET nombre='"+dto.getNombre()+"', descripcion='"+dto.getDescripcion()+"', latitud="+String.valueOf(dto.getLatitud())+", longitud="+String.valueOf(dto.getLongitud())+" "+
+				   		"WHERE \"idDiscoteca\"="+String.valueOf(dto.getIdDiscoteca());
+		Connection conn = DB.getConnection();
+		return executeQuery(conn, sql);
+	}
+	
+	protected static boolean darAltaDiscoteca(DiscotecaDTO dto)throws SQLException{
+		Connection conn = DB.getConnection();
+		long idDiscoteca = obtenerUltimoId(conn);
+		idDiscoteca++;
+		dto.setIdDiscoteca(idDiscoteca);
+		boolean res = insertarDiscoteca(dto, conn);
+		conn.close();
+		return res;
+	}
+	
+	private static long obtenerUltimoId(Connection conn){
+		long idDiscoteca = 0;
+		String sql = "SELECT "
+				+ "discotecas.\"idDiscoteca\" " 	
+				+ "FROM " 
+				+ "public.discotecas " 
+				+ "order by discotecas.\"idDiscoteca\" desc;";
+		
+		try{
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			
+			rs.next();
+			idDiscoteca = rs.getLong("idDiscoteca");
+			// close all the connections.
+			rs.close();
+			statement.close();
+		}catch(SQLException sqle){
+			sqle.printStackTrace();
+		}
+		
+		return idDiscoteca;
+	}
+	
+	public static boolean borrarDiscoteca(String idDiscoteca){
+		String sql = "Delete from discotecas where discotecas.\"idDiscoteca\"="+idDiscoteca;
+		
+		try{
+			Connection conn = DB.getConnection();
+			Statement statement = conn.createStatement();
+			statement.execute(sql);
+			
+			statement.close();
+			conn.close();
+			return true;
+		}catch(SQLException sqle){
+			sqle.printStackTrace();
+			return false;
+		}
+	}
+	
+	private static boolean insertarDiscoteca(DiscotecaDTO dto, Connection conn){
+		String sql = "INSERT INTO " +
+				"discotecas(" +
+					"\"idDiscoteca\", " +
+					"nombre, " +
+					"descripcion, " +
+					"latitud, " +
+					"longitud) " +
+				"VALUES (" +
+					String.valueOf(dto.getIdDiscoteca())+", " +
+					"'"+dto.getNombre()+"', " +
+					"'"+dto.getDescripcion()+"', " +
+					String.valueOf(dto.getLatitud()) +","+
+					String.valueOf(dto.getLongitud())+");";
+		return executeQuery(conn, sql);
+	}
+	
+	private static boolean executeQuery(Connection conn, String sql){
+		try{
+			Statement statement = conn.createStatement();
+			statement.execute(sql);
+			statement.close();
+			
+			return true;
+		}catch(SQLException sqle){
+			sqle.printStackTrace();
+			return false;
+		}
 	}
 	
 	protected static JsonArray listDicotecaDTOToJSonArray(List<DiscotecaDTO> l){
