@@ -12,12 +12,19 @@ GET     /getDistanciaToDisco					GetDistanciaToDisco.getDistanciasToDisco
 POST    /getDistanciaToDisco					GetDistanciaToDisco.getDistanciasToDisco
 GET     /getDiscotecasCercanas					GetDiscotecasCercanas.getDiscotecasCercanas
 POST    /getDiscotecasCercanas					GetDiscotecasCercanas.getDiscotecasCercanas
+
+
 GET     /altaDiscoteca							AltaDiscoteca.verAltaDiscoteca
 POST    /altaDiscoteca							AltaDiscoteca.verAltaDiscoteca
 GET     /gestionDiscotecas						GetDiscotecasByName.verGetDiscotecasByNameHtml
 POST    /gestionDiscotecas						GetDiscotecasByName.verGetDiscotecasByNameHtml
 GET     /menuDiscotecas							MenuDiscotecas.verMenuDiscotecas
 POST    /menuDiscotecas							MenuDiscotecas.verMenuDiscotecas
+GET     /login									SecurityController.pantallaLogin
+POST    /login									SecurityController.pantallaLogin
+GET		/logout									SecurityController.logout
+POST	/logout									SecurityController.logout
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

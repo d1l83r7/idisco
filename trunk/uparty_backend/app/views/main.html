@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <title>#{get 'title' /}</title>
@@ -9,6 +8,13 @@
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
         <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
         #{get 'moreScripts' /}
+        <script type="text/javascript">
+        function logout(){
+        	var nombreForm = document.getElementById('nombreFormulario').value;
+        	document.getElementById(nombreForm).action= '/logout';
+        	document.getElementById(nombreForm).submit();
+        }
+        </script>
     </head>
     <body>
         #{doLayout /}

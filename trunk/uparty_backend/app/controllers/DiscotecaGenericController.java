@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.DiscotecaDTO;
+import models.User;
 import play.db.DB;
-import play.mvc.Controller;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
-public class DiscotecaGenericController extends Controller {
+public class DiscotecaGenericController extends SecurityController {
 
 	protected static List<DiscotecaDTO> seleccionarDiscotecas(String sql){
 		List<DiscotecaDTO> l = new ArrayList<DiscotecaDTO>();
@@ -146,4 +146,39 @@ public class DiscotecaGenericController extends Controller {
 		}
 		return array;
 	}
+	
+	protected static User getUsuario(String usuario, String password){
+		List<User>lUsers = new ArrayList<User>();
+		String sql = "Select * " +
+				"from usuarios " +
+				"where usuarios.\"usuario\"='"+usuario+
+				"' and usuarios.\"clave\"='"+password+"'";
+		try{
+			Connection conn = DB.getConnection();
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			
+			while (rs.next()) {
+				User user = new User();
+				user.setId(rs.getLong(1));
+				user.setUsuario(rs.getString(2));
+				user.setPassword(rs.getString(3));
+				user.setPerfil(rs.getString(4));
+				lUsers.add(user);
+			}
+	
+				  // close all the connections.
+			rs.close();
+			statement.close();
+			conn.close();
+		}catch(SQLException sqle){
+			sqle.printStackTrace();
+			return null;
+		}
+		
+		if(lUsers.size()>0){
+			return lUsers.get(0);
+		}else
+			return null;
+	}	
 }
