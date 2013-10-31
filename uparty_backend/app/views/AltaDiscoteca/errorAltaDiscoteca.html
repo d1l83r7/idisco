@@ -1,7 +1,15 @@
 #{extends 'main.html' /}
 #{set title:'Alta discoteca' /}
  
-<form action="@{MenuDiscotecas.verMenuDiscotecas()}" method="GET">
-    <h1>Error al dar de alta la discoteca</h1>
-    <input type="submit" value="Volver" />
+<form action="@{MenuDiscotecas.verMenuDiscotecas()}" method="GET" id="errorAltaForm">
+    <table>
+    	<tr>
+    		<td colspan="2"><h1>Error al dar de alta la discoteca</h1></td>
+    		<td><input type="button" value="Logout" onclick="javascript:logout();"/></td> 
+    	</tr>
+    	<tr>
+    		<td colspan="3"><input type="submit" value="Volver" /></td>
+    	</tr>
+    </table>
+    <input type="hidden" name="nombreFormulario" id="nombreFormulario" value="errorAltaForm"/>
 </form> 

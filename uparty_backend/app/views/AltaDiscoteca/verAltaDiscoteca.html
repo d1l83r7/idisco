@@ -11,10 +11,11 @@ function volver(){
 	<table>
 		<tr>
 			<td colspan="2"><h1>Formulario de alta de discoteca</h1></td> 
+			<td><input type="button" value="Logout" onclick="javascript:logout();"/></td> 
 		</tr>
 		<tr>
 			<td>Nombre de la discoteca</td>
-			<td><input type="text" name="nombre"/></td>
+			<td colspan="2"><input type="text" name="nombre"/></td>
 		</tr>
 		<tr>
 			<td>Descripcion discoteca</td>
@@ -32,4 +33,5 @@ function volver(){
      
     <input type="submit" value="Alta" />
     <input type="button" value="Volver" onclick="javascript:volver();"/>
+    <input type="hidden" name="nombreFormulario" id="nombreFormulario" value="altaDiscotecaForm"/>
 </form> 

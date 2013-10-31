@@ -3,26 +3,27 @@
 
 <script language="javascript">
 function eliminaDiscoteca(idDiscoteca){
-	document.getElementById('gestioDiscotecasForm').action = "@{BajaDiscoteca.eliminaDiscoteca()}";
+	document.getElementById('gestionDiscotecaForm').action = "@{BajaDiscoteca.eliminaDiscoteca()}";
 	document.getElementById('idDiscoteca').value=idDiscoteca;
-	document.getElementById('gestioDiscotecasForm').submit();
+	document.getElementById('gestionDiscotecaForm').submit();
 }
 function editaDiscoteca(idDiscoteca){
-	document.getElementById('gestioDiscotecasForm').action = "@{AltaDiscoteca.editaDiscoteca()}";
+	document.getElementById('gestionDiscotecaForm').action = "@{AltaDiscoteca.editaDiscoteca()}";
 	document.getElementById('idDiscoteca').value=idDiscoteca;
-	document.getElementById('gestioDiscotecasForm').submit();
+	document.getElementById('gestionDiscotecaForm').submit();
 }
 function volver(){
-	document.getElementById('gestioDiscotecasForm').action='/menuDiscotecas';
-	document.getElementById('gestioDiscotecasForm').submit();
+	document.getElementById('gestionDiscotecaForm').action='/menuDiscotecas';
+	document.getElementById('gestionDiscotecaForm').submit();
 }
 
 </script>
  
-<form id="gestioDiscotecasForm" action="@{GetDiscotecasByName.getDiscotecasByNameHtml()}" method="POST">
+<form id="gestionDiscotecaForm" action="@{GetDiscotecasByName.getDiscotecasByNameHtml()}" method="POST">
 	<table>
 		<tr>
-			<td colspan="3"><h1>Busqueda de discotecas</h1></td> 
+			<td colspan="2"><h1>Busqueda de discotecas</h1></td> 
+			<td><input type="button" value="Logout" onclick="javascript:logout();"/></td>
 		</tr>
 		<tr>
 			<td colspan="3">
@@ -67,4 +68,5 @@ function volver(){
 		</tr>
 	</table>
 	<input name="idDiscoteca" id="idDiscoteca" type="hidden"/>
+	<input type="hidden" name="nombreFormulario" id="nombreFormulario" value="gestionDiscotecaForm"/>
 </form>

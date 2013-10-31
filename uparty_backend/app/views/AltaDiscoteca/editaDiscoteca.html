@@ -11,25 +11,29 @@ function volver(){
 	<table>
 		<tr>
 			<td colspan="2"><h1>Formulario de alta de discoteca</h1></td> 
+			<td><input type="button" value="Logout" onclick="javascript:logout();"/></td> 
 		</tr>
 		<tr>
 			<td>Nombre de la discoteca</td>
-			<td><input type="text" name="nombre" value="${discotecaDTO.nombre}"/></td>
+			<td colspan="2"><input type="text" name="nombre" value="${discotecaDTO.nombre}"/></td>
 		</tr>
 		<tr>
 			<td>Descripcion discoteca</td>
-			<td><textarea rows="10" cols="25" name="descripcion">${discotecaDTO.descripcion}</textarea></td>
+			<td colspan="2"><textarea rows="10" cols="25" name="descripcion">${discotecaDTO.descripcion}</textarea></td>
 		</tr>
 		<tr>
 			<td>Latitud</td>
-			<td><input type="text" name="latitud" value="${discotecaDTO.latitud}" /></td>
+			<td colspan="2"><input type="text" name="latitud" value="${discotecaDTO.latitud}" /></td>
 		</tr>
 		<tr>
 			<td>Longitud</td>
 			<td><input type="text" name="longitud" value="${discotecaDTO.longitud}" /></td>
 		</tr>
+		<tr>
+			<td><input type="submit" value="Modifica" /></td>
+			<td colspan="2"><input type="button" value="Volver" onclick="javascript:volver();"/></td>
+		</tr>
 	</table>
     <input type="hidden" id="idDiscoteca" value="${discotecaDTO.idDiscoteca}" name="idDiscoteca"/>
-    <input type="submit" value="Modifica" />
-    <input type="button" value="Volver" onclick="javascript:volver();"/>
+    <input type="hidden" name="nombreFormulario" id="nombreFormulario" value="altaDiscotecaForm"/>
 </form> 

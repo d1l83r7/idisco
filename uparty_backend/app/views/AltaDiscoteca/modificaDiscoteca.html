@@ -1,7 +1,14 @@
 #{extends 'main.html' /}
 #{set title:'Edita discoteca' /}
- 
-<form action="@{MenuDiscotecas.verMenuDiscotecas()}" method="GET">
-    <h1>Discoteca modificada correctament</h1>
-    <input type="submit" value="Volver" />
-</form>
+<form action="@{MenuDiscotecas.verMenuDiscotecas()}" method="GET" id="modificaForm">
+    <table>
+    	<tr>
+    		<td colspan="2"><h1>Discoteca modificada correctamente</h1></td>
+    		<td><input type="button" value="Logout" onclick="javascript:logout();"/></td> 
+    	</tr>
+    	<tr>
+    		<td colspan="3"><input type="submit" value="Volver" /></td>
+    	</tr>
+    </table>
+    <input type="hidden" name="nombreFormulario" id="nombreFormulario" value="modificaForm"/>
+</form> 

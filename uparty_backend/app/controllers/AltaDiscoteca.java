@@ -8,11 +8,12 @@ import models.DiscotecaDTO;
 
 public class AltaDiscoteca extends DiscotecaGenericController {
 	public static void verAltaDiscoteca(){
-		
+		usuarioLogado();
 		render();
 	}
 	
 	public static void editaDiscoteca(String idDiscoteca){
+		usuarioLogado();
 		String sql = "select * from public.\"discotecas\" where discotecas.\"idDiscoteca\"="+idDiscoteca;
 		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
 		if(l.size()>0){
@@ -25,7 +26,7 @@ public class AltaDiscoteca extends DiscotecaGenericController {
 	
 	public static void modificaDiscoteca(String idDiscoteca, String nombre,
 			String descripcion, String latitud, String longitud){
-		
+		usuarioLogado();
 		DiscotecaDTO dto = new DiscotecaDTO();
 		dto.setNombre(nombre);
 		dto.setDescripcion(descripcion);
@@ -42,16 +43,18 @@ public class AltaDiscoteca extends DiscotecaGenericController {
 	}
 	
 	public static void errorModificaDiscoteca(){
+		usuarioLogado();
 		render();
 	}
 	
 	public static void errorEditaDiscoteca(){
+		usuarioLogado();
 		render();
 	}
 	
 	public static void insertarDiscoteca(String nombre, String descripcion,
 			String latitud, String longitud){
-		
+		usuarioLogado();
 		DiscotecaDTO dto = new DiscotecaDTO();
 		dto.setDescripcion(descripcion);
 		dto.setNombre(nombre);
@@ -72,6 +75,7 @@ public class AltaDiscoteca extends DiscotecaGenericController {
 	}
 	
 	public static void errorAltaDiscoteca(){
+		usuarioLogado();
 		render();
 	}
 }
