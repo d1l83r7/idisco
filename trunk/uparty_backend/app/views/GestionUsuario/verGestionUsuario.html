@@ -1,0 +1,72 @@
+#{extends 'main.html' /}
+#{set title:'Gestion discotecas' /}
+
+<script language="javascript">
+function eliminaUsuario(idUsuario){
+	document.getElementById('gestionUsuarioForm').action = "@{GestionUsuario.eliminaUsuario()}";
+	document.getElementById('idUsuario').value=idUsuario;
+	document.getElementById('gestionUsuarioForm').submit();
+}
+function editaUsuario(idUsuario){
+	document.getElementById('gestionUsuarioForm').action = "@{GestionUsuario.editaUsuario()}";
+	document.getElementById('idUsuario').value=idUsuario;
+	document.getElementById('gestionUsuarioForm').submit();
+}
+function volver(){
+	document.getElementById('gestionUsuarioForm').action='/menuDiscotecas';
+	document.getElementById('gestionUsuarioForm').submit();
+}
+
+</script>
+ 
+<form id="gestionUsuarioForm" action="@{GestionUsuario.verGestionUsuario()}" method="POST">
+	<table>
+		<tr>
+			<td colspan="2"><h1>Busqueda de usuarios</h1></td> 
+			<td><input type="button" value="Logout" onclick="javascript:logout();"/></td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<fieldset>
+					<table>
+						<tr>
+							<td>Busqueda de usuarios</td>
+							<td><input type="text" name="usuario"/></td>
+							<td><input type="submit" value="Busca"/></td>
+						</tr>
+					</table>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+				<table>
+						<tr>
+							<td bgcolor="#FF0000">idUsuario</td>
+							<td bgcolor="#FF0000">Usuario</td>
+							<td bgcolor="#FF0000">Password</td>
+							<td bgcolor="#FF0000">Perfil</td>
+							<td colspan="2" bgcolor="#FF0000">Acciones</td>
+						</tr>
+					#{list items:l, as:'user' }
+						<tr>
+				        	<td bgcolor="#D8D8D8">${user.id}</td>
+				        	<td bgcolor="#D8D8D8">${user.usuario}</td>
+				        	<td bgcolor="#D8D8D8">${user.password}</td>
+				        	<td bgcolor="#D8D8D8">${user.perfil}</td>
+				        	<td><input type="button" value="Edita" onclick="editaUsuario('${user.id}');" /></td>
+				        	<td><input type="button" value="Elimina" onclick="eliminaUsuario('${user.id}');"  /></td>
+				        </tr>
+				    #{/list}
+				</table>
+				    
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3"><input type="button" value="Volver" onclick="javascript:volver();"/></td>
+		</tr>
+	</table>
+	<input name="idUsuario" id="idUsuario" type="hidden"/>
+	<input type="hidden" name="nombreFormulario" id="nombreFormulario" value="gestionUsuarioForm"/>
+</form>

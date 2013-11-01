@@ -1,0 +1,33 @@
+#{extends 'main.html' /}
+#{set title:'Gestion discotecas' /}
+<script language="javascript">
+function volver(){
+	document.getElementById('gestionUsuarioForm').action='/menuDiscotecas';
+	document.getElementById('gestionUsuarioForm').submit();
+}
+</script> 
+<form id="gestionUsuarioForm" action="@{GestionUsuario.verGestionUsuario()}" method="POST">
+	<table>
+		<tr>
+			<td colspan="2"><h1>Busqueda de usuarios</h1></td>
+			<td><input type="button" value="Logout" onclick="javascript:logout();"/></td> 
+		</tr>
+		<tr>
+			<td colspan="3">
+				<fieldset>
+					<table>
+						<tr>
+							<td>Usuario</td>
+							<td><input type="text" name="usuario"/></td>
+							<td><input type="submit" value="Busca"/></td>
+						</tr>
+					</table>
+				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3"><input type="button" value="Volver" onclick="javascript:volver();"/></td>
+		</tr>
+	</table>
+	<input type="hidden" name="nombreFormulario" id="nombreFormulario" value="gestionUsuarioForm"/>
+</form>
