@@ -10,6 +10,14 @@ function gestionDiscoteca(){
 	document.getElementById('menuDiscotecaForm').action='/gestionDiscotecas';
 	document.getElementById('menuDiscotecaForm').submit();
 }
+function altaUsuarios(){
+	document.getElementById('menuDiscotecaForm').action='/altaUsuarios';
+	document.getElementById('menuDiscotecaForm').submit();
+}
+function gestionUsuarios(){
+	document.getElementById('menuDiscotecaForm').action='/gestionUsuario';
+	document.getElementById('menuDiscotecaForm').submit();
+}
 </script>
  
 <form id="menuDiscotecaForm" action="@{AltaDiscoteca.verAltaDiscoteca()}" method="GET">
@@ -20,13 +28,29 @@ function gestionDiscoteca(){
 	    	<td><input type="button" value="Logout" onclick="javascript:logout();"/></td>
 	    </tr>
 	    <tr>
+	    	<td colspan="3"><h2>Discotecas</h2></td>
+	    </tr>
+	    <tr>
 	   		<td>Alta discotecas</td>
 	   		<td colspan="2"><input type="button" value="Alta" onclick="javascript:altaDiscoteca();" /></td>
 	   	</tr>
 	   	<tr>
-	   		<td>Gestión discotecas</td>
+	   		<td>Gestion discotecas</td>
 	   		<td><input type="button" value="Gestion" onclick="javascript:gestionDiscoteca();"/></td>
 	   	</tr>
+	   	#{if user.perfil=='A'}
+		   	<tr>
+		    	<td colspan="3"><h2>Usuarios</h2></td>
+		    </tr>
+		    <tr>
+		   		<td>Alta usuarios</td>
+		   		<td colspan="2"><input type="button" value="Alta" onclick="javascript:altaUsuarios();" /></td>
+		   	</tr>
+		   	<tr>
+		   		<td>Gestion usuarios</td>
+		   		<td><input type="button" value="Gestion" onclick="javascript:gestionUsuarios();"/></td>
+		   	</tr>
+	   	#{/if}
     </table>
     <input type="hidden" name="nombreFormulario" id="nombreFormulario" value="menuDiscotecaForm"/>
     
