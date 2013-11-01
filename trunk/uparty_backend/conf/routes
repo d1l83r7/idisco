@@ -4,6 +4,8 @@
 
 # Home page
 GET     /                                       Application.index
+
+#JSON Response controllers
 GET		/getDiscotecas							GetDiscotecas.getDiscotecas
 POST	/getDiscotecas							GetDiscotecas.getDiscotecas
 GET     /getDiscotecasByName					GetDiscotecasByName.getDiscotecasByName
@@ -13,13 +15,22 @@ POST    /getDistanciaToDisco					GetDistanciaToDisco.getDistanciasToDisco
 GET     /getDiscotecasCercanas					GetDiscotecasCercanas.getDiscotecasCercanas
 POST    /getDiscotecasCercanas					GetDiscotecasCercanas.getDiscotecasCercanas
 
-
+#HTML response controllres
+#Discotecas
 GET     /altaDiscoteca							AltaDiscoteca.verAltaDiscoteca
 POST    /altaDiscoteca							AltaDiscoteca.verAltaDiscoteca
-GET     /gestionDiscotecas						GetDiscotecasByName.verGetDiscotecasByNameHtml
-POST    /gestionDiscotecas						GetDiscotecasByName.verGetDiscotecasByNameHtml
+GET     /gestionDiscotecas						GestionDiscoteca.gestionDiscoteca
+POST    /gestionDiscotecas						GestionDiscoteca.gestionDiscoteca
 GET     /menuDiscotecas							MenuDiscotecas.verMenuDiscotecas
 POST    /menuDiscotecas							MenuDiscotecas.verMenuDiscotecas
+
+#Usuarios
+GET		/altaUsuarios							AltaUsuario.verAltaUsuario
+POST	/altaUsuarios							AltaUsuario.verAltaUsuario
+GET		/gestionUsuario							GestionUsuario.gestionUsuario
+POST	/gestionUsuario							GestionUsuario.gestionUsuario
+
+#Login
 GET     /login									SecurityController.pantallaLogin
 POST    /login									SecurityController.pantallaLogin
 GET		/logout									SecurityController.logout
