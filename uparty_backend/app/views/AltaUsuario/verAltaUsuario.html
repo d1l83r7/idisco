@@ -1,0 +1,38 @@
+#{extends 'main.html' /}
+#{set title:'Alta usuario' /}
+<script type="text/javascript">
+function volver(){
+	document.getElementById('altaUsuarioForm').action='/menuDiscotecas';
+	document.getElementById('altaUsuarioForm').submit();
+}
+</script>
+ 
+<form id="altaUsuarioForm" action="@{AltaUsuario.insertarUsuario()}" method="POST">
+	<table>
+		<tr>
+			<td colspan="2"><h1>Formulario de alta de usuario</h1></td> 
+			<td><input type="button" value="Logout" onclick="javascript:logout();"/></td> 
+		</tr>
+		<tr>
+			<td>Usuario</td>
+			<td colspan="2"><input type="text" name="usuario"/></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+			<td><input type="text" name="password"/></td>
+		</tr>
+		<tr>
+			<td>Perfil</td>
+			<td>
+			<select name="perfil" id="perfil">
+				<option name="N">N</option>
+				<option name="A">A</option>
+			</select>
+			</td>
+		</tr>
+	</table>
+     
+    <input type="submit" value="Alta" />
+    <input type="button" value="Volver" onclick="javascript:volver();"/>
+    <input type="hidden" name="nombreFormulario" id="nombreFormulario" value="altaUsuarioForm"/>
+</form> 
