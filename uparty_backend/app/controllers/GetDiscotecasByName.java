@@ -16,16 +16,4 @@ public class GetDiscotecasByName extends DiscotecaGenericController {
 		JsonArray array = listDicotecaDTOToJSonArray(l);
 		renderJSON(array);
 	}
-	
-	public static void verGetDiscotecasByNameHTml(){
-		usuarioLogado();
-		render();
-	}
-	
-	public static void getDiscotecasByNameHtml(String name){
-		usuarioLogado();
-		String sql = "SELECT * FROM DISCOTECAS WHERE LOWER(NOMBRE) LIKE '%"+name.toLowerCase()+"%'";
-		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
-		render(l);
-	}
 }

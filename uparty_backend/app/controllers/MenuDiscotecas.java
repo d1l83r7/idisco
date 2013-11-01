@@ -8,7 +8,8 @@ public class MenuDiscotecas extends DiscotecaGenericController {
 	
 	public static void verMenuDiscotecas(){
 		usuarioLogado();
-		render();
+		User user = (User)Cache.get("user");
+		render(user);
 	}
 	
 	public static void login(String usuario, String password){
