@@ -44,7 +44,7 @@ public class GestionDiscoteca extends DiscotecaGenericController {
 	}
 	
 	public static void modificaDiscoteca(String idDiscoteca, String nombre,
-			String descripcion, String latitud, String longitud){
+			String descripcion, String latitud, String longitud, String nombreImg){
 		usuarioLogado();
 		DiscotecaDTO dto = new DiscotecaDTO();
 		dto.setNombre(nombre);
@@ -52,7 +52,7 @@ public class GestionDiscoteca extends DiscotecaGenericController {
 		dto.setLatitud(Double.parseDouble(latitud));
 		dto.setLongitud(Double.parseDouble(longitud));
 		dto.setIdDiscoteca(Long.parseLong(idDiscoteca));
-		
+		dto.setNombreImg(nombreImg);
 		boolean res = modificarDiscoteca(dto);
 		if(res)
 			render();

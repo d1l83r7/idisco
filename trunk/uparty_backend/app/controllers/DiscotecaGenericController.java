@@ -30,6 +30,7 @@ public class DiscotecaGenericController extends SecurityController {
 				dto.setDescripcion(rs.getString(3));
 				dto.setLatitud(rs.getDouble(4));
 				dto.setLongitud(rs.getDouble(5));
+				dto.setNombreImg(rs.getString(6));
 				l.add(dto);
 			}
 
@@ -46,7 +47,11 @@ public class DiscotecaGenericController extends SecurityController {
 	
 	protected static boolean modificarDiscoteca(DiscotecaDTO dto){
 		String sql = "UPDATE discotecas "+
-				   		"SET nombre='"+dto.getNombre()+"', descripcion='"+dto.getDescripcion()+"', latitud="+String.valueOf(dto.getLatitud())+", longitud="+String.valueOf(dto.getLongitud())+" "+
+				   		"SET nombre='"+dto.getNombre()+"', " +
+				   		"descripcion='"+dto.getDescripcion()+"', " +
+				   		"latitud="+String.valueOf(dto.getLatitud())+", " +
+				   		"longitud="+String.valueOf(dto.getLongitud())+", " +
+				   		"nombre_img='"+dto.getNombreImg()+"' "+
 				   		"WHERE \"idDiscoteca\"="+String.valueOf(dto.getIdDiscoteca());
 		Connection conn = DB.getConnection();
 		return executeQuery(conn, sql);
@@ -110,13 +115,15 @@ public class DiscotecaGenericController extends SecurityController {
 					"nombre, " +
 					"descripcion, " +
 					"latitud, " +
-					"longitud) " +
+					"longitud," +
+					"nombre_img) " +
 				"VALUES (" +
 					String.valueOf(dto.getIdDiscoteca())+", " +
 					"'"+dto.getNombre()+"', " +
 					"'"+dto.getDescripcion()+"', " +
 					String.valueOf(dto.getLatitud()) +","+
-					String.valueOf(dto.getLongitud())+");";
+					String.valueOf(dto.getLongitud())+"," +
+					"'"+dto.getNombreImg()+"');";
 		return executeQuery(conn, sql);
 	}
 	
@@ -142,6 +149,7 @@ public class DiscotecaGenericController extends SecurityController {
 			ob.addProperty("latitud", dto.getLatitud());
 			ob.addProperty("longitud", dto.getLongitud());
 			ob.addProperty("descripcion", dto.getDescripcion());
+			ob.addProperty("nombreImg", dto.getNombreImg());
 			array.add(ob);	
 		}
 		return array;

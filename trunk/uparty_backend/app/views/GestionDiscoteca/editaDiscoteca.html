@@ -27,7 +27,12 @@ function volver(){
 		</tr>
 		<tr>
 			<td>Longitud</td>
-			<td><input type="text" name="longitud" value="${discotecaDTO.longitud}" /></td>
+			<td colspan="2"><input type="text" name="longitud" value="${discotecaDTO.longitud}" /></td>
+		</tr>
+		<tr>
+			<td>Nombre imagen</td>
+			<td><input type="text" name="nombreImg" value="${discotecaDTO.nombreImg}" /></td>
+			<td><img src="/public/images/discotecas/${discotecaDTO.nombreImg}" width="50" height="50" /></td>
 		</tr>
 		<tr>
 			<td><input type="submit" value="Modifica" /></td>
