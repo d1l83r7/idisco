@@ -13,13 +13,14 @@ public class AltaDiscoteca extends DiscotecaGenericController {
 	}
 	
 	public static void insertarDiscoteca(String nombre, String descripcion,
-			String latitud, String longitud){
+			String latitud, String longitud, String nombreImg){
 		usuarioLogado();
 		DiscotecaDTO dto = new DiscotecaDTO();
 		dto.setDescripcion(descripcion);
 		dto.setNombre(nombre);
 		dto.setLatitud(Double.parseDouble(latitud));
 		dto.setLongitud(Double.parseDouble(longitud));
+		dto.setNombreImg(nombreImg);
 		boolean res = false;
 		try{
 			res = darAltaDiscoteca(dto);

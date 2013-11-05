@@ -46,6 +46,7 @@ function volver(){
 							<td bgcolor="#FF0000">Descripcion</td>
 							<td bgcolor="#FF0000">Latitud</td>
 							<td bgcolor="#FF0000">Longitud</td>
+							<td bgcolor="#FF0000">Nombre imagen</td>
 							<td colspan="2" bgcolor="#FF0000">Acciones</td>
 						</tr>
 					#{list items:l, as:'disco' }
@@ -54,6 +55,7 @@ function volver(){
 				        	<td bgcolor="#D8D8D8">${disco.descripcion}</td>
 				        	<td bgcolor="#D8D8D8">${disco.latitud}</td>
 				        	<td bgcolor="#D8D8D8">${disco.longitud}</td>
+				        	<td bgcolor="#D8D8D8">${disco.nombreImg}</td>
 				        	<td><input type="submit" value="Edita" onclick="editaDiscoteca('${disco.idDiscoteca}')" /></td>
 				        	<td><input type="submit" value="Elimina" onclick="eliminaDiscoteca('${disco.idDiscoteca}')"  /></td>
 				        </tr>
