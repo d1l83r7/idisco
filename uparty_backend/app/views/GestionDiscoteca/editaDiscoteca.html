@@ -7,7 +7,7 @@ function volver(){
 }
 </script>
  
-<form id="altaDiscotecaForm" action="@{GestionDiscoteca.modificaDiscoteca()}" method="POST">
+<form id="altaDiscotecaForm" action="@{GestionDiscoteca.modificaDiscoteca()}" method="POST" enctype="multipart/form-data">
 	<table>
 		<tr>
 			<td colspan="2"><h1>Formulario de alta de discoteca</h1></td> 
@@ -31,8 +31,13 @@ function volver(){
 		</tr>
 		<tr>
 			<td>Nombre imagen</td>
-			<td><input type="text" name="nombreImg" value="${discotecaDTO.nombreImg}" /></td>
+			<td><input type="text" disabled="disabled" name="nombreImg" value="${discotecaDTO.nombreImg}" />
+				<input type="hidden" name="nombreImg" value="${discotecaDTO.nombreImg}"/></td>
 			<td><img src="/public/images/discotecas/${discotecaDTO.nombreImg}" width="50" height="50" /></td>
+		</tr>
+		<tr>
+			<td>Cambiar imagen</td>
+			<td colspan="2"><input type="file" name="imagen"/></td>
 		</tr>
 		<tr>
 			<td><input type="submit" value="Modifica" /></td>

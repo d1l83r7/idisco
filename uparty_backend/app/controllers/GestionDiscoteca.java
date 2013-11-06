@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.util.List;
 
 import models.DiscotecaDTO;
@@ -44,7 +45,7 @@ public class GestionDiscoteca extends DiscotecaGenericController {
 	}
 	
 	public static void modificaDiscoteca(String idDiscoteca, String nombre,
-			String descripcion, String latitud, String longitud, String nombreImg){
+			String descripcion, String latitud, String longitud, String nombreImg, File imagen){
 		usuarioLogado();
 		DiscotecaDTO dto = new DiscotecaDTO();
 		dto.setNombre(nombre);
@@ -52,7 +53,13 @@ public class GestionDiscoteca extends DiscotecaGenericController {
 		dto.setLatitud(Double.parseDouble(latitud));
 		dto.setLongitud(Double.parseDouble(longitud));
 		dto.setIdDiscoteca(Long.parseLong(idDiscoteca));
-		dto.setNombreImg(nombreImg);
+		if(imagen!=null){
+			deleteFile(nombreImg);
+			saveFile(imagen);
+			dto.setNombreImg(imagen.getName());
+		}else{
+			dto.setNombreImg(nombreImg);
+		}
 		boolean res = modificarDiscoteca(dto);
 		if(res)
 			render();
