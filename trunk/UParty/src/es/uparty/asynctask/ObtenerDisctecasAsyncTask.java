@@ -48,6 +48,7 @@ public class ObtenerDisctecasAsyncTask extends
 			discotecaDTO.setNombre(json.getString("nombre"));
 			discotecaDTO.setLatitud(json.getString("latitud"));
 			discotecaDTO.setLongitud(json.getString("longitud"));
+			discotecaDTO.setNombreImagen(json.getString("nombreImg"));
 			l.add(discotecaDTO);
 		}
 		return l;

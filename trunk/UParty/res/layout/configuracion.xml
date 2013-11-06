@@ -11,7 +11,8 @@
         android:background="#DF0101"
         android:textSize="30sp"
         android:text="@string/configuracion_tv_titulo"
-        android:textColor="#000000" />
+        android:textColor="#000000" 
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/configuracion_tv_distancia"
