@@ -1,9 +1,10 @@
 package controllers;
 
+import java.io.File;
 import java.sql.SQLException;
-import java.util.List;
 
 import models.DiscotecaDTO;
+
 
 
 public class AltaDiscoteca extends DiscotecaGenericController {
@@ -13,15 +14,19 @@ public class AltaDiscoteca extends DiscotecaGenericController {
 	}
 	
 	public static void insertarDiscoteca(String nombre, String descripcion,
-			String latitud, String longitud, String nombreImg){
+			String latitud, String longitud, File imagen){
 		usuarioLogado();
 		DiscotecaDTO dto = new DiscotecaDTO();
 		dto.setDescripcion(descripcion);
 		dto.setNombre(nombre);
 		dto.setLatitud(Double.parseDouble(latitud));
 		dto.setLongitud(Double.parseDouble(longitud));
-		dto.setNombreImg(nombreImg);
-		boolean res = false;
+		if(imagen!=null){
+			dto.setNombreImg(imagen.getName());
+			saveFile(imagen);
+		}
+		
+		boolean res = true;
 		try{
 			res = darAltaDiscoteca(dto);
 		}catch(SQLException sqle){

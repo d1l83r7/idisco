@@ -1,5 +1,8 @@
 package controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +12,7 @@ import java.util.List;
 
 import models.DiscotecaDTO;
 import models.User;
+import play.Play;
 import play.db.DB;
 
 import com.google.gson.JsonArray;
@@ -188,5 +192,29 @@ public class DiscotecaGenericController extends SecurityController {
 			return lUsers.get(0);
 		}else
 			return null;
-	}	
+	}
+	
+	protected static void saveFile(File imagen){
+		try{
+			String path = Play.getFile("public/images/discotecas").getAbsolutePath();
+			FileInputStream fis = new FileInputStream(imagen);
+			System.out.println(path+File.separator+imagen.getName());
+			FileOutputStream fos = new FileOutputStream(new File(path+File.separator+imagen.getName()));
+			int value = 0;
+			do{
+				 value = fis.read();
+				 fos.write(value);
+			}while(value!=-1);
+			fis.close();
+			fos.close();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	protected static void deleteFile(String fileName){
+		String path = Play.getFile("public/images/discotecas").getAbsolutePath();
+		File f = new File(path+File.pathSeparator+fileName);
+		f.delete();
+	}
 }
