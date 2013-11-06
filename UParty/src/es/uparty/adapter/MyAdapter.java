@@ -1,9 +1,7 @@
 package es.uparty.adapter;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -20,7 +18,7 @@ import es.uparty.dto.DiscotecaDTO;
 
 public class MyAdapter extends BaseAdapter {
 	Activity mActivity;
-	private List<DiscotecaDTO> lDTO = null;
+	private List<DiscotecaDTO> lDTO = new ArrayList<DiscotecaDTO>();
 	
 	public List<DiscotecaDTO> getlDTO() {
 		return lDTO;
@@ -36,12 +34,12 @@ public class MyAdapter extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		return 100000;
+		return lDTO.size();
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return position;
+		return lDTO.get(position);
 	}
 
 	@Override
@@ -79,11 +77,9 @@ public class MyAdapter extends BaseAdapter {
 			if(position<lDTO.size()){
 				dt.nombre.setText(lDTO.get(position).getNombre());
 				InputStream is = null;
-				Drawable avatar = null;
 				String inputurl = "http://radiant-ravine-3483.herokuapp.com/public/images/discotecas/"+lDTO.get(position).getNombreImagen();
 				ObtenerImagenAsyncTask o = new ObtenerImagenAsyncTask();
 				o.execute(inputurl);
-				
 				try {
 			        Drawable dw = o.get();
 			        dt.img.setImageDrawable(dw);
