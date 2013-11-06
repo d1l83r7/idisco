@@ -3,19 +3,21 @@ package es.uparty.activity;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import android.app.ActionBar.LayoutParams;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import es.uparty.R;
+import es.uparty.adapter.MyAdapter;
 import es.uparty.asynctask.ObtenerDisctecasAsyncTask;
 import es.uparty.comunes.Constants;
 import es.uparty.dto.DiscotecaDTO;
@@ -27,6 +29,7 @@ public class BuscarDiscotecaActivity extends ListActivity{
 	private List<DiscotecaDTO> listaDiscotecas = null;
 	private final static String TAG_BUSCAR_DISCOTECA = "TAG_BUSCAR_DISCOTECA";
 	private ListView lv = null;
+	private MyAdapter myAdapter = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -36,7 +39,6 @@ public class BuscarDiscotecaActivity extends ListActivity{
 		botonBuscar.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				((ArrayAdapter)lv.getAdapter()).clear();
 				EditText editText = (EditText)findViewById(R.id.buscardiscoteca_et_nombreDiscoteca);
 				String nombreDiscoteca = editText.getText().toString();
 				Log.d(TAG_BUSCAR_DISCOTECA, "Nombre discoteca: "+nombreDiscoteca);
@@ -53,12 +55,16 @@ public class BuscarDiscotecaActivity extends ListActivity{
 					Log.e(TAG_BUSCAR_DISCOTECA, e.getMessage());
 				}
 				if(listaDiscotecas!=null){
-					for(DiscotecaDTO dto: listaDiscotecas){
-							ArrayAdapter<String> adapter = (ArrayAdapter<String>)lv.getAdapter();
-							adapter.add(dto.getNombre());
-						}
+					myAdapter.setlDTO(listaDiscotecas);
+					lv.setAdapter(myAdapter);
+					if(myAdapter.getCount() > 5){
+				        View item = myAdapter.getView(0, null, lv);
+				        item.measure(0, 0);         
+				        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, (int) (5.5 * item.getMeasuredHeight()));
+				        lv.setLayoutParams(params);
 					}
 				}
+			}
 		});
 		botonAtras = (Button)findViewById(R.id.buscardiscoteca_bt_atras);
 		botonAtras.setOnClickListener(new View.OnClickListener() {
@@ -69,26 +75,23 @@ public class BuscarDiscotecaActivity extends ListActivity{
 			}
 		});
 		lv = getListView();
-		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
-		lv.setAdapter(arrayAdapter);
+//		ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1);
+		myAdapter = new MyAdapter(this);
+		lv.setAdapter(myAdapter);
+		View item = myAdapter.getView(0, null, lv);
+        item.measure(0, 0);         
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, (int) (5.5 * item.getMeasuredHeight()));
+        lv.setLayoutParams(params);
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View view,
 	                  int position, long id) {
-						TextView tv = (TextView)view;
-						Log.d(TAG_BUSCAR_DISCOTECA, "Selección de ListView: "+tv.getText());
 						Log.d(TAG_BUSCAR_DISCOTECA, "Posición: "+String.valueOf(position));
 						Log.d(TAG_BUSCAR_DISCOTECA, "id: "+String.valueOf(id));					
 						if(listaDiscotecas!=null){
 							Intent i = new Intent(getBaseContext(),DetallDiscotecaActivity.class);
-							
-							for(DiscotecaDTO dto: listaDiscotecas){
-								String nombreDiscotecaMinusculas = tv.getText().toString().toLowerCase();
-								if(dto.getNombre().toLowerCase().equals(nombreDiscotecaMinusculas)){
-									i.putExtra(Constants.DISCOTECADTO, dto);
-									i.putExtra(Constants.ORIGEN, Constants.ORIGEN_BUSQUEDA);
-									startActivity(i);
-								}
-							}
+							i.putExtra(Constants.DISCOTECADTO, listaDiscotecas.get(position));
+							i.putExtra(Constants.ORIGEN, Constants.ORIGEN_BUSQUEDA);
+							startActivity(i);
 						}
 						
 	              }

@@ -12,7 +12,8 @@
         android:background="#DF0101"
         android:textSize="30sp"
         android:text="@string/buscardiscoteca_tv_buscar_discoteca" 
-        android:textColor="#000000"/>
+        android:textColor="#000000"
+        android:gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -39,14 +40,17 @@
             android:text="@string/buscardiscoteca_bt_buscar" />
 
     </LinearLayout>
-
+ <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000" >
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-    </ListView>
+        android:layout_height="wrap_content" >
 
+    </ListView>
+</LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >

@@ -11,7 +11,14 @@ public class DiscotecaDTO implements Serializable {
 	private String longitud;
 	private String latitud;
 	private String descripcio;
+	private String nombreImagen;
 	
+	public String getNombreImagen() {
+		return nombreImagen;
+	}
+	public void setNombreImagen(String nombreImagen) {
+		this.nombreImagen = nombreImagen;
+	}
 	public String getId() {
 		return id;
 	}
