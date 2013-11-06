@@ -198,7 +198,6 @@ public class DiscotecaGenericController extends SecurityController {
 		try{
 			String path = Play.getFile("public/images/discotecas").getAbsolutePath();
 			FileInputStream fis = new FileInputStream(imagen);
-			System.out.println(path+File.separator+imagen.getName());
 			FileOutputStream fos = new FileOutputStream(new File(path+File.separator+imagen.getName()));
 			int value = 0;
 			do{
