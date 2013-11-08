@@ -6,35 +6,35 @@
 GET     /                                       Application.index
 
 #JSON Response controllers
-GET		/getDiscotecas							GetDiscotecas.getDiscotecas
-POST	/getDiscotecas							GetDiscotecas.getDiscotecas
-GET     /getDiscotecasByName					GetDiscotecasByName.getDiscotecasByName
-POST    /getDiscotecasByName					GetDiscotecasByName.getDiscotecasByName
-GET     /getDistanciaToDisco					GetDistanciaToDisco.getDistanciasToDisco
-POST    /getDistanciaToDisco					GetDistanciaToDisco.getDistanciasToDisco
-GET     /getDiscotecasCercanas					GetDiscotecasCercanas.getDiscotecasCercanas
-POST    /getDiscotecasCercanas					GetDiscotecasCercanas.getDiscotecasCercanas
+GET		/getDiscotecas							discotecas.GetDiscotecas.getDiscotecas
+POST	/getDiscotecas							discotecas.GetDiscotecas.getDiscotecas
+GET     /getDiscotecasByName					discotecas.GetDiscotecasByName.getDiscotecasByName
+POST    /getDiscotecasByName					discotecas.GetDiscotecasByName.getDiscotecasByName
+GET     /getDistanciaToDisco					discotecas.GetDistanciaToDisco.getDistanciasToDisco
+POST    /getDistanciaToDisco					discotecas.GetDistanciaToDisco.getDistanciasToDisco
+GET     /getDiscotecasCercanas					discotecas.GetDiscotecasCercanas.getDiscotecasCercanas
+POST    /getDiscotecasCercanas					discotecas.GetDiscotecasCercanas.getDiscotecasCercanas
 
 #HTML response controllres
 #Discotecas
-GET     /altaDiscoteca							AltaDiscoteca.verAltaDiscoteca
-POST    /altaDiscoteca							AltaDiscoteca.verAltaDiscoteca
-GET     /gestionDiscotecas						GestionDiscoteca.gestionDiscoteca
-POST    /gestionDiscotecas						GestionDiscoteca.gestionDiscoteca
+GET     /altaDiscoteca							discotecas.AltaDiscoteca.verAltaDiscoteca
+POST    /altaDiscoteca							discotecas.AltaDiscoteca.verAltaDiscoteca
+GET     /gestionDiscotecas						discotecas.GestionDiscoteca.gestionDiscoteca
+POST    /gestionDiscotecas						discotecas.GestionDiscoteca.gestionDiscoteca
 GET     /menuDiscotecas							MenuDiscotecas.verMenuDiscotecas
 POST    /menuDiscotecas							MenuDiscotecas.verMenuDiscotecas
 
 #Usuarios
-GET		/altaUsuarios							AltaUsuario.verAltaUsuario
-POST	/altaUsuarios							AltaUsuario.verAltaUsuario
-GET		/gestionUsuario							GestionUsuario.gestionUsuario
-POST	/gestionUsuario							GestionUsuario.gestionUsuario
+GET		/altaUsuarios							usuarios.AltaUsuario.verAltaUsuario
+POST	/altaUsuarios							usuarios.AltaUsuario.verAltaUsuario
+GET		/gestionUsuario							usuarios.GestionUsuario.gestionUsuario
+POST	/gestionUsuario							usuarios.GestionUsuario.gestionUsuario
 
 #Login
-GET     /login									SecurityController.pantallaLogin
-POST    /login									SecurityController.pantallaLogin
-GET		/logout									SecurityController.logout
-POST	/logout									SecurityController.logout
+GET     /login									usuarios.SecurityController.pantallaLogin
+POST    /login									usuarios.SecurityController.pantallaLogin
+GET		/logout									usuarios.SecurityController.logout
+POST	/logout									usuarios.SecurityController.logout
 
 
 # Ignore favicon requests
