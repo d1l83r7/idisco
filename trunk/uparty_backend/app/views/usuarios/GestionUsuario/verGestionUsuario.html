@@ -3,12 +3,12 @@
 
 <script language="javascript">
 function eliminaUsuario(idUsuario){
-	document.getElementById('gestionUsuarioForm').action = "@{GestionUsuario.eliminaUsuario()}";
+	document.getElementById('gestionUsuarioForm').action = "@{usuarios.GestionUsuario.eliminaUsuario()}";
 	document.getElementById('idUsuario').value=idUsuario;
 	document.getElementById('gestionUsuarioForm').submit();
 }
 function editaUsuario(idUsuario){
-	document.getElementById('gestionUsuarioForm').action = "@{GestionUsuario.editaUsuario()}";
+	document.getElementById('gestionUsuarioForm').action = "@{usuarios.GestionUsuario.editaUsuario()}";
 	document.getElementById('idUsuario').value=idUsuario;
 	document.getElementById('gestionUsuarioForm').submit();
 }
@@ -19,7 +19,7 @@ function volver(){
 
 </script>
  
-<form id="gestionUsuarioForm" action="@{GestionUsuario.verGestionUsuario()}" method="POST">
+<form id="gestionUsuarioForm" action="@{usuarios.GestionUsuario.verGestionUsuario()}" method="POST">
 	<table>
 		<tr>
 			<td colspan="2"><h1>Busqueda de usuarios</h1></td> 
