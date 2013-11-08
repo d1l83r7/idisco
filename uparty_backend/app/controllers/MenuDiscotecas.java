@@ -1,5 +1,6 @@
 package controllers;
 
+import controllers.discotecas.DiscotecaGenericController;
 import models.User;
 import play.cache.Cache;
 import play.mvc.Controller;

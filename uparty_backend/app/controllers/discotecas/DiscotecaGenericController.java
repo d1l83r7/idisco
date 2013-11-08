@@ -1,4 +1,4 @@
-package controllers;
+package controllers.discotecas;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,6 +17,8 @@ import play.db.DB;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+
+import controllers.usuarios.SecurityController;
 
 public class DiscotecaGenericController extends SecurityController {
 
