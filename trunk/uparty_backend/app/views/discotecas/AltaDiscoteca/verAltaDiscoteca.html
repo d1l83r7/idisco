@@ -1,0 +1,41 @@
+#{extends 'main.html' /}
+#{set title:'Alta discoteca' /}
+<script type="text/javascript">
+function volver(){
+	document.getElementById('altaDiscotecaForm').action='/menuDiscotecas';
+	document.getElementById('altaDiscotecaForm').submit();
+}
+</script>
+ 
+<form id="altaDiscotecaForm" action="@{discotecas.AltaDiscoteca.insertarDiscoteca()}" method="POST" enctype="multipart/form-data">
+	<table>
+		<tr>
+			<td colspan="2"><h1>Formulario de alta de discoteca</h1></td> 
+			<td><input type="button" value="Logout" onclick="javascript:logout();"/></td> 
+		</tr>
+		<tr>
+			<td>Nombre de la discoteca</td>
+			<td colspan="2"><input type="text" name="nombre"/></td>
+		</tr>
+		<tr>
+			<td>Descripcion discoteca</td>
+			<td><textarea rows="10" cols="25" name="descripcion"></textarea></td>
+		</tr>
+		<tr>
+			<td>Latitud</td>
+			<td><input type="text" name="latitud" /></td>
+		</tr>
+		<tr>
+			<td>Longitud</td>
+			<td><input type="text" name="longitud" /></td>
+		</tr>
+		<tr>
+			<td>Imagen</td>
+			<td><input type="file" name="imagen" /></td>
+		</tr>
+	</table>
+     
+    <input type="submit" value="Alta" />
+    <input type="button" value="Volver" onclick="javascript:volver();"/>
+    <input type="hidden" name="nombreFormulario" id="nombreFormulario" value="altaDiscotecaForm"/>
+</form> 
