@@ -1,4 +1,4 @@
-package controllers;
+package controllers.discotecas;
 
 import java.util.List;
 
