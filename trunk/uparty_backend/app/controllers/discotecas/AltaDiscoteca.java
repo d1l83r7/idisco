@@ -3,7 +3,7 @@ package controllers.discotecas;
 import java.io.File;
 import java.sql.SQLException;
 
-import models.DiscotecaDTO;
+import models.Discoteca;
 
 
 
@@ -16,7 +16,7 @@ public class AltaDiscoteca extends DiscotecaGenericController {
 	public static void insertarDiscoteca(String nombre, String descripcion,
 			String latitud, String longitud, File imagen){
 		usuarioLogado();
-		DiscotecaDTO dto = new DiscotecaDTO();
+		Discoteca dto = new Discoteca();
 		dto.setDescripcion(descripcion);
 		dto.setNombre(nombre);
 		dto.setLatitud(Double.parseDouble(latitud));

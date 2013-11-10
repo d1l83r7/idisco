@@ -2,7 +2,7 @@ package models;
 
 import java.io.Serializable;
 
-public class DiscotecaDTO implements Serializable {
+public class Discoteca implements Serializable {
 	private long idDiscoteca;
 	private String nombre;
 	private double latitud;

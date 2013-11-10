@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.DiscotecaDTO;
+import models.Discoteca;
 import models.User;
 import play.Play;
 import play.db.DB;
@@ -22,15 +22,15 @@ import controllers.usuarios.SecurityController;
 
 public class DiscotecaGenericController extends SecurityController {
 
-	protected static List<DiscotecaDTO> seleccionarDiscotecas(String sql){
-		List<DiscotecaDTO> l = new ArrayList<DiscotecaDTO>();
+	protected static List<Discoteca> seleccionarDiscotecas(String sql){
+		List<Discoteca> l = new ArrayList<Discoteca>();
 		Connection conn = DB.getConnection();
 		try{
 			Statement statement = conn.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
 			
 			while (rs.next()) {
-				DiscotecaDTO dto = new DiscotecaDTO();
+				Discoteca dto = new Discoteca();
 				dto.setIdDiscoteca(rs.getBigDecimal(1).longValue());
 				dto.setNombre(rs.getString(2));
 				dto.setDescripcion(rs.getString(3));
@@ -51,7 +51,7 @@ public class DiscotecaGenericController extends SecurityController {
 		return l;
 	}
 	
-	protected static boolean modificarDiscoteca(DiscotecaDTO dto){
+	protected static boolean modificarDiscoteca(Discoteca dto){
 		String sql = "UPDATE discotecas "+
 				   		"SET nombre='"+dto.getNombre()+"', " +
 				   		"descripcion='"+dto.getDescripcion()+"', " +
@@ -63,7 +63,7 @@ public class DiscotecaGenericController extends SecurityController {
 		return executeQuery(conn, sql);
 	}
 	
-	protected static boolean darAltaDiscoteca(DiscotecaDTO dto)throws SQLException{
+	protected static boolean darAltaDiscoteca(Discoteca dto)throws SQLException{
 		Connection conn = DB.getConnection();
 		long idDiscoteca = obtenerUltimoId(conn);
 		idDiscoteca++;
@@ -114,7 +114,7 @@ public class DiscotecaGenericController extends SecurityController {
 		}
 	}
 	
-	private static boolean insertarDiscoteca(DiscotecaDTO dto, Connection conn){
+	private static boolean insertarDiscoteca(Discoteca dto, Connection conn){
 		String sql = "INSERT INTO " +
 				"discotecas(" +
 					"\"idDiscoteca\", " +
@@ -146,9 +146,9 @@ public class DiscotecaGenericController extends SecurityController {
 		}
 	}
 	
-	protected static JsonArray listDicotecaDTOToJSonArray(List<DiscotecaDTO> l){
+	protected static JsonArray listDicotecaDTOToJSonArray(List<Discoteca> l){
 		JsonArray array = new JsonArray();
-		for(DiscotecaDTO dto: l){
+		for(Discoteca dto: l){
 			JsonObject ob = new JsonObject();
 			ob.addProperty("idDiscoteca", dto.getIdDiscoteca());
 			ob.addProperty("nombre", dto.getNombre());

@@ -2,7 +2,11 @@
 #{set title:'Alta discoteca' /}
 <script type="text/javascript">
 function volver(){
-	document.getElementById('altaDiscotecaForm').action='/gestionDiscotecas';
+	document.getElementById('altaDiscotecaForm').action='/volverGestionDiscotecas?name=${name}';
+	document.getElementById('altaDiscotecaForm').submit();
+}
+function verMuro(){
+	document.getElementById('altaDiscotecaForm').action='/verMuro?idDiscoteca=${discoteca.idDiscoteca}&idMuro=${discoteca.idDiscoteca}&name=${name}';
 	document.getElementById('altaDiscotecaForm').submit();
 }
 </script>
@@ -15,35 +19,38 @@ function volver(){
 		</tr>
 		<tr>
 			<td>Nombre de la discoteca</td>
-			<td colspan="2"><input type="text" name="nombre" value="${discotecaDTO.nombre}"/></td>
+			<td colspan="2"><input type="text" name="nombre" value="${discoteca.nombre}"/></td>
 		</tr>
 		<tr>
 			<td>Descripcion discoteca</td>
-			<td colspan="2"><textarea rows="10" cols="25" name="descripcion">${discotecaDTO.descripcion}</textarea></td>
+			<td colspan="2"><textarea rows="10" cols="25" name="descripcion">${discoteca.descripcion}</textarea></td>
 		</tr>
 		<tr>
 			<td>Latitud</td>
-			<td colspan="2"><input type="text" name="latitud" value="${discotecaDTO.latitud}" /></td>
+			<td colspan="2"><input type="text" name="latitud" value="${discoteca.latitud}" /></td>
 		</tr>
 		<tr>
 			<td>Longitud</td>
-			<td colspan="2"><input type="text" name="longitud" value="${discotecaDTO.longitud}" /></td>
+			<td colspan="2"><input type="text" name="longitud" value="${discoteca.longitud}" /></td>
 		</tr>
 		<tr>
 			<td>Nombre imagen</td>
-			<td><input type="text" disabled="disabled" name="nombreImg" value="${discotecaDTO.nombreImg}" />
-				<input type="hidden" name="nombreImg" value="${discotecaDTO.nombreImg}"/></td>
-			<td><img src="/public/images/discotecas/${discotecaDTO.nombreImg}" width="50" height="50" /></td>
+			<td><input type="text" disabled="disabled" name="nombreImg" value="${discoteca.nombreImg}" />
+				<input type="hidden" name="nombreImg" value="${discoteca.nombreImg}"/></td>
+			<td><img src="/public/images/discotecas/${discoteca.nombreImg}" width="50" height="50" /></td>
 		</tr>
 		<tr>
 			<td>Cambiar imagen</td>
 			<td colspan="2"><input type="file" name="imagen"/></td>
 		</tr>
 		<tr>
+			<td colspan="2"><input type="button" value="Ver Muro" onclick="javascript:verMuro();"/></td>
+		</tr>
+		<tr>
 			<td><input type="submit" value="Modifica" /></td>
 			<td colspan="2"><input type="button" value="Volver" onclick="javascript:volver();"/></td>
 		</tr>
 	</table>
-    <input type="hidden" id="idDiscoteca" value="${discotecaDTO.idDiscoteca}" name="idDiscoteca"/>
+    <input type="hidden" id="idDiscoteca" value="${discoteca.idDiscoteca}" name="idDiscoteca"/>
     <input type="hidden" name="nombreFormulario" id="nombreFormulario" value="altaDiscotecaForm"/>
 </form> 

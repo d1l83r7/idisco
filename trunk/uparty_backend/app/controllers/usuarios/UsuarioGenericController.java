@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.DiscotecaDTO;
+import models.Discoteca;
 import models.User;
 import play.db.DB;
 

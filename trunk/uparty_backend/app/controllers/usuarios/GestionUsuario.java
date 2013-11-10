@@ -2,7 +2,7 @@ package controllers.usuarios;
 
 import java.util.List;
 
-import models.DiscotecaDTO;
+import models.Discoteca;
 import models.User;
 
 public class GestionUsuario extends UsuarioGenericController {
@@ -15,7 +15,7 @@ public class GestionUsuario extends UsuarioGenericController {
 		usuarioLogado();
 		String sql = "SELECT * FROM USUARIOS WHERE LOWER(USUARIO) LIKE '%"+usuario.toLowerCase()+"%'";
 		List<User> l = seleccionarUsuarios(sql);
-		render(l);
+		render(l,usuario);
 	}
 	
 	public static void eliminaUsuario(String idUsuario){
@@ -32,13 +32,13 @@ public class GestionUsuario extends UsuarioGenericController {
 		render();
 	}
 	
-	public static void editaUsuario(String idUsuario){
+	public static void editaUsuario(String idUsuario, String usuario){
 		usuarioLogado();
 		String sql = "select * from public.\"usuarios\" where usuarios.\"idUsuario\"="+idUsuario;
 		List<User> l = seleccionarUsuarios(sql);
 		if(l.size()>0){
 			User user = l.get(0);
-			render(user);
+			render(user,usuario);
 		}else{
 			errorEditaUsuario();
 		}

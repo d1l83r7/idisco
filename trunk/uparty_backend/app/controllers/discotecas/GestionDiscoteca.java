@@ -3,7 +3,7 @@ package controllers.discotecas;
 import java.io.File;
 import java.util.List;
 
-import models.DiscotecaDTO;
+import models.Discoteca;
 
 public class GestionDiscoteca extends DiscotecaGenericController {
 	public static void gestionDiscoteca(){
@@ -14,8 +14,8 @@ public class GestionDiscoteca extends DiscotecaGenericController {
 	public static void verGestionDiscoteca(String name){
 		usuarioLogado();
 		String sql = "SELECT * FROM DISCOTECAS WHERE LOWER(NOMBRE) LIKE '%"+name.toLowerCase()+"%'";
-		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
-		render(l);
+		List<Discoteca> l = seleccionarDiscotecas(sql);
+		render(l,name);
 	}
 	
 	public static void eliminaDiscoteca(String idDiscoteca){
@@ -32,13 +32,13 @@ public class GestionDiscoteca extends DiscotecaGenericController {
 		render();
 	}
 	
-	public static void editaDiscoteca(String idDiscoteca){
+	public static void editaDiscoteca(String idDiscoteca, String name){
 		usuarioLogado();
 		String sql = "select * from public.\"discotecas\" where discotecas.\"idDiscoteca\"="+idDiscoteca;
-		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
+		List<Discoteca> l = seleccionarDiscotecas(sql);
 		if(l.size()>0){
-			DiscotecaDTO discotecaDTO = l.get(0);
-			render(discotecaDTO);
+			Discoteca discoteca = l.get(0);
+			render(discoteca,name);
 		}else{
 			errorEditaDiscoteca();
 		}
@@ -47,7 +47,7 @@ public class GestionDiscoteca extends DiscotecaGenericController {
 	public static void modificaDiscoteca(String idDiscoteca, String nombre,
 			String descripcion, String latitud, String longitud, String nombreImg, File imagen){
 		usuarioLogado();
-		DiscotecaDTO dto = new DiscotecaDTO();
+		Discoteca dto = new Discoteca();
 		dto.setNombre(nombre);
 		dto.setDescripcion(descripcion);
 		dto.setLatitud(Double.parseDouble(latitud));

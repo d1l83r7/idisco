@@ -14,6 +14,8 @@ GET     /getDistanciaToDisco					discotecas.GetDistanciaToDisco.getDistanciasToD
 POST    /getDistanciaToDisco					discotecas.GetDistanciaToDisco.getDistanciasToDisco
 GET     /getDiscotecasCercanas					discotecas.GetDiscotecasCercanas.getDiscotecasCercanas
 POST    /getDiscotecasCercanas					discotecas.GetDiscotecasCercanas.getDiscotecasCercanas
+GET  	/getMensajes							discotecas.mensajes.Mensajes.obtenerMensajesJSON
+POST  	/getMensajes							discotecas.mensajes.Mensajes.obtenerMensajesJSON
 
 #HTML response controllres
 #Discotecas
@@ -21,14 +23,24 @@ GET     /altaDiscoteca							discotecas.AltaDiscoteca.verAltaDiscoteca
 POST    /altaDiscoteca							discotecas.AltaDiscoteca.verAltaDiscoteca
 GET     /gestionDiscotecas						discotecas.GestionDiscoteca.gestionDiscoteca
 POST    /gestionDiscotecas						discotecas.GestionDiscoteca.gestionDiscoteca
+GET     /volverGestionDiscotecas				discotecas.GestionDiscoteca.verGestionDiscoteca
+POST    /volverGestionDiscotecas				discotecas.GestionDiscoteca.verGestionDiscoteca
 GET     /menuDiscotecas							MenuDiscotecas.verMenuDiscotecas
 POST    /menuDiscotecas							MenuDiscotecas.verMenuDiscotecas
+GET		/editaDiscoteca							discotecas.GestionDiscoteca.editaDiscoteca
+POST	/editaDiscoteca							discotecas.GestionDiscoteca.editaDiscoteca
+
+#HTML muros
+GET 	/verMuro								discotecas.mensajes.Mensajes.obtenerMensajes
+POST 	/verMuro								discotecas.mensajes.Mensajes.obtenerMensajes
 
 #Usuarios
 GET		/altaUsuarios							usuarios.AltaUsuario.verAltaUsuario
 POST	/altaUsuarios							usuarios.AltaUsuario.verAltaUsuario
 GET		/gestionUsuario							usuarios.GestionUsuario.gestionUsuario
 POST	/gestionUsuario							usuarios.GestionUsuario.gestionUsuario
+GET		/verGestionUsuario						usuarios.GestionUsuario.verGestionUsuario
+POST	/verGestionUsuario						usuarios.GestionUsuario.verGestionUsuario
 
 #Login
 GET     /login									usuarios.SecurityController.pantallaLogin
