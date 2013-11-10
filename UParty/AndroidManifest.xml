@@ -33,6 +33,7 @@
         <activity android:name=".activity.BuscarDiscotecaActivity"></activity>
         <activity android:name=".activity.DetallDiscotecaActivity"></activity>
         <activity android:name=".activity.ConfigurationActivity"></activity>
+        <activity android:name=".activity.MuroActivity"></activity>
         <uses-library android:name="com.google.android.maps" />
         <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCOBY9VcjXN_NKrF8ZmAQb5fv0K29PAZu4" />
     </application>

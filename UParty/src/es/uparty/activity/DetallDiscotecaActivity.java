@@ -15,10 +15,12 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 	private TextView tvDescripcion = null;
 	private Button btAtras;
 	private Button btRuta;
+	private Button btMuro;
 	private DiscotecaDTO dto = null;
 	private RadioButton rbCoche = null;
 	private RadioButton rbPie = null;
 	private RadioButton rbTranPublico = null;
+	private String origen = null;
 			
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 		setContentView(R.layout.detallediscoteca);
 		
 		dto = (DiscotecaDTO)getIntent().getSerializableExtra(Constants.DISCOTECADTO);
+		origen = getIntent().getExtras().getString(Constants.ORIGEN);
 		String nombre = dto.getNombre();
 		String descripcion = dto.getDescripcio();
 		
@@ -40,7 +43,7 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 			@Override
 			public void onClick(View v) {
 				Intent i = null;
-				String origen = getIntent().getExtras().getString(Constants.ORIGEN);
+				
 				if(origen.equals(Constants.ORIGEN_BUSQUEDA)){
 					i = new Intent(getBaseContext(),BuscarDiscotecaActivity.class);
 					startActivity(i);	
@@ -71,5 +74,18 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 		rbCoche.setChecked(false);
 		rbTranPublico = (RadioButton)findViewById(R.id.detallediscoteca_rb_transp_publico);
 		rbTranPublico.setChecked(false);
+		
+		btMuro = (Button)findViewById(R.id.detallediscoteca_bt_muro);
+		btMuro.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent i = new Intent(getBaseContext(),MuroActivity.class);
+				i.putExtra(Constants.DISCOTECADTO, dto);
+				i.putExtra(Constants.ORIGEN, origen);
+				startActivity(i);
+			}
+		});
 	}
 }
