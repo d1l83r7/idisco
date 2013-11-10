@@ -7,7 +7,7 @@ import com.google.gson.JsonObject;
 
 import es.uparty.utils.Utils;
 
-import models.DiscotecaDTO;
+import models.Discoteca;
 
 public class GetDistanciaToDisco extends DiscotecaGenericController {
 	public static void getDistanciasToDisco(String latitud, String longitud){
@@ -16,8 +16,8 @@ public class GetDistanciaToDisco extends DiscotecaGenericController {
 		double latOrigen = Double.parseDouble(latitud);
 		double longOrigen = Double.parseDouble(longitud);
 		
-		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
-		for(DiscotecaDTO dto:l){
+		List<Discoteca> l = seleccionarDiscotecas(sql);
+		for(Discoteca dto:l){
 			
 			JsonObject ob = new JsonObject();
 			String nombre = dto.getNombre();

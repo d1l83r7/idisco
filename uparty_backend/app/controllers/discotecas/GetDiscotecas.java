@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.DiscotecaDTO;
+import models.Discoteca;
 import play.db.DB;
 
 import com.google.gson.JsonArray;
@@ -17,7 +17,7 @@ public class GetDiscotecas extends DiscotecaGenericController {
 	
 	public static void getDiscotecas(){
 		String sql = "SELECT * FROM DISCOTECAS";
-		List<DiscotecaDTO> l = seleccionarDiscotecas(sql);
+		List<Discoteca> l = seleccionarDiscotecas(sql);
 		JsonArray array = listDicotecaDTOToJSonArray(l);
 		renderJSON(array);
 	}

@@ -1,0 +1,41 @@
+#{extends 'main.html' /}
+#{set title:'Mensajes muro discoteca' /}
+<script type="text/javascript">
+function volver(){
+	document.getElementById('mensajesDiscotecaForm').action='/editaDiscoteca?idDiscoteca=${idDiscoteca}&name=${name}';
+	document.getElementById('mensajesDiscotecaForm').submit();
+}
+</script>
+ 
+<form id="mensajesDiscotecaForm" action="@{discotecas.GestionDiscoteca.modificaDiscoteca()}" method="POST" enctype="multipart/form-data">
+	<table>
+		<tr>
+			<tr>
+				<td colspan="2"><h1>Muro de la discoteca</h1></td> 
+				<td><input type="button" value="Logout" onclick="javascript:logout();"/></td> 
+			</tr>
+			<tr>
+			<td colspan="3">
+				<table>
+						<tr>
+							<td bgcolor="#FF0000">Usuario</td>
+							<td bgcolor="#FF0000">Mensaje</td>
+							<td colspan="2" bgcolor="#FF0000">Acciones</td>
+						</tr>
+					#{list items:l, as:'mensaje' }
+						<tr>
+				        	<td bgcolor="#D8D8D8">${mensaje.usuario}</td>
+				        	<td bgcolor="#D8D8D8">${mensaje.mensaje}</td>
+				        	<td><input type="submit" value="Elimina" onclick="alert('${mensaje.idMensaje}')"  /></td>
+				        </tr>
+				    #{/list}
+				</table>
+				    
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3"><input type="button" value="Volver" onclick="javascript:volver();"/></td>
+		</tr>
+	</table>
+</form>

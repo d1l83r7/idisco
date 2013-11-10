@@ -2,7 +2,7 @@
 #{set title:'Alta discoteca' /}
 <script type="text/javascript">
 function volver(){
-	document.getElementById('altaUsuarioForm').action='/gestionUsuario';
+	document.getElementById('altaUsuarioForm').action='/verGestionUsuario?usuario=${usuario}';
 	document.getElementById('altaUsuarioForm').submit();
 }
 </script>
