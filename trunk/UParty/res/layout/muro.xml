@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#000000">
+
+    <TextView
+        android:id="@+id/murodiscoteca_tv_nombre"
+       	android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#DF0101"
+        android:textSize="30sp"
+        android:text="@string/murodiscoteca_tv_hint_muro" 
+        android:textColor="#000000"
+        android:gravity="center"/>
+	<ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+		
+	</ListView>	
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true" >
+            <Button
+                android:id="@+id/murodiscoteca_bt_atras"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="#DF0101"
+                android:text="@string/buscardiscoteca_bt_atras"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -28,5 +28,7 @@
     <string name="configuracion_bt_guardar">Guardar</string>
     
     <string name="configuracion_tv_distancia">Distancia máxima: 0m</string>
+    <string name="buscardiscoteca_bt_muro">Muro</string>
+    <string name="murodiscoteca_tv_hint_muro">Muro</string>
     
 </resources>
