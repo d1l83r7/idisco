@@ -161,7 +161,7 @@ public class DiscotecaGenericController extends SecurityController {
 		return array;
 	}
 	
-	protected static User getUsuario(String usuario, String password){
+	public static User getUsuario(String usuario, String password, boolean closeConnection){
 		List<User>lUsers = new ArrayList<User>();
 		String sql = "Select * " +
 				"from usuarios " +
@@ -184,7 +184,8 @@ public class DiscotecaGenericController extends SecurityController {
 				  // close all the connections.
 			rs.close();
 			statement.close();
-			conn.close();
+			if(closeConnection)
+				conn.close();
 		}catch(SQLException sqle){
 			sqle.printStackTrace();
 			return null;

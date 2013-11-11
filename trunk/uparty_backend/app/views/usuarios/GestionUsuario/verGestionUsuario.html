@@ -46,6 +46,7 @@ function volver(){
 							<td bgcolor="#FF0000">Usuario</td>
 							<td bgcolor="#FF0000">Password</td>
 							<td bgcolor="#FF0000">Perfil</td>
+							<td bgcolor="#FF0000">Email</td>
 							<td colspan="2" bgcolor="#FF0000">Acciones</td>
 						</tr>
 					#{list items:l, as:'user' }
@@ -54,6 +55,7 @@ function volver(){
 				        	<td bgcolor="#D8D8D8">${user.usuario}</td>
 				        	<td bgcolor="#D8D8D8">${user.password}</td>
 				        	<td bgcolor="#D8D8D8">${user.perfil}</td>
+				        	<td bgcolor="#D8D8D8">${user.email}</td>
 				        	<td><input type="button" value="Edita" onclick="editaUsuario('${user.id}');" /></td>
 				        	<td><input type="button" value="Elimina" onclick="eliminaUsuario('${user.id}');"  /></td>
 				        </tr>

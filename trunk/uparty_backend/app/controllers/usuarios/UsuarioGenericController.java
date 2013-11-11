@@ -28,6 +28,7 @@ public class UsuarioGenericController extends SecurityController {
 				dto.setUsuario(rs.getString(2));
 				dto.setPassword(rs.getString(3));
 				dto.setPerfil(rs.getString(4));
+				dto.setEmail(rs.getString(5));
 				l.add(dto);
 			}
 
@@ -98,12 +99,14 @@ public class UsuarioGenericController extends SecurityController {
 					"\"idUsuario\", " +
 					"usuario, " +
 					"clave, " +
-					"perfil) " +
+					"perfil, " +
+					"email) " +
 				"VALUES (" +
 					String.valueOf(u.getId())+", " +
 					"'"+u.getUsuario()+"', " +
 					"'"+u.getPassword()+"', " +
-					"'"+u.getPerfil()+"');";
+					"'"+u.getPerfil()+"'" +
+					"'"+u.getEmail() +"');";
 		return executeQuery(conn, sql);
 	}
 	
@@ -122,7 +125,8 @@ public class UsuarioGenericController extends SecurityController {
 	
 	protected static boolean modificarUsuario(User dto){
 		String sql = "UPDATE usuarios "+
-				   		"SET usuario='"+dto.getUsuario()+"', clave='"+dto.getPassword()+"', perfil='"+dto.getPerfil()+"' "+
+				   		"SET usuario='"+dto.getUsuario()+"', clave='"+dto.getPassword()+"', perfil='"+dto.getPerfil()+"' " +
+				   				"email='"+dto.getEmail()+"' "+
 				   		"WHERE \"idUsuario\"="+String.valueOf(dto.getId());
 		Connection conn = DB.getConnection();
 		return executeQuery(conn, sql);
@@ -141,6 +145,7 @@ public class UsuarioGenericController extends SecurityController {
 				dto.setUsuario(rs.getString(2));
 				dto.setPassword(rs.getString(3));
 				dto.setPerfil(rs.getString(4));
+				dto.setEmail(rs.getString(5));
 				l.add(dto);
 			}
 
