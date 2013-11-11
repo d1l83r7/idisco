@@ -5,6 +5,11 @@ function volver(){
 	document.getElementById('mensajesDiscotecaForm').action='/editaDiscoteca?idDiscoteca=${idDiscoteca}&name=${name}';
 	document.getElementById('mensajesDiscotecaForm').submit();
 }
+
+function eliminarMensaje(idMensaje){
+	document.getElementById('mensajesDiscotecaForm').action='/eliminarMensaje?idMensaje='+idMensaje;
+	document.getElementById('mensajesDiscotecaForm').submit();
+}
 </script>
  
 <form id="mensajesDiscotecaForm" action="@{discotecas.GestionDiscoteca.modificaDiscoteca()}" method="POST" enctype="multipart/form-data">
@@ -26,7 +31,7 @@ function volver(){
 						<tr>
 				        	<td bgcolor="#D8D8D8">${mensaje.usuario}</td>
 				        	<td bgcolor="#D8D8D8">${mensaje.mensaje}</td>
-				        	<td><input type="submit" value="Elimina" onclick="alert('${mensaje.idMensaje}')"  /></td>
+				        	<td><input type="submit" value="Elimina" onclick="eliminarMensaje('${mensaje.idMensaje}')"  /></td>
 				        </tr>
 				    #{/list}
 				</table>
@@ -38,4 +43,5 @@ function volver(){
 			<td colspan="3"><input type="button" value="Volver" onclick="javascript:volver();"/></td>
 		</tr>
 	</table>
+	<input type="hidden" name="nombreFormulario" id="nombreFormulario" value="mensajesDiscotecaForm"/>
 </form>

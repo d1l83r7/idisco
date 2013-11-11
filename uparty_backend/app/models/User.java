@@ -6,6 +6,13 @@ public class User implements Serializable {
 	private long id = 0;
 	private String password;
 	private String perfil;
+	private String email;
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getUsuario() {
 		return usuario;
 	}

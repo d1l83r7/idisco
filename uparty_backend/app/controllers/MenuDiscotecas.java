@@ -14,7 +14,7 @@ public class MenuDiscotecas extends DiscotecaGenericController {
 	}
 	
 	public static void login(String usuario, String password){
-		User u = getUsuario(usuario, password);
+		User u = getUsuario(usuario, password,true);
 		if(u!=null){
 			Cache.set("user", u);
 			verMenuDiscotecas();

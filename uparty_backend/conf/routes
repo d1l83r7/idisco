@@ -16,6 +16,8 @@ GET     /getDiscotecasCercanas					discotecas.GetDiscotecasCercanas.getDiscoteca
 POST    /getDiscotecasCercanas					discotecas.GetDiscotecasCercanas.getDiscotecasCercanas
 GET  	/getMensajes							discotecas.mensajes.Mensajes.obtenerMensajesJSON
 POST  	/getMensajes							discotecas.mensajes.Mensajes.obtenerMensajesJSON
+GET		/insertarMensaje						discotecas.mensajes.Mensajes.insertarMensaje
+POST	/insertarMensaje						discotecas.mensajes.Mensajes.insertarMensaje
 
 #HTML response controllres
 #Discotecas
@@ -33,6 +35,8 @@ POST	/editaDiscoteca							discotecas.GestionDiscoteca.editaDiscoteca
 #HTML muros
 GET 	/verMuro								discotecas.mensajes.Mensajes.obtenerMensajes
 POST 	/verMuro								discotecas.mensajes.Mensajes.obtenerMensajes
+GET     /eliminarMensaje						discotecas.mensajes.Mensajes.eliminarMensaje
+POST    /eliminarMensaje						discotecas.mensajes.Mensajes.eliminarMensaje
 
 #Usuarios
 GET		/altaUsuarios							usuarios.AltaUsuario.verAltaUsuario

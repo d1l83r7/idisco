@@ -2,9 +2,12 @@ package controllers.discotecas.mensajes;
 
 import java.util.List;
 
+import models.Mensaje;
+import models.User;
+
 import com.google.gson.JsonArray;
 
-import models.Mensaje;
+import controllers.discotecas.DiscotecaGenericController;
 
 public class Mensajes extends MensajesGenericController {
 	public static void obtenerMensajes(String idDiscoteca, String idMuro, String name){
@@ -17,5 +20,30 @@ public class Mensajes extends MensajesGenericController {
 		List<Mensaje> l = seleccionarMensajesPorMuro(Long.parseLong(idMuro));
 		JsonArray array = listMensajesToJSonArray(l);
 		renderJSON(array);
+	}
+	
+	public static void insertarMensaje(String usuario, String contrasenya, String texto, String idDiscoteca, String idMuro){
+		User u = DiscotecaGenericController.getUsuario(usuario, contrasenya,false);
+		Mensaje m = new Mensaje();
+		m.setIdDiscoteca(Long.parseLong(idDiscoteca));
+		m.setIdMuro(Long.parseLong(idMuro));
+		m.setMensaje(texto);
+		m.setUsuario(usuario);
+		m.setIdUsuario(u.getId());
+		insertarMensaje(m);
+//		localhost:9000/insertarMensaje?usuario=pepe&contrasenya=hola&texto=xxx&idDiscoteca=1&idMuro=1
+	}
+	
+	public static void eliminarMensaje(String idMensaje){
+		boolean b = deleteMensaje(Long.parseLong(idMensaje));
+		if(b){
+			render();
+		}else{
+			errorEliminaMensaje();
+		}
+	}
+	
+	public static void errorEliminaMensaje(){
+		render();
 	}
 }
