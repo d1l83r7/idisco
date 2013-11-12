@@ -13,6 +13,21 @@
         android:text="@string/configuracion_tv_titulo"
         android:textColor="#000000" 
         android:gravity="center"/>
+    
+    <EditText
+            android:id="@+id/configuracion_et_usuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10" 
+            android:textColor="#F2F2F2"
+            android:hint="@string/configuracion_et_hind_usuario"/>
+    <EditText
+        android:id="@+id/configuracion_et_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:textColor="#F2F2F2"
+        android:hint="@string/configuracion_et_hind_password"/>
 
     <TextView
         android:id="@+id/configuracion_tv_distancia"
@@ -34,7 +49,7 @@
             android:layout_weight="0.84"
             android:max="10000" />
     </LinearLayout>
-
+		
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -66,6 +81,4 @@
                 android:textColor="#000000" />
 		</LinearLayout>
     </RelativeLayout>
-    
-
 </LinearLayout>

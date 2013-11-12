@@ -26,9 +26,12 @@
     <string name="configuracion_tv_titulo">Menú de configuración</string>
     <string name="configuracion_bt_volver">Volver</string>
     <string name="configuracion_bt_guardar">Guardar</string>
-    
     <string name="configuracion_tv_distancia">Distancia máxima: 0m</string>
+    <string name="configuracion_et_hind_password">Password</string>
+    <string name="configuracion_et_hind_usuario">Usuario</string>
     <string name="buscardiscoteca_bt_muro">Muro</string>
     <string name="murodiscoteca_tv_hint_muro">Muro</string>
-    
+    <string name="murodiscoteca_bt_atras">Atras</string>
+    <string name="murodiscoteca_bt_enviar">Enviar</string>
+    <string name="murodiscoteca_et_hind_mensaje">Mensaje</string>
 </resources>

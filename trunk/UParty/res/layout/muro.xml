@@ -37,10 +37,34 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:background="#DF0101"
-                android:text="@string/buscardiscoteca_bt_atras"
+                android:text="@string/murodiscoteca_bt_atras"
                 android:textColor="#000000" />
         </LinearLayout>
+		  <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000" >
 
+        <EditText
+            android:id="@+id/murodiscoteca_et_mensaje"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10" 
+            android:textColor="#F2F2F2"
+            android:hint="@string/murodiscoteca_et_hind_mensaje">
+
+            <requestFocus />
+        </EditText>
+
+        <Button
+            android:id="@+id/murodiscoteca_bt_enviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/murodiscoteca_bt_enviar" />
+
+    </LinearLayout>
 
     </RelativeLayout>
 

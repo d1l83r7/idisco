@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ public class ConfigurationActivity extends Activity {
 	private Button btGuardar = null;
 	private Button btVolver = null;
 	private SeekBar distancia = null;
+	private EditText et_usuario = null;
+	private EditText et_password = null;
 	private int valor = 0;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,11 +36,8 @@ public class ConfigurationActivity extends Activity {
 		String aux = text.substring(0, 18);
 		aux += String.valueOf(valorDistancia)+" m";
 		tv.setText(aux);
-		
-		
 		btGuardar = (Button)findViewById(R.id.configuracion_bt_guardar);
 		btGuardar.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -46,15 +46,15 @@ public class ConfigurationActivity extends Activity {
 				
 				Editor editor = sp.edit();
 				editor.putString(Constants.PREF_DISTANCIA, String.valueOf(valor));
+				editor.putString(Constants.PREF_USUARIO, et_usuario.getText().toString());
+				editor.putString(Constants.PREF_PASSWORD, et_password.getText().toString());
 				editor.commit();
 				Intent i = new Intent(getBaseContext(), MenuActivity.class);
 				startActivity(i);
 			}
 		});
-		
 		btVolver = (Button)findViewById(R.id.configuracion_bt_volver);
 		btVolver.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				Intent i = new Intent(getBaseContext(), MenuActivity.class);
@@ -64,7 +64,6 @@ public class ConfigurationActivity extends Activity {
 		
 		distancia = (SeekBar)findViewById(R.id.configuracion_sb_distancia);
 		distancia.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-			
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				valor = seekBar.getProgress();
@@ -85,5 +84,15 @@ public class ConfigurationActivity extends Activity {
 			}
 		});
 		distancia.setProgress(Integer.parseInt(valorDistancia));
+		
+		String usuario = sp.getString(Constants.PREF_USUARIO, "");
+		String password = sp.getString(Constants.PREF_PASSWORD, "");
+		
+		et_usuario = (EditText)findViewById(R.id.configuracion_et_usuario);
+		et_usuario.setText(usuario);
+		
+		et_password = (EditText)findViewById(R.id.configuracion_et_password);
+		et_password.setText(password);
+		
 	}
 }
