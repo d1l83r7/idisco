@@ -13,4 +13,6 @@ public class Constants {
 	public final static String ORIGEN_BUSQUEDA = "ORIGEN_BUSQUEDA";
 	public final static String NOMBRE_FICHERO_PREFERENCIAS = "uparty_properties";
 	public final static String PREF_DISTANCIA = "distancia";
+	public final static String PREF_USUARIO = "usuario";
+	public final static String PREF_PASSWORD = "password";
 }
