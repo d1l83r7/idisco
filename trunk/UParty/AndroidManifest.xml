@@ -6,14 +6,30 @@
 
     <uses-sdk
         android:minSdkVersion="8"
-        android:targetSdkVersion="17" />
-    <permission android:name="es.uparty.permission.MAPS_RECEIVE" android:protectionLevel="signature"/>
-	<uses-permission android:name="es.uparty.permission.MAPS_RECEIVE"/>
-	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-	<uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+        android:targetSdkVersion="18" />
+
+    <permission
+        android:name="es.uparty.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="es.uparty.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    
+    <permission android:name="es.uparty.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<uses-permission android:name="es.uparty.permission.C2D_MESSAGE" />
+    <!-- App receives GCM messages. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- Keeps the processor from sleeping when a message is received. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/bola_disco"
@@ -24,18 +40,47 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.MenuActivity"></activity>
-        <activity android:name=".activity.MapaActivity"></activity>
-        <activity android:name=".activity.RutaActivity"></activity>
-        <activity android:name=".activity.BuscarDiscotecaActivity"></activity>
-        <activity android:name=".activity.DetallDiscotecaActivity"></activity>
-        <activity android:name=".activity.ConfigurationActivity"></activity>
-        <activity android:name=".activity.MuroActivity"></activity>
+        <activity android:noHistory="true" android:name=".activity.MenuActivity" >
+        </activity>
+        <activity android:noHistory="true" android:name=".activity.MapaActivity" >
+        </activity>
+        <activity android:noHistory="true" android:name=".activity.RutaActivity" >
+        </activity>
+        <activity android:noHistory="true" android:name=".activity.BuscarDiscotecaActivity" >
+        </activity>
+        <activity android:noHistory="true" android:name=".activity.DetallDiscotecaActivity" >
+        </activity>
+        <activity android:noHistory="true" android:name=".activity.ConfigurationActivity" >
+        </activity>
+        <activity android:noHistory="true" android:name=".activity.MuroActivity" >
+        </activity>
+
         <uses-library android:name="com.google.android.maps" />
-        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCOBY9VcjXN_NKrF8ZmAQb5fv0K29PAZu4" />
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyCOBY9VcjXN_NKrF8ZmAQb5fv0K29PAZu4" />
+
+        <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="es.uparty" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".GCMIntentService" />
     </application>
-	<uses-feature android:glEsVersion="0x00020000" android:required="true" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
 </manifest>

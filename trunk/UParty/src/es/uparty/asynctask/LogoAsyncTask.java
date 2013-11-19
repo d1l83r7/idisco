@@ -18,7 +18,7 @@ public class LogoAsyncTask extends AsyncTask<ProgressBar, Integer, Integer> {
 	
     protected Integer doInBackground(ProgressBar... progBar) {
     	this.progBar = progBar[0];
-    	for(int i=0;i<100000;i++){
+    	for(int i=0;i<1;i++){
     		publishProgress(i);
     	}
         return 1;
