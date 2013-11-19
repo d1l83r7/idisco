@@ -1,10 +1,17 @@
 package es.uparty.activity;
 
+import static es.uparty.CommonUtilities.DISPLAY_MESSAGE_ACTION;
+import static es.uparty.CommonUtilities.EXTRA_MESSAGE;
+
 import java.util.List;
 
-import android.app.ListActivity;
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +21,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+import es.uparty.AirBopActivity;
 import es.uparty.R;
 import es.uparty.adapter.MuroAdapter;
 import es.uparty.asynctask.InsertarMensajeAsyncTask;
@@ -22,7 +31,7 @@ import es.uparty.comunes.Constants;
 import es.uparty.dto.DiscotecaDTO;
 import es.uparty.dto.MensajeDTO;
 
-public class MuroActivity extends ListActivity {
+public class MuroActivity extends AirBopActivity {
 	
 	private DiscotecaDTO dto = null;
 	private Button btVolver = null;
@@ -35,9 +44,11 @@ public class MuroActivity extends ListActivity {
 	private String password = null;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.muro);
+		registerReceiver(mHandleMessageReceiver,
+                new IntentFilter(DISPLAY_MESSAGE_ACTION));
 		String nombreFichero = Constants.NOMBRE_FICHERO_PREFERENCIAS;
 		SharedPreferences sp = getBaseContext().getSharedPreferences(nombreFichero, Context.MODE_PRIVATE);
 		usuario = sp.getString(Constants.PREF_USUARIO, "");
@@ -119,4 +130,46 @@ public class MuroActivity extends ListActivity {
 			}
 		});
 	}
+	
+	@Override
+    protected void onDestroy() {
+        unRegister();
+        unregisterReceiver(mHandleMessageReceiver);
+        super.onDestroy();
+    }
+	
+	@Override
+	protected void onPause(){
+		unRegister();
+		super.onPause();
+	}
+	
+	@Override
+	protected void onResume(){
+		register(false);
+		super.onResume();
+	}
+	
+
+    
+    private final BroadcastReceiver mHandleMessageReceiver =
+            new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+        	try{
+	            String newMessage = intent.getExtras().getString(EXTRA_MESSAGE);
+	            JSONObject jsonObject = new JSONObject(newMessage);
+	            JSONArray JArray = jsonObject.getJSONArray("elements");
+	            JSONObject json = JArray.getJSONObject(0);
+	            MensajeDTO dto = new MensajeDTO();
+	            dto.setIdMensaje(json.getString("idMensaje"));
+				dto.setTexto(json.getString("mensaje"));
+				dto.setUsuario(json.getString("usuario"));
+	            muroAdapter.getlDTO().add(dto);
+				lv.setAdapter(muroAdapter);
+        	}catch(Exception e){
+        		Log.e(MuroActivity_TAG, e.getMessage());
+        	}
+        }
+    };
 }
