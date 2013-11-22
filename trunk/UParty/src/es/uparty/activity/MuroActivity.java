@@ -49,6 +49,7 @@ public class MuroActivity extends AirBopActivity {
 		setContentView(R.layout.muro);
 		registerReceiver(mHandleMessageReceiver,
                 new IntentFilter(DISPLAY_MESSAGE_ACTION));
+		register(false);
 		String nombreFichero = Constants.NOMBRE_FICHERO_PREFERENCIAS;
 		SharedPreferences sp = getBaseContext().getSharedPreferences(nombreFichero, Context.MODE_PRIVATE);
 		usuario = sp.getString(Constants.PREF_USUARIO, "");
@@ -60,6 +61,7 @@ public class MuroActivity extends AirBopActivity {
 			
 			@Override
 			public void onClick(View v) {
+				unRegister();
 				Intent i = new Intent(getBaseContext(),DetallDiscotecaActivity.class);
 				i.putExtra(Constants.DISCOTECADTO, dto);
 				i.putExtra(Constants.ORIGEN, origen);
@@ -133,20 +135,16 @@ public class MuroActivity extends AirBopActivity {
 	
 	@Override
     protected void onDestroy() {
-        unRegister();
-        unregisterReceiver(mHandleMessageReceiver);
         super.onDestroy();
     }
 	
 	@Override
 	protected void onPause(){
-		unRegister();
 		super.onPause();
 	}
 	
 	@Override
 	protected void onResume(){
-		register(false);
 		super.onResume();
 	}
 	
@@ -172,4 +170,16 @@ public class MuroActivity extends AirBopActivity {
         	}
         }
     };
+
+	@Override
+	public void onBackPressed() {
+		unRegister();
+		Intent i = new Intent(getBaseContext(),DetallDiscotecaActivity.class);
+		i.putExtra(Constants.DISCOTECADTO, dto);
+		i.putExtra(Constants.ORIGEN, origen);
+		startActivity(i);
+		super.onBackPressed();
+	}
+    
+    
 }

@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:ems="10" 
         android:textColor="#F2F2F2"
+        android:inputType="textPassword"
         android:hint="@string/configuracion_et_hind_password"/>
 
     <TextView

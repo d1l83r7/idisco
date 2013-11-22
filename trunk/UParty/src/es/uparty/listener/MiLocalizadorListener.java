@@ -29,11 +29,13 @@ public class MiLocalizadorListener implements LocationListener{
 	private DiscotecaDTO dto=null;
 	private static final String TAG_LOGATION_LISTENER = "TAG_LOGATION_LISTENER";
 	private int modoRuta = 0;
+	private String origen = null;
 	public MiLocalizadorListener(Activity activity,
 			ProgressDialog dialogoDuranteBusquedaGPS,
 			Context context,int option,
 			DiscotecaDTO dto,
-			int modoRuta){
+			int modoRuta,
+			String origen){
 		this.context = activity.getBaseContext();
 		this.resources = activity.getResources();
 		this.activity = activity;
@@ -42,6 +44,7 @@ public class MiLocalizadorListener implements LocationListener{
 		this.option = option;
 		this.dto = dto;
 		this.modoRuta = modoRuta;
+		this.origen = origen;
 	}
 	
     @SuppressLint("UseValueOf") 
@@ -64,6 +67,8 @@ public class MiLocalizadorListener implements LocationListener{
 				        Intent i = new Intent(context,MapaActivity.class);
 				        i.putExtra(Constants.LATITUDE, currentLatitude);
 				        i.putExtra(Constants.LONGITUDE, currentLongitude);
+				        i.putExtra(Constants.DISCOTECADTO, dto);
+				        i.putExtra(Constants.ORIGEN, origen);
 				        context.startActivity(i);
 					}else if(option==1){
 						 Intent i = new Intent(context,RutaActivity.class);
@@ -71,6 +76,8 @@ public class MiLocalizadorListener implements LocationListener{
 						 i.putExtra(Constants.LONGITUD_DESTINO, Double.parseDouble(dto.getLongitud()));
 						 i.putExtra(Constants.LATITUD_ORIGEN, currentLatitude);
 						 i.putExtra(Constants.LONGITUD_ORIGEN, currentLongitude);
+						 i.putExtra(Constants.DISCOTECADTO, dto);
+						 i.putExtra(Constants.ORIGEN, origen);
 						 if(modoRuta==0)
 							i.putExtra("mode", "driving");
 						 else if(modoRuta==1)

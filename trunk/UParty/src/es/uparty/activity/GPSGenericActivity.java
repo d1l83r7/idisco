@@ -18,10 +18,12 @@ public class GPSGenericActivity extends Activity implements Runnable {
 	private int option = 0;
 	private DiscotecaDTO dto = null;
 	private int modoRuta = 0;
-	protected void buscaGPS(int option, DiscotecaDTO dto, int modoRuta) {
+	private String origen = null;
+	protected void buscaGPS(int option, DiscotecaDTO dto, int modoRuta, String origen) {
 		this.dto = dto;
 		this.option = option;
 		this.modoRuta = modoRuta;
+		this.origen = origen;
 		DialogInterface.OnCancelListener dialogCancel = new DialogInterface.OnCancelListener() {
 	        public void onCancel(DialogInterface dialog) {
 	        	crearToast(getResources().getString(R.string.gps_signal_not_found));
@@ -40,7 +42,7 @@ public class GPSGenericActivity extends Activity implements Runnable {
 		//si está activado el GPS
 		if (gpsEnabled) {
 			Looper.prepare();
-			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,this,option,dto,modoRuta);
+			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,this,option,dto,modoRuta,origen);
 			locationManager.requestLocationUpdates(
 	                LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
 			Looper.loop(); 
@@ -48,7 +50,7 @@ public class GPSGenericActivity extends Activity implements Runnable {
 		//Si está activada la RED 3G
 		} else if(locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
 			Looper.prepare();
-			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,this,option,dto,modoRuta);
+			mLocationListener = new MiLocalizadorListener(this,dialogoDuranteBusquedaGPS,this,option,dto,modoRuta,origen);
 			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0,0,mLocationListener);
 			Looper.loop();
 			Looper.myLooper().quit();

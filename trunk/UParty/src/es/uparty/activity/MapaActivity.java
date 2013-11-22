@@ -109,4 +109,11 @@ public class MapaActivity extends FragmentActivity {
 			}
 		});
     }
+	
+	@Override
+	public void onBackPressed() {
+		Intent i = new Intent(getBaseContext(),MenuActivity.class);
+		startActivity(i);
+		super.onBackPressed();
+	}
 }

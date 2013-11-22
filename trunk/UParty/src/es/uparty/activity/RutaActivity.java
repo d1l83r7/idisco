@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
@@ -21,15 +22,18 @@ import com.google.android.maps.GeoPoint;
 import es.uparty.R;
 import es.uparty.asynctask.ConnectionAsyncTask;
 import es.uparty.comunes.Constants;
+import es.uparty.dto.DiscotecaDTO;
 
 public class RutaActivity extends FragmentActivity {
 	private GoogleMap mapView;
 	
 	private static final String RUTAACTIVITY_TAG = "RUTAACTIVITY_TAG";
+	private DiscotecaDTO dto = null; 
+	private String origen = null;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.route);
 		Bundle extras = getIntent().getExtras();
@@ -38,6 +42,8 @@ public class RutaActivity extends FragmentActivity {
 			double defaultLongitude = extras.getDouble(Constants.LONGITUD_DESTINO);
 			double currentLatitude = extras.getDouble(Constants.LATITUD_ORIGEN);
 			double currentLongitude = extras.getDouble(Constants.LONGITUD_ORIGEN);
+			dto = (DiscotecaDTO)extras.getSerializable(Constants.DISCOTECADTO);
+			origen = extras.getString(Constants.ORIGEN);
 			String mode = extras.getString("mode");
 			Log.d(RUTAACTIVITY_TAG, "latitud por defecto: "+String.valueOf(defaultLatitude));
 			Log.d(RUTAACTIVITY_TAG, "longitud por defecto: "+String.valueOf(defaultLongitude));
@@ -128,5 +134,14 @@ public class RutaActivity extends FragmentActivity {
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+	}
+	
+	@Override
+	public void onBackPressed() {
+		Intent i = new Intent(getBaseContext(),DetallDiscotecaActivity.class);
+		i.putExtra(Constants.DISCOTECADTO, dto);
+		i.putExtra(Constants.ORIGEN, origen);
+		startActivity(i);
+		super.onBackPressed();
 	}
 }

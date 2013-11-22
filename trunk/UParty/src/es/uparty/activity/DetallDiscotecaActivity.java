@@ -48,7 +48,7 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 					i = new Intent(getBaseContext(),BuscarDiscotecaActivity.class);
 					startActivity(i);	
 				}else if(origen.equals(Constants.ORIGEN_MAPA)){
-					buscaGPS(0,null,0);
+					buscaGPS(0,null,0,origen);
 				}
 			}
 		});
@@ -64,7 +64,7 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 					modeRuta = 1;
 				else if(rbTranPublico.isChecked())
 					modeRuta = 2;
-				buscaGPS(1, dto,modeRuta);
+				buscaGPS(1, dto,modeRuta,origen);
 			}
 		});
 		
@@ -87,5 +87,17 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 				startActivity(i);
 			}
 		});
+	}
+	
+	@Override
+	public void onBackPressed() {
+		Intent i = null;
+		if(origen.equals(Constants.ORIGEN_BUSQUEDA)){
+			i = new Intent(getBaseContext(),BuscarDiscotecaActivity.class);
+			startActivity(i);	
+		}else if(origen.equals(Constants.ORIGEN_MAPA)){
+			buscaGPS(0,null,0,null);
+		}
+		super.onBackPressed();
 	}
 }
