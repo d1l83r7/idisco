@@ -45,6 +45,7 @@ public class ConfigurationActivity extends Activity {
 				SharedPreferences sp = getBaseContext().getSharedPreferences(nombreFichero, Context.MODE_PRIVATE);
 				
 				Editor editor = sp.edit();
+				valor = distancia.getProgress();
 				editor.putString(Constants.PREF_DISTANCIA, String.valueOf(valor));
 				editor.putString(Constants.PREF_USUARIO, et_usuario.getText().toString());
 				editor.putString(Constants.PREF_PASSWORD, et_password.getText().toString());
@@ -94,5 +95,12 @@ public class ConfigurationActivity extends Activity {
 		et_password = (EditText)findViewById(R.id.configuracion_et_password);
 		et_password.setText(password);
 		
+	}
+	
+	@Override
+	public void onBackPressed() {
+		Intent i = new Intent(getBaseContext(),MenuActivity.class);
+		startActivity(i);
+		super.onBackPressed();
 	}
 }
