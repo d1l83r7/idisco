@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="#000000">
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#DF0101"
+        android:textSize="30sp"
+        android:text="@string/menu_tv_menuPrincipal"
+        android:textColor="#000000"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/menu_bt_buscarDisco"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_bt_buscarDisco" />
+
+    <Button
+        android:id="@+id/menu_bt_buscarCerca"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_bt_buscarCerca" />
+
+    <Button
+        android:id="@+id/menu_bt_configuracion"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_bt_configuracion" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="#DF0101"
+            android:gravity="end" >
+
+            <Button
+                android:id="@+id/menu_bt_offline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/menu_bt_offline"
+                android:background="#DF0101"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/menu_bt_manual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/menu_bt_manual" 
+                android:background="#DF0101"
+                android:textColor="#000000"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#000000">
+
+    <TextView
+        android:id="@+id/detallediscoteca_tv_nombre"
+       	android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#DF0101"
+        android:textSize="30sp"
+        android:text="@string/detallediscoteca_tv_hint_nombreDiscoteca" 
+        android:textColor="#000000"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/detallediscoteca_tv_descripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/detallediscoteca_tv_hint_descripcionDiscoteca"
+        android:textColor="#F2F2F2" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true" >
+
+            <Button
+                android:id="@+id/detallediscoteca_bt_ruta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="#DF0101"
+                android:text="@string/buscardiscoteca_bt_mostrarRuta"
+                android:textColor="#000000" />
+            
+            <Button
+                android:id="@+id/detallediscoteca_bt_muro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="#DF0101"
+                android:text="@string/buscardiscoteca_bt_muro"
+                android:textColor="#000000" />
+            
+            <Button
+                android:id="@+id/detallediscoteca_bt_atras"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="#DF0101"
+                android:text="@string/buscardiscoteca_bt_atras"
+                android:textColor="#000000" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/rdgGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linearLayout1"
+            android:layout_alignParentLeft="true"
+            android:checkedButton="@+id/rdbOne"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/detallediscoteca_rb_caminando"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detallediscoteca_rb_text_caminando" 
+                android:textColor="#F2F2F2"
+                android:textSize="13sp"/>
+
+            <RadioButton
+                android:id="@+id/detallediscoteca_rb_coche"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detallediscoteca_rb_text_coche" 
+                android:textColor="#F2F2F2"
+                android:textSize="13sp"/>
+
+            <RadioButton
+                android:id="@+id/detallediscoteca_rb_transp_publico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detallediscoteca_rb_text_trans_publico" 
+                android:textColor="#F2F2F2"
+                android:textSize="13sp"/>
+        </RadioGroup>
+
+    </RelativeLayout>
+
+</LinearLayout>
