@@ -43,17 +43,17 @@ public final class CommonUtilities {
     /**
      * Google Project Number registered to use GCM (from your Google API Console).
      */
-    static final String GOOGLE_PROJECT_NUMBER = "147102057261";
+//    static final String GOOGLE_PROJECT_NUMBER = "147102057261";
     
     /**
      * AirBop App key to identify this app
      */
-    static final String AIRBOP_APP_KEY = "a99bf157-8693-4809-ad9d-ba51feb75135";
+//    static final String AIRBOP_APP_KEY = "a99bf157-8693-4809-ad9d-ba51feb75135";
         
     /**
      * AIRBOP_APP_SECRET App key to identify this app shhhh
      */
-    static final String AIRBOP_APP_SECRET = "cd94cc0d1f1befbeb56de3b4842480049894711d5daf0add9ac560f122b408ca";
+//    static final String AIRBOP_APP_SECRET = "cd94cc0d1f1befbeb56de3b4842480049894711d5daf0add9ac560f122b408ca";
            
     /** Should we send the location to the AirBopServer
      * If you set this value to true, you also need to uncomment the following manifest permissions:

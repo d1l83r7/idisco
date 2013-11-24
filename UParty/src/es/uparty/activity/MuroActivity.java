@@ -23,6 +23,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import es.uparty.AirBopActivity;
+import es.uparty.AirbopConstants;
 import es.uparty.R;
 import es.uparty.adapter.MuroAdapter;
 import es.uparty.asynctask.InsertarMensajeAsyncTask;
@@ -47,15 +48,22 @@ public class MuroActivity extends AirBopActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.muro);
-		registerReceiver(mHandleMessageReceiver,
-                new IntentFilter(DISPLAY_MESSAGE_ACTION));
-		register(false);
+		
 		String nombreFichero = Constants.NOMBRE_FICHERO_PREFERENCIAS;
 		SharedPreferences sp = getBaseContext().getSharedPreferences(nombreFichero, Context.MODE_PRIVATE);
 		usuario = sp.getString(Constants.PREF_USUARIO, "");
 		password = sp.getString(Constants.PREF_PASSWORD, "");
 		dto = (DiscotecaDTO)getIntent().getSerializableExtra(Constants.DISCOTECADTO);
 		origen = getIntent().getStringExtra(Constants.ORIGEN);
+		
+		AirbopConstants ac = AirbopConstants.getInstance();
+		ac.setAirbopAppKey(dto.getAirbopAppKey());
+		ac.setAirbopAppSecret(dto.getAirbopAppSecret());
+		ac.setGoogleProjectNumber(dto.getGoogleProjectNumber());
+		registerReceiver(mHandleMessageReceiver,
+                new IntentFilter(DISPLAY_MESSAGE_ACTION));
+		register(false);
+		
 		btVolver = (Button)findViewById(R.id.murodiscoteca_bt_atras);
 		btVolver.setOnClickListener(new View.OnClickListener() {
 			

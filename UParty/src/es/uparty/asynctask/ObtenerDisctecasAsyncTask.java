@@ -49,6 +49,9 @@ public class ObtenerDisctecasAsyncTask extends
 			discotecaDTO.setLatitud(json.getString("latitud"));
 			discotecaDTO.setLongitud(json.getString("longitud"));
 			discotecaDTO.setNombreImagen(json.getString("nombreImg"));
+			discotecaDTO.setAirbopAppKey(json.getString("airbopAppKey"));
+			discotecaDTO.setAirbopAppSecret(json.getString("airbopAppSecret"));
+			discotecaDTO.setGoogleProjectNumber(json.getString("googleProjectNumber"));
 			l.add(discotecaDTO);
 		}
 		return l;

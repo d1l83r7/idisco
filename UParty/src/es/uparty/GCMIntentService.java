@@ -18,7 +18,7 @@ package es.uparty;
 
 import static es.uparty.CommonUtilities.DISPLAY_MESSAGE_ACTION;
 import static es.uparty.CommonUtilities.EXTRA_MESSAGE;
-import static es.uparty.CommonUtilities.GOOGLE_PROJECT_NUMBER;
+//import static es.uparty.CommonUtilities.GOOGLE_PROJECT_NUMBER;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,11 +39,11 @@ public class GCMIntentService extends GCMBaseIntentService {
     private static final String TAG = "GCMIntentService";
         
     public GCMIntentService(boolean withLocation) {
-        super(GOOGLE_PROJECT_NUMBER);
+        super(AirbopConstants.getInstance().getGoogleProjectNumber());
     }
     
     public GCMIntentService() {
-        super(GOOGLE_PROJECT_NUMBER);
+        super(AirbopConstants.getInstance().getGoogleProjectNumber());
     }
 
     /**
@@ -83,6 +83,7 @@ public class GCMIntentService extends GCMBaseIntentService {
         	Log.i(TAG, "Ignoring unregister callback");
         	
         }
+        AirbopConstants.destroyIntance();
     }
     /**
 	 * We have received a push notification from GCM, analyze

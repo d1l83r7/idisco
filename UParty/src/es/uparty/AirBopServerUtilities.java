@@ -16,8 +16,8 @@
  */
 package es.uparty;
 
-import static es.uparty.CommonUtilities.AIRBOP_APP_KEY;
-import static es.uparty.CommonUtilities.AIRBOP_APP_SECRET;
+//import static es.uparty.CommonUtilities.AIRBOP_APP_KEY;
+//import static es.uparty.CommonUtilities.AIRBOP_APP_SECRET;
 import static es.uparty.CommonUtilities.SERVER_URL;
 import static es.uparty.CommonUtilities.USE_LOCATION;
 import static es.uparty.CommonUtilities.displayMessage;
@@ -396,20 +396,20 @@ public class AirBopServerUtilities {
     	 * The signature is constructed using the following value:
     	 * "POST" + request_uri + AIRBOP_APP_KEY + timestamp + request.body + AIRBOP_APP_SECRET
     	 */
-
+    	AirbopConstants ac = AirbopConstants.getInstance();
     	StringBuilder uriBuilder = new StringBuilder();
     	// METHOD
     	uriBuilder.append(method);
     	// URL
     	uriBuilder.append(url);
     	// APP_KEY
-    	uriBuilder.append(AIRBOP_APP_KEY);
+    	uriBuilder.append(ac.getAirbopAppKey());
     	// timestamp
     	uriBuilder.append(timestamp);
     	// body
     	uriBuilder.append(body);
     	// ssssshhhhhh
-    	uriBuilder.append(AIRBOP_APP_SECRET);
+    	uriBuilder.append(ac.getAirbopAppSecret());
     	
     	return uriBuilder.toString();
     	
@@ -567,7 +567,8 @@ public class AirBopServerUtilities {
             }
             // X Headers
             conn.addRequestProperty(HEADER_TIMESTAMP, timestamp);
-            conn.addRequestProperty(HEADER_APP, AIRBOP_APP_KEY);
+            AirbopConstants ac = AirbopConstants.getInstance();
+            conn.addRequestProperty(HEADER_APP, ac.getAirbopAppKey());
             conn.addRequestProperty(HEADER_SIGNATURE, signature_hash);
             
             Log.i(TAG, "About to post");
