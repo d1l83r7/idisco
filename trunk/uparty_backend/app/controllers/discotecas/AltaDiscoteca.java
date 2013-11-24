@@ -14,13 +14,17 @@ public class AltaDiscoteca extends DiscotecaGenericController {
 	}
 	
 	public static void insertarDiscoteca(String nombre, String descripcion,
-			String latitud, String longitud, File imagen){
+			String latitud, String longitud, File imagen, String airbopAppKey,
+			String airbopAppSecret, String googleProjectNumber){
 		usuarioLogado();
 		Discoteca dto = new Discoteca();
 		dto.setDescripcion(descripcion);
 		dto.setNombre(nombre);
 		dto.setLatitud(Double.parseDouble(latitud));
 		dto.setLongitud(Double.parseDouble(longitud));
+		dto.setAirbopAppKey(airbopAppKey);
+		dto.setAirbopAppSecret(airbopAppSecret);
+		dto.setGoogleProjectNumber(googleProjectNumber);
 		if(imagen!=null){
 			dto.setNombreImg(imagen.getName());
 			saveFile(imagen);

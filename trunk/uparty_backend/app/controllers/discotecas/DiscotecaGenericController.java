@@ -37,6 +37,9 @@ public class DiscotecaGenericController extends SecurityController {
 				dto.setLatitud(rs.getDouble(4));
 				dto.setLongitud(rs.getDouble(5));
 				dto.setNombreImg(rs.getString(6));
+				dto.setAirbopAppKey(rs.getString(7));
+				dto.setAirbopAppSecret(rs.getString(8));
+				dto.setGoogleProjectNumber(rs.getString(9));
 				l.add(dto);
 			}
 
@@ -57,7 +60,10 @@ public class DiscotecaGenericController extends SecurityController {
 				   		"descripcion='"+dto.getDescripcion()+"', " +
 				   		"latitud="+String.valueOf(dto.getLatitud())+", " +
 				   		"longitud="+String.valueOf(dto.getLongitud())+", " +
-				   		"nombre_img='"+dto.getNombreImg()+"' "+
+				   		"nombre_img='"+dto.getNombreImg()+"', "+
+				   		"airbopappkey='"+dto.getAirbopAppKey()+"', "+
+				   		"airbopappsecret='"+dto.getAirbopAppSecret()+"', "+
+				   		"googleprojectnumber='"+dto.getGoogleProjectNumber()+"' "+
 				   		"WHERE \"idDiscoteca\"="+String.valueOf(dto.getIdDiscoteca());
 		Connection conn = DB.getConnection();
 		return executeQuery(conn, sql);
@@ -122,14 +128,21 @@ public class DiscotecaGenericController extends SecurityController {
 					"descripcion, " +
 					"latitud, " +
 					"longitud," +
-					"nombre_img) " +
+					"nombre_img," +
+					"airbopappkey," +
+					"airbopappsecret," +
+					"googleprojectnumber) " +
 				"VALUES (" +
 					String.valueOf(dto.getIdDiscoteca())+", " +
 					"'"+dto.getNombre()+"', " +
 					"'"+dto.getDescripcion()+"', " +
 					String.valueOf(dto.getLatitud()) +","+
 					String.valueOf(dto.getLongitud())+"," +
-					"'"+dto.getNombreImg()+"');";
+					"'"+dto.getNombreImg()+"'," +
+					"'"+dto.getAirbopAppKey()+"'," +
+					"'"+dto.getAirbopAppSecret()+"'," +
+					"'"+dto.getGoogleProjectNumber()+"'" +
+							");";
 		return executeQuery(conn, sql);
 	}
 	
@@ -156,6 +169,9 @@ public class DiscotecaGenericController extends SecurityController {
 			ob.addProperty("longitud", dto.getLongitud());
 			ob.addProperty("descripcion", dto.getDescripcion());
 			ob.addProperty("nombreImg", dto.getNombreImg());
+			ob.addProperty("airbopAppKey", dto.getAirbopAppKey());
+			ob.addProperty("airbopAppSecret", dto.getAirbopAppSecret());
+			ob.addProperty("googleProjectNumber", dto.getGoogleProjectNumber());
 			array.add(ob);	
 		}
 		return array;

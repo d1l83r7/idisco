@@ -9,6 +9,27 @@ public class Discoteca implements Serializable {
 	private double longitud;
 	private String descripcion;
 	private String nombreImg;
+	private String airbopAppKey;
+	private String airbopAppSecret;
+	private String googleProjectNumber;
+	public String getAirbopAppKey() {
+		return airbopAppKey;
+	}
+	public void setAirbopAppKey(String airbopAppKey) {
+		this.airbopAppKey = airbopAppKey;
+	}
+	public String getAirbopAppSecret() {
+		return airbopAppSecret;
+	}
+	public void setAirbopAppSecret(String airbopAppSecret) {
+		this.airbopAppSecret = airbopAppSecret;
+	}
+	public String getGoogleProjectNumber() {
+		return googleProjectNumber;
+	}
+	public void setGoogleProjectNumber(String googleProjectNumber) {
+		this.googleProjectNumber = googleProjectNumber;
+	}
 	public String getNombreImg() {
 		return nombreImg;
 	}
