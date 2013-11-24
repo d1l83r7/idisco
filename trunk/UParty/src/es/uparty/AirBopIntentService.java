@@ -68,7 +68,6 @@ public class AirBopIntentService extends IntentService {
 		                    GCMRegistrar.unregister(appContext);
 		                }
 					}
-					
 				}
 	        }
 		}

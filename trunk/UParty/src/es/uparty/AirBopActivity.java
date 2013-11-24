@@ -15,12 +15,11 @@
  */
 package es.uparty;
 
-import static es.uparty.CommonUtilities.AIRBOP_APP_KEY;
-import static es.uparty.CommonUtilities.AIRBOP_APP_SECRET;
-import static es.uparty.CommonUtilities.GOOGLE_PROJECT_NUMBER;
+//import static es.uparty.CommonUtilities.AIRBOP_APP_KEY;
+//import static es.uparty.CommonUtilities.AIRBOP_APP_SECRET;
+//import static es.uparty.CommonUtilities.GOOGLE_PROJECT_NUMBER;
 import static es.uparty.CommonUtilities.SERVER_URL;
 import static es.uparty.CommonUtilities.USE_SERVICE;
-import static es.uparty.CommonUtilities.displayMessage;
 import android.app.ListActivity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -53,9 +52,6 @@ public class AirBopActivity extends ListActivity implements AirBopRegisterTask.R
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkNotNull(SERVER_URL, "SERVER_URL");
-        checkNotNull(AIRBOP_APP_KEY, "APP_KEY");
-        checkNotNull(AIRBOP_APP_SECRET, "APP_SECRET");
         // Make sure the device has the proper dependencies.
         GCMRegistrar.checkDevice(this);
         
@@ -109,7 +105,8 @@ public class AirBopActivity extends ListActivity implements AirBopRegisterTask.R
         	// The response from the GCM server will trigger: 
         	// GCMIntentService.onRegistered() where we will then register with
         	// AiRBop's servers.
-        	GCMRegistrar.register(appContext, GOOGLE_PROJECT_NUMBER);
+    		String googleProjectNumber = AirbopConstants.getInstance().getGoogleProjectNumber();
+        	GCMRegistrar.register(appContext, googleProjectNumber);
         } else {
         	
             // We have a regID from the GCM, now check to see if

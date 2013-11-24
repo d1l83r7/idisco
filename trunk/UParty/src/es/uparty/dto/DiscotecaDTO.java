@@ -12,7 +12,28 @@ public class DiscotecaDTO implements Serializable {
 	private String latitud;
 	private String descripcio;
 	private String nombreImagen;
+	private String airbopAppKey;
+	private String airbopAppSecret;
+	private String googleProjectNumber;
 	
+	public String getAirbopAppKey() {
+		return airbopAppKey;
+	}
+	public void setAirbopAppKey(String airbopAppKey) {
+		this.airbopAppKey = airbopAppKey;
+	}
+	public String getAirbopAppSecret() {
+		return airbopAppSecret;
+	}
+	public void setAirbopAppSecret(String airbopAppSecret) {
+		this.airbopAppSecret = airbopAppSecret;
+	}
+	public String getGoogleProjectNumber() {
+		return googleProjectNumber;
+	}
+	public void setGoogleProjectNumber(String googleProjectNumber) {
+		this.googleProjectNumber = googleProjectNumber;
+	}
 	public String getNombreImagen() {
 		return nombreImagen;
 	}
