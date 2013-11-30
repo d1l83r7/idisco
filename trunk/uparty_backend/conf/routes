@@ -46,6 +46,9 @@ POST	/gestionUsuario							usuarios.GestionUsuario.gestionUsuario
 GET		/verGestionUsuario						usuarios.GestionUsuario.verGestionUsuario
 POST	/verGestionUsuario						usuarios.GestionUsuario.verGestionUsuario
 
+GET		/validaUsuario							MenuDiscotecas.usuarioValido
+POST	/validaUsuario							MenuDiscotecas.usuarioValido
+
 #Login
 GET     /login									usuarios.SecurityController.pantallaLogin
 POST    /login									usuarios.SecurityController.pantallaLogin

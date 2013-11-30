@@ -25,4 +25,12 @@ public class MenuDiscotecas extends DiscotecaGenericController {
 	public static void errorLogin(){
 		render();
 	}
+	
+	public static void usuarioValido(String usuario, String password){
+		User u = getUsuario(usuario, password,true);
+		if(u!=null){
+			renderJSON("S");
+		}
+		renderJSON("N");
+	}
 }
