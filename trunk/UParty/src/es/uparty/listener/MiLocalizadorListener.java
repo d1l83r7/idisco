@@ -87,7 +87,9 @@ public class MiLocalizadorListener implements LocationListener{
 						 context.startActivity(i);
 					}
 				}
+				
 			});
+            activity.overridePendingTransition(R.anim.left_in, R.anim.left_out);
         }
     }
 

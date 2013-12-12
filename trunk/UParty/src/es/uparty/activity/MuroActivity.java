@@ -74,6 +74,7 @@ public class MuroActivity extends AirBopActivity {
 				i.putExtra(Constants.DISCOTECADTO, dto);
 				i.putExtra(Constants.ORIGEN, origen);
 				startActivity(i);
+				overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			}
 		});
 		
@@ -186,6 +187,7 @@ public class MuroActivity extends AirBopActivity {
 		i.putExtra(Constants.DISCOTECADTO, dto);
 		i.putExtra(Constants.ORIGEN, origen);
 		startActivity(i);
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 		super.onBackPressed();
 	}
     

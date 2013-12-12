@@ -142,6 +142,7 @@ public class RutaActivity extends FragmentActivity {
 		i.putExtra(Constants.DISCOTECADTO, dto);
 		i.putExtra(Constants.ORIGEN, origen);
 		startActivity(i);
+		overridePendingTransition(R.anim.right_in, R.anim.right_out);
 		super.onBackPressed();
 	}
 }
