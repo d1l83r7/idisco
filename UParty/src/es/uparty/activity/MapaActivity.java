@@ -102,6 +102,7 @@ public class MapaActivity extends FragmentActivity {
 							i.putExtra(Constants.DISCOTECADTO, dto);
 							i.putExtra(Constants.ORIGEN, Constants.ORIGEN_MAPA);
 							startActivity(i);
+							overridePendingTransition(R.anim.left_in, R.anim.left_out);
 						}
 					}
 				}

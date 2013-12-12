@@ -45,15 +45,6 @@
             android:gravity="end" >
 
             <Button
-                android:id="@+id/menu_bt_offline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:text="@string/menu_bt_offline"
-                android:background="#DF0101"
-                android:textColor="#000000" />
-
-            <Button
                 android:id="@+id/menu_bt_manual"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,6 +52,17 @@
                 android:text="@string/menu_bt_manual" 
                 android:background="#DF0101"
                 android:textColor="#000000"/>
+            
+            <Button
+                android:id="@+id/menu_bt_salir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:text="@string/menu_bt_salir"
+                android:background="#DF0101"
+                android:textColor="#000000" />
+
+            
         </LinearLayout>
 
     </RelativeLayout>

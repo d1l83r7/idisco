@@ -6,6 +6,7 @@
     <string name="menu_bt_buscarDisco">Buscar discoteca</string>
     <string name="menu_bt_manual">Manual</string>
     <string name="menu_bt_offline">Sin conexión</string>
+    <string name="menu_bt_salir">Salir</string>
     <string name="menu_bt_configuracion">Configuración</string>
     <string name="menu_tv_menuPrincipal">Menú principal</string>
     <string name="menu_bt_buscarCerca">Buscar discotecas cercanas</string>
@@ -34,4 +35,6 @@
     <string name="murodiscoteca_bt_atras">Atras</string>
     <string name="murodiscoteca_bt_enviar">Enviar</string>
     <string name="murodiscoteca_et_hind_mensaje">Mensaje</string>
+    <string name="logologin_bt_anonimo">Anónimo</string>
+    <string name="logologin_bt_acceder">Acceder</string>
 </resources>

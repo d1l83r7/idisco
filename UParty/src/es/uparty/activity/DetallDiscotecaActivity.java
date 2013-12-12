@@ -1,6 +1,9 @@
 package es.uparty.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -46,7 +49,8 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 				
 				if(origen.equals(Constants.ORIGEN_BUSQUEDA)){
 					i = new Intent(getBaseContext(),BuscarDiscotecaActivity.class);
-					startActivity(i);	
+					startActivity(i);
+					overridePendingTransition(R.anim.right_in, R.anim.right_out);
 				}else if(origen.equals(Constants.ORIGEN_MAPA)){
 					buscaGPS(0,null,0,origen);
 				}
@@ -85,8 +89,19 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 				i.putExtra(Constants.DISCOTECADTO, dto);
 				i.putExtra(Constants.ORIGEN, origen);
 				startActivity(i);
+				overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			}
 		});
+		
+		String nombreFichero = Constants.NOMBRE_FICHERO_PREFERENCIAS;
+		SharedPreferences sp = getBaseContext().getSharedPreferences(nombreFichero, Context.MODE_PRIVATE);
+		String valorUsuario = sp.getString(Constants.PREF_USUARIO, "");
+		String valorPassword = sp.getString(Constants.PREF_PASSWORD, "");
+		
+		if(valorUsuario.equals("")||valorPassword.equals("")){
+			btMuro.setEnabled(false);
+			btMuro.setBackgroundColor(Color.GRAY);
+		}
 	}
 	
 	@Override
@@ -94,7 +109,8 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 		Intent i = null;
 		if(origen.equals(Constants.ORIGEN_BUSQUEDA)){
 			i = new Intent(getBaseContext(),BuscarDiscotecaActivity.class);
-			startActivity(i);	
+			startActivity(i);
+			overridePendingTransition(R.anim.right_in, R.anim.right_out);
 		}else if(origen.equals(Constants.ORIGEN_MAPA)){
 			buscaGPS(0,null,0,null);
 		}

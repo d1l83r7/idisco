@@ -71,6 +71,7 @@ public class BuscarDiscotecaActivity extends ListActivity{
 			public void onClick(View v) {
 				Intent i = new Intent(v.getContext(),MenuActivity.class);
 				startActivity(i);
+				overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			}
 		});
 		lv = getListView();
@@ -91,6 +92,7 @@ public class BuscarDiscotecaActivity extends ListActivity{
 							i.putExtra(Constants.DISCOTECADTO, listaDiscotecas.get(position));
 							i.putExtra(Constants.ORIGEN, Constants.ORIGEN_BUSQUEDA);
 							startActivity(i);
+							overridePendingTransition(R.anim.left_in, R.anim.left_out);
 						}
 						
 	              }

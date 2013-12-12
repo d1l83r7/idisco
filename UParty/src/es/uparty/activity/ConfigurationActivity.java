@@ -52,6 +52,7 @@ public class ConfigurationActivity extends Activity {
 				editor.commit();
 				Intent i = new Intent(getBaseContext(), MenuActivity.class);
 				startActivity(i);
+				overridePendingTransition(R.anim.left_in, R.anim.left_out);
 			}
 		});
 		btVolver = (Button)findViewById(R.id.configuracion_bt_volver);
@@ -60,6 +61,7 @@ public class ConfigurationActivity extends Activity {
 			public void onClick(View v) {
 				Intent i = new Intent(getBaseContext(), MenuActivity.class);
 				startActivity(i);
+				overridePendingTransition(R.anim.right_in, R.anim.right_out);
 			}
 		});
 		
