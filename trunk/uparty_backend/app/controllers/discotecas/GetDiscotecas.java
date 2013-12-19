@@ -15,10 +15,10 @@ import com.google.gson.JsonObject;
 
 public class GetDiscotecas extends DiscotecaGenericController {
 	
-	public static void getDiscotecas(){
+	public static void getDiscotecas(String idioma){
 		String sql = "SELECT * FROM DISCOTECAS";
 		List<Discoteca> l = seleccionarDiscotecas(sql);
-		JsonArray array = listDicotecaDTOToJSonArray(l);
+		JsonArray array = listDicotecaDTOToJSonArray(l,idioma);
 		renderJSON(array);
 	}
 

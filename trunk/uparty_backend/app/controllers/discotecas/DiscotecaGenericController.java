@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -40,6 +41,8 @@ public class DiscotecaGenericController extends SecurityController {
 				dto.setAirbopAppKey(rs.getString(7));
 				dto.setAirbopAppSecret(rs.getString(8));
 				dto.setGoogleProjectNumber(rs.getString(9));
+				dto.setDescripcion_ca(rs.getString(10));
+				dto.setDescripcion_en(rs.getString(11));
 				l.add(dto);
 			}
 
@@ -56,17 +59,42 @@ public class DiscotecaGenericController extends SecurityController {
 	
 	protected static boolean modificarDiscoteca(Discoteca dto){
 		String sql = "UPDATE discotecas "+
-				   		"SET nombre='"+dto.getNombre()+"', " +
-				   		"descripcion='"+dto.getDescripcion()+"', " +
-				   		"latitud="+String.valueOf(dto.getLatitud())+", " +
-				   		"longitud="+String.valueOf(dto.getLongitud())+", " +
-				   		"nombre_img='"+dto.getNombreImg()+"', "+
-				   		"airbopappkey='"+dto.getAirbopAppKey()+"', "+
-				   		"airbopappsecret='"+dto.getAirbopAppSecret()+"', "+
-				   		"googleprojectnumber='"+dto.getGoogleProjectNumber()+"' "+
-				   		"WHERE \"idDiscoteca\"="+String.valueOf(dto.getIdDiscoteca());
+				   		"SET nombre=?," +
+				   		"descripcion=?, " +
+				   		"descripcion_ca=?, " +
+				   		"descripcion_en=?, " +
+				   		"latitud=?, " +
+				   		"longitud=?, " +
+				   		"nombre_img=?, "+
+				   		"airbopappkey=?, "+
+				   		"airbopappsecret=?, "+
+				   		"googleprojectnumber=? "+
+				   		"WHERE \"idDiscoteca\"=?";
 		Connection conn = DB.getConnection();
-		return executeQuery(conn, sql);
+		try{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			
+			ps.setString(1, dto.getNombre());
+			ps.setString(2, dto.getDescripcion());
+			ps.setString(3, dto.getDescripcion_ca());
+			ps.setString(4, dto.getDescripcion_en());
+			ps.setDouble(5, dto.getLatitud());
+			ps.setDouble(6, dto.getLongitud());
+			ps.setString(7, dto.getNombreImg());
+			ps.setString(8, dto.getAirbopAppKey());
+			ps.setString(9, dto.getAirbopAppSecret());
+			ps.setString(10, dto.getGoogleProjectNumber());
+			ps.setLong(11, dto.getIdDiscoteca());
+			
+			ps.executeUpdate();
+			ps.close();
+			
+			return true;
+		}catch(SQLException sqle){
+			sqle.printStackTrace();
+			return false;
+		}
 	}
 	
 	protected static boolean darAltaDiscoteca(Discoteca dto)throws SQLException{
@@ -126,31 +154,34 @@ public class DiscotecaGenericController extends SecurityController {
 					"\"idDiscoteca\", " +
 					"nombre, " +
 					"descripcion, " +
+					"descripcion_ca, " +
+					"descripcion_en, " +
 					"latitud, " +
 					"longitud," +
 					"nombre_img," +
 					"airbopappkey," +
 					"airbopappsecret," +
 					"googleprojectnumber) " +
-				"VALUES (" +
-					String.valueOf(dto.getIdDiscoteca())+", " +
-					"'"+dto.getNombre()+"', " +
-					"'"+dto.getDescripcion()+"', " +
-					String.valueOf(dto.getLatitud()) +","+
-					String.valueOf(dto.getLongitud())+"," +
-					"'"+dto.getNombreImg()+"'," +
-					"'"+dto.getAirbopAppKey()+"'," +
-					"'"+dto.getAirbopAppSecret()+"'," +
-					"'"+dto.getGoogleProjectNumber()+"'" +
-							");";
-		return executeQuery(conn, sql);
-	}
-	
-	private static boolean executeQuery(Connection conn, String sql){
+				"VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+					
+		
 		try{
-			Statement statement = conn.createStatement();
-			statement.execute(sql);
-			statement.close();
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setLong(1, dto.getIdDiscoteca());
+			ps.setString(2, dto.getNombre());
+			ps.setString(3, dto.getDescripcion());
+			ps.setString(4, dto.getDescripcion_ca());
+			ps.setString(5, dto.getDescripcion_en());
+			ps.setDouble(6, dto.getLatitud());
+			ps.setDouble(7, dto.getLongitud());
+			ps.setString(8, dto.getNombreImg());
+			ps.setString(9, dto.getAirbopAppKey());
+			ps.setString(10, dto.getAirbopAppSecret());
+			ps.setString(11, dto.getGoogleProjectNumber());
+			
+			ps.executeUpdate();
+			ps.close();
 			
 			return true;
 		}catch(SQLException sqle){
@@ -159,7 +190,20 @@ public class DiscotecaGenericController extends SecurityController {
 		}
 	}
 	
-	protected static JsonArray listDicotecaDTOToJSonArray(List<Discoteca> l){
+//	private static boolean executeQuery(Connection conn, String sql){
+//		try{
+//			Statement statement = conn.createStatement();
+//			statement.execute(sql);
+//			statement.close();
+//			
+//			return true;
+//		}catch(SQLException sqle){
+//			sqle.printStackTrace();
+//			return false;
+//		}
+//	}
+	
+	protected static JsonArray listDicotecaDTOToJSonArray(List<Discoteca> l, String idioma){
 		JsonArray array = new JsonArray();
 		for(Discoteca dto: l){
 			JsonObject ob = new JsonObject();
@@ -167,7 +211,12 @@ public class DiscotecaGenericController extends SecurityController {
 			ob.addProperty("nombre", dto.getNombre());
 			ob.addProperty("latitud", dto.getLatitud());
 			ob.addProperty("longitud", dto.getLongitud());
-			ob.addProperty("descripcion", dto.getDescripcion());
+			if(idioma.equals("es"))
+				ob.addProperty("descripcion", dto.getDescripcion());
+			else if(idioma.equals("ca"))
+				ob.addProperty("descripcion", dto.getDescripcion_ca());
+			else if(idioma.equals("en"))
+				ob.addProperty("descripcion", dto.getDescripcion_en());
 			ob.addProperty("nombreImg", dto.getNombreImg());
 			ob.addProperty("airbopAppKey", dto.getAirbopAppKey());
 			ob.addProperty("airbopAppSecret", dto.getAirbopAppSecret());
