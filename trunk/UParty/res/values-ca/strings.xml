@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UParty</string>
+    <string name="action_settings">Settings</string>
+    <string name="buscardiscoteca_bt_buscar">Cercar</string>
+    <string name="menu_bt_buscarDisco">Cercar discoteca</string>
+    <string name="menu_bt_manual">Manual</string>
+    <string name="menu_bt_offline">Sense conexió</string>
+    <string name="menu_bt_salir">Sortir</string>
+    <string name="menu_bt_configuracion">Configuració</string>
+    <string name="menu_tv_menuPrincipal">Menú principal</string>
+    <string name="menu_bt_buscarCerca">Cercar discotecas properes</string>
+    <string name="google_maps_api_key">AIzaSyCOBY9VcjXN_NKrF8ZmAQb5fv0K29PAZu4</string>
+    <string name="gps_signal_not_found">Senyal GPS no trobada</string>
+    <string name="search_signal_gps">Cercant senyal GPS</string>
+    <string name="search">Cercant</string>
+    <string name="gps_signal_found">Senyal GPS trobada</string>
+    <string name="buscardiscoteca_tv_buscar_discoteca">Cercar discoteca</string>
+    <string name="buscardiscoteca_et_hind_nombre">Nom discoteca</string>
+    <string name="buscardiscoteca_bt_atras">Tornar enrere</string>
+    <string name="detallediscoteca_tv_hint_nombreDiscoteca">Nom discoteca</string>
+    <string name="detallediscoteca_tv_hint_descripcionDiscoteca">Descripció discoteca</string>
+    <string name="buscardiscoteca_bt_mostrarRuta">Mostrar ruta</string>
+    <string name="detallediscoteca_rb_text_coche">Cotxe</string>
+    <string name="detallediscoteca_rb_text_caminando">Caminant</string>
+    <string name="detallediscoteca_rb_text_trans_publico">Transport públic</string>
+    <string name="configuracion_tv_titulo">Menú de configuració</string>
+    <string name="configuracion_bt_volver">Tornar</string>
+    <string name="configuracion_bt_guardar">Desar</string>
+    <string name="configuracion_tv_distancia">Distància màxima: 0m</string>
+    <string name="configuracion_et_hind_password">Contrasenya</string>
+    <string name="configuracion_et_hind_usuario">Usuari</string>
+    <string name="buscardiscoteca_bt_muro">Mur</string>
+    <string name="murodiscoteca_tv_hint_muro">Mur</string>
+    <string name="murodiscoteca_bt_atras">Enrere</string>
+    <string name="murodiscoteca_bt_enviar">Enviar</string>
+    <string name="murodiscoteca_et_hind_mensaje">Missatge</string>
+    <string name="logologin_bt_anonimo">Anònim</string>
+    <string name="logologin_bt_acceder">Accedir</string>
+    <string name="logologin_dialog_bt_aceptar">Acceptar</string>
+    <string name="logologin_dialog_bt_cancelar">Cancel·lar</string>
+    <string name="logologin_dialog_msg_error">Usuari o contrasenya incorrecta!!</string>
+</resources>
