@@ -1,6 +1,7 @@
 package es.uparty.activity;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import android.app.ActionBar.LayoutParams;
@@ -41,9 +42,10 @@ public class BuscarDiscotecaActivity extends ListActivity{
 				EditText editText = (EditText)findViewById(R.id.buscardiscoteca_et_nombreDiscoteca);
 				String nombreDiscoteca = editText.getText().toString();
 				Log.d(TAG_BUSCAR_DISCOTECA, "Nombre discoteca: "+nombreDiscoteca);
-				
+				String idioma = Locale.getDefault().getLanguage();
+				Log.d(TAG_BUSCAR_DISCOTECA, "Locale: "+idioma);
 				ObtenerDisctecasAsyncTask obtenerDisctecasAsyncTask = new ObtenerDisctecasAsyncTask();
-				String url = "http://radiant-ravine-3483.herokuapp.com/getDiscotecasByName?name="+nombreDiscoteca;
+				String url = "http://radiant-ravine-3483.herokuapp.com/getDiscotecasByName?name="+nombreDiscoteca+"&idioma="+idioma;
 //				String url = "http://192.168.1.14:9000/getDiscotecasByName?name="+nombreDiscoteca;
 				obtenerDisctecasAsyncTask.execute(url);
 				try{
