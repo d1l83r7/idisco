@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UParty</string>
+    <string name="action_settings">Settings</string>
+    <string name="buscardiscoteca_bt_buscar">Search</string>
+    <string name="menu_bt_buscarDisco">Search a club</string>
+    <string name="menu_bt_manual">Handbook</string>
+    <string name="menu_bt_offline">Offline</string>
+    <string name="menu_bt_salir">Exit</string>
+    <string name="menu_bt_configuracion">Settings</string>
+    <string name="menu_tv_menuPrincipal">Main menu</string>
+    <string name="menu_bt_buscarCerca">search for nearby clubs</string>
+    <string name="google_maps_api_key">AIzaSyCOBY9VcjXN_NKrF8ZmAQb5fv0K29PAZu4</string>
+    <string name="gps_signal_not_found">No GPS signal found</string>
+    <string name="search_signal_gps">Searching GPS Signal</string>
+    <string name="search">Searching</string>
+    <string name="gps_signal_found">GPS signal found</string>
+    <string name="buscardiscoteca_tv_buscar_discoteca">Search a club</string>
+    <string name="buscardiscoteca_et_hind_nombre">Nightclub name</string>
+    <string name="buscardiscoteca_bt_atras">Back</string>
+    <string name="detallediscoteca_tv_hint_nombreDiscoteca">Nightclub name</string>
+    <string name="detallediscoteca_tv_hint_descripcionDiscoteca">Nightclub description</string>
+    <string name="buscardiscoteca_bt_mostrarRuta">Show route</string>
+    <string name="detallediscoteca_rb_text_coche">Car</string>
+    <string name="detallediscoteca_rb_text_caminando">Walking</string>
+    <string name="detallediscoteca_rb_text_trans_publico">Public transport</string>
+    <string name="configuracion_tv_titulo">Settings menu</string>
+    <string name="configuracion_bt_volver">Back</string>
+    <string name="configuracion_bt_guardar">Save</string>
+    <string name="configuracion_tv_distancia">Maximum distance: 0m</string>
+    <string name="configuracion_et_hind_password">Password</string>
+    <string name="configuracion_et_hind_usuario">User</string>
+    <string name="buscardiscoteca_bt_muro">Wall</string>
+    <string name="murodiscoteca_tv_hint_muro">Wall</string>
+    <string name="murodiscoteca_bt_atras">Back</string>
+    <string name="murodiscoteca_bt_enviar">Send</string>
+    <string name="murodiscoteca_et_hind_mensaje">Message</string>
+    <string name="logologin_bt_anonimo">Anonymous</string>
+    <string name="logologin_bt_acceder">Log in</string>
+    <string name="logologin_dialog_bt_aceptar">Accept</string>
+    <string name="logologin_dialog_bt_cancelar">Cancel</string>
+    <string name="logologin_dialog_msg_error">Wrong user or password!!</string>
+</resources>
