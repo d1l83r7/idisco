@@ -45,12 +45,15 @@ public class GestionDiscoteca extends DiscotecaGenericController {
 	}
 	
 	public static void modificaDiscoteca(String idDiscoteca, String nombre,
-			String descripcion, String latitud, String longitud, String nombreImg, File imagen,
+			String descripcion,String descripcion_ca, String descripcion_en, 
+			String latitud, String longitud, String nombreImg, File imagen,
 			String airbopAppKey, String airbopAppSecret, String googleProjectNumber){
 		usuarioLogado();
 		Discoteca dto = new Discoteca();
 		dto.setNombre(nombre);
 		dto.setDescripcion(descripcion);
+		dto.setDescripcion_ca(descripcion_ca);
+		dto.setDescripcion_en(descripcion_en);
 		dto.setLatitud(Double.parseDouble(latitud));
 		dto.setLongitud(Double.parseDouble(longitud));
 		dto.setIdDiscoteca(Long.parseLong(idDiscoteca));

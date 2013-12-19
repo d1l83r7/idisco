@@ -11,7 +11,7 @@ import com.google.gson.JsonArray;
 import es.uparty.utils.Utils;
 
 public class GetDiscotecasCercanas extends DiscotecaGenericController {
-	public static void getDiscotecasCercanas(String distancia, String latitud, String longitud){
+	public static void getDiscotecasCercanas(String distancia, String latitud, String longitud, String idioma){
 		String sql = "SELECT * FROM DISCOTECAS";
 		List<Discoteca> l = seleccionarDiscotecas(sql);
 		double longOrigen = Double.parseDouble(longitud);
@@ -26,7 +26,7 @@ public class GetDiscotecasCercanas extends DiscotecaGenericController {
 			}
 		}
 		
-		JsonArray array = listDicotecaDTOToJSonArray(lDiscotecasCercanas);
+		JsonArray array = listDicotecaDTOToJSonArray(lDiscotecasCercanas, idioma);
 		renderJSON(array);
 	}
 
