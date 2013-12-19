@@ -37,4 +37,7 @@
     <string name="murodiscoteca_et_hind_mensaje">Mensaje</string>
     <string name="logologin_bt_anonimo">Anónimo</string>
     <string name="logologin_bt_acceder">Acceder</string>
+    <string name="logologin_dialog_bt_aceptar">Aceptar</string>
+    <string name="logologin_dialog_bt_cancelar">Cancelar</string>
+    <string name="logologin_dialog_msg_error">Usuario o contraseña incorrecta!!</string>
 </resources>
