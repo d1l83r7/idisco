@@ -1,6 +1,7 @@
 package es.uparty.activity;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import android.content.Context;
@@ -50,15 +51,15 @@ public class MapaActivity extends FragmentActivity {
         SharedPreferences sp = getSharedPreferences(Constants.NOMBRE_FICHERO_PREFERENCIAS, Context.MODE_PRIVATE);
         String dist = sp.getString(Constants.PREF_DISTANCIA, "10000");
         
-        
+        String idioma = Locale.getDefault().getDisplayLanguage();
         
         StringBuilder sb = new StringBuilder();
         sb.append("http://radiant-ravine-3483.herokuapp.com/");
         sb.append("getDiscotecasCercanas?");
         sb.append("distancia="+dist+"&");
         sb.append("latitud="+String.valueOf(dLat)+"&");
-        sb.append("longitud="+String.valueOf(dLong));
-        
+        sb.append("longitud="+String.valueOf(dLong)+"&");
+        sb.append("idioma="+idioma);
         obtenerDiscotecas.execute(sb.toString());
         
         try{
