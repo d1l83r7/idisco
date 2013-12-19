@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/layout_root"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:orientation="vertical"
+	    android:padding="10dp" >
+	    
+	<RadioGroup
+            android:id="@+id/rdgGrupo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkedButton="@+id/rdbOne"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/detallediscoteca_rb_caminando"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detallediscoteca_rb_text_caminando" 
+                android:textColor="#0000FF"
+                android:textSize="13sp"/>
+
+            <RadioButton
+                android:id="@+id/detallediscoteca_rb_coche"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detallediscoteca_rb_text_coche" 
+                android:textColor="#0000FF"
+                android:textSize="13sp"/>
+
+            <RadioButton
+                android:id="@+id/detallediscoteca_rb_transp_publico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/detallediscoteca_rb_text_trans_publico" 
+                android:textColor="#0000FF"
+                android:textSize="13sp"/>
+        </RadioGroup>	 
+	 
+</LinearLayout>

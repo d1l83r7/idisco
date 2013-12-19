@@ -61,41 +61,6 @@
                 android:text="@string/buscardiscoteca_bt_atras"
                 android:textColor="#000000" />
         </LinearLayout>
-
-        <RadioGroup
-            android:id="@+id/rdgGrupo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/linearLayout1"
-            android:layout_alignParentLeft="true"
-            android:checkedButton="@+id/rdbOne"
-            android:orientation="horizontal" >
-
-            <RadioButton
-                android:id="@+id/detallediscoteca_rb_caminando"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/detallediscoteca_rb_text_caminando" 
-                android:textColor="#F2F2F2"
-                android:textSize="13sp"/>
-
-            <RadioButton
-                android:id="@+id/detallediscoteca_rb_coche"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/detallediscoteca_rb_text_coche" 
-                android:textColor="#F2F2F2"
-                android:textSize="13sp"/>
-
-            <RadioButton
-                android:id="@+id/detallediscoteca_rb_transp_publico"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/detallediscoteca_rb_text_trans_publico" 
-                android:textColor="#F2F2F2"
-                android:textSize="13sp"/>
-        </RadioGroup>
-
     </RelativeLayout>
 
 </LinearLayout>
