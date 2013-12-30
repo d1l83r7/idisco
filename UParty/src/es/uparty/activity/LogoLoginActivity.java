@@ -25,6 +25,7 @@ import android.widget.Toast;
 import es.uparty.R;
 import es.uparty.asynctask.ValidarUsuarioAsyncTask;
 import es.uparty.comunes.Constants;
+import es.uparty.comunes.Utils;
 
 public class LogoLoginActivity extends Activity {
 	private static final String LOGOLOGIN_TAG = "LogoLoginActivity_tag";
@@ -81,8 +82,8 @@ public class LogoLoginActivity extends Activity {
                                         
                                         StringBuffer sb = new StringBuffer();
                         				sb.append("http://radiant-ravine-3483.herokuapp.com/validaUsuario?");
-                        				sb.append("usuario="+usuario.getText().toString());
-                        				sb.append("&password="+password.getText().toString());
+                        				sb.append("usuario="+Utils.encryptURL(usuario.getText().toString()));
+                        				sb.append("&password="+Utils.encryptURL(password.getText().toString()));
                         				ValidarUsuarioAsyncTask vua = new ValidarUsuarioAsyncTask();
                         				vua.execute(sb.toString());
                         				String res = null;

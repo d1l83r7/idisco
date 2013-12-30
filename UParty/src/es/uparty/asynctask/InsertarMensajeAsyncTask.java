@@ -14,6 +14,7 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 import android.util.Log;
+import es.uparty.comunes.Utils;
 import es.uparty.dto.DiscotecaDTO;
 import es.uparty.dto.MensajeDTO;
 
@@ -26,8 +27,8 @@ public class InsertarMensajeAsyncTask extends AsyncTask<String, Integer, String>
 		try{
 			StringBuilder sb = new StringBuilder();
 			sb.append("http://radiant-ravine-3483.herokuapp.com/insertarMensaje?");
-			sb.append("usuario="+params[0]);
-			sb.append("&contrasenya="+params[1]);
+			sb.append("usuario="+Utils.encryptURL(params[0]));
+			sb.append("&contrasenya="+Utils.encryptURL(params[1]));
 			sb.append("&texto="+params[2]);
 			sb.append("&idDiscoteca="+params[3]);
 			sb.append("&idMuro="+params[4]);

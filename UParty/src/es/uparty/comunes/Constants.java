@@ -15,4 +15,6 @@ public class Constants {
 	public final static String PREF_DISTANCIA = "distancia";
 	public final static String PREF_USUARIO = "usuario";
 	public final static String PREF_PASSWORD = "password";
+	
+	public final static String CLAVE_ENCRYPT = "123456789";
 }
