@@ -1,5 +1,10 @@
 package es.uparty.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+
 public class Utils {
 	public static double calculaDistancia(double latitud1, double longitud1, double latitud2, double longitud2){
 		double distancia = 0;
@@ -20,4 +25,40 @@ public class Utils {
 		double radianes = (value*Math.PI)/180;
 		return radianes;
 	}
+	
+	public static String encrypt(String cadena,String clave) {
+        StandardPBEStringEncryptor s = new StandardPBEStringEncryptor();
+        s.setPassword(clave);
+        return s.encrypt(cadena);
+    }
+ 
+    public static String encrypt(String cadena) {
+        return encrypt(cadena,MisConstantes.CLAVE_ENCRYPT);
+    }
+    
+    public static String decrypt(String cadena,String clave) {
+        StandardPBEStringEncryptor s = new StandardPBEStringEncryptor();
+        s.setPassword(clave);
+        String devuelve = "";
+        try {
+            devuelve = s.decrypt(cadena);
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+        return devuelve;
+    }
+    public static String decrypt(String cadena) {
+        return decrypt(cadena,MisConstantes.CLAVE_ENCRYPT);
+    }
+    
+    public static String encryptURL(String cadena) {
+        String encrypt = encrypt(cadena,MisConstantes.CLAVE_ENCRYPT);
+        String encode="";
+        try {
+            encode = URLEncoder.encode(encrypt, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return encode;
+    }
 }
