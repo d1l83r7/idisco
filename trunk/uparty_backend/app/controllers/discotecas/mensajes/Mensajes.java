@@ -8,6 +8,7 @@ import models.User;
 import com.google.gson.JsonArray;
 
 import controllers.discotecas.DiscotecaGenericController;
+import es.uparty.utils.Utils;
 
 public class Mensajes extends MensajesGenericController {
 	public static void obtenerMensajes(String idDiscoteca, String idMuro, String name){
@@ -23,7 +24,9 @@ public class Mensajes extends MensajesGenericController {
 	}
 	
 	public static void insertarMensaje(String usuario, String contrasenya, String texto, String idDiscoteca, String idMuro){
-		User u = DiscotecaGenericController.getUsuario(usuario, contrasenya,false);
+		String user = Utils.decrypt(usuario);
+		String pass = Utils.decrypt(contrasenya);
+		User u = DiscotecaGenericController.getUsuario(user, pass,false);
 		Mensaje m = new Mensaje();
 		m.setIdDiscoteca(Long.parseLong(idDiscoteca));
 		m.setIdMuro(Long.parseLong(idMuro));
@@ -31,7 +34,6 @@ public class Mensajes extends MensajesGenericController {
 		m.setUsuario(usuario);
 		m.setIdUsuario(u.getId());
 		insertarMensaje(m);
-//		localhost:9000/insertarMensaje?usuario=pepe&contrasenya=hola&texto=xxx&idDiscoteca=1&idMuro=1
 	}
 	
 	public static void eliminarMensaje(String idMensaje){
