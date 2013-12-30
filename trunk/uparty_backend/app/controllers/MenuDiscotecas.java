@@ -1,6 +1,7 @@
 package controllers;
 
 import controllers.discotecas.DiscotecaGenericController;
+import es.uparty.utils.Utils;
 import models.User;
 import play.cache.Cache;
 import play.mvc.Controller;
@@ -27,10 +28,13 @@ public class MenuDiscotecas extends DiscotecaGenericController {
 	}
 	
 	public static void usuarioValido(String usuario, String password){
-		User u = getUsuario(usuario, password,true);
+		String user = Utils.decrypt(usuario);
+		String pass = Utils.decrypt(password);
+		User u = getUsuario(user, pass,true);
 		if(u!=null){
 			renderJSON("S");
 		}
 		renderJSON("N");
 	}
 }
+ 
