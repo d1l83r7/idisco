@@ -43,6 +43,11 @@ public class DiscotecaGenericController extends SecurityController {
 				dto.setGoogleProjectNumber(rs.getString(9));
 				dto.setDescripcion_ca(rs.getString(10));
 				dto.setDescripcion_en(rs.getString(11));
+				boolean listaVipActiva = rs.getBoolean(12);
+				if(listaVipActiva)
+					dto.setListaVipActiva("S");
+				else
+					dto.setListaVipActiva("N");
 				l.add(dto);
 			}
 
@@ -68,7 +73,8 @@ public class DiscotecaGenericController extends SecurityController {
 				   		"nombre_img=?, "+
 				   		"airbopappkey=?, "+
 				   		"airbopappsecret=?, "+
-				   		"googleprojectnumber=? "+
+				   		"googleprojectnumber=?, "+
+				   		"lista_vip=? "+
 				   		"WHERE \"idDiscoteca\"=?";
 		Connection conn = DB.getConnection();
 		try{
@@ -85,7 +91,11 @@ public class DiscotecaGenericController extends SecurityController {
 			ps.setString(8, dto.getAirbopAppKey());
 			ps.setString(9, dto.getAirbopAppSecret());
 			ps.setString(10, dto.getGoogleProjectNumber());
-			ps.setLong(11, dto.getIdDiscoteca());
+			if(dto.getListaVipActiva().equals("S"))
+				ps.setBoolean(11, true);
+			else
+				ps.setBoolean(11, false);
+			ps.setLong(12, dto.getIdDiscoteca());
 			
 			ps.executeUpdate();
 			ps.close();
@@ -161,8 +171,9 @@ public class DiscotecaGenericController extends SecurityController {
 					"nombre_img," +
 					"airbopappkey," +
 					"airbopappsecret," +
-					"googleprojectnumber) " +
-				"VALUES (?,?,?,?,?,?,?,?,?,?,?);";
+					"googleprojectnumber," +
+					"lista_vip) " +
+				"VALUES (?,?,?,?,?,?,?,?,?,?,?,?);";
 					
 		
 		try{
@@ -179,7 +190,10 @@ public class DiscotecaGenericController extends SecurityController {
 			ps.setString(9, dto.getAirbopAppKey());
 			ps.setString(10, dto.getAirbopAppSecret());
 			ps.setString(11, dto.getGoogleProjectNumber());
-			
+			if(dto.getListaVipActiva().equals("S"))
+				ps.setBoolean(12, true);
+			else
+				ps.setBoolean(12, false);
 			ps.executeUpdate();
 			ps.close();
 			

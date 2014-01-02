@@ -55,6 +55,9 @@ POST    /login									usuarios.SecurityController.pantallaLogin
 GET		/logout									usuarios.SecurityController.logout
 POST	/logout									usuarios.SecurityController.logout
 
+#Lista Vip
+GET 	/verListaVip							discotecas.listaVip.ListaVip.verListaVip
+POST	/verListaVip							discotecas.listaVip.ListaVip.verListaVip
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
