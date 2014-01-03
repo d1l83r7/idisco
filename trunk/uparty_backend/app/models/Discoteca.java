@@ -15,7 +15,14 @@ public class Discoteca implements Serializable {
 	private String airbopAppSecret;
 	private String googleProjectNumber;
 	private String listaVipActiva;
+	private String fechaListaVip;
 	
+	public String getFechaListaVip() {
+		return fechaListaVip;
+	}
+	public void setFechaListaVip(String fechaListaVip) {
+		this.fechaListaVip = fechaListaVip;
+	}
 	public String getListaVipActiva() {
 		return listaVipActiva;
 	}

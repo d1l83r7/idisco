@@ -1,7 +1,11 @@
 package controllers.discotecas;
 
 import java.io.File;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+
+import es.uparty.utils.Utils;
 
 import models.Discoteca;
 
@@ -38,6 +42,13 @@ public class GestionDiscoteca extends DiscotecaGenericController {
 		List<Discoteca> l = seleccionarDiscotecas(sql);
 		if(l.size()>0){
 			Discoteca discoteca = l.get(0);
+			Calendar c = GregorianCalendar.getInstance();
+			try{
+			String fechaListaVip = Utils.dateToString(c.getTime());
+			discoteca.setFechaListaVip(fechaListaVip);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			render(discoteca,name);
 		}else{
 			errorEditaDiscoteca();
