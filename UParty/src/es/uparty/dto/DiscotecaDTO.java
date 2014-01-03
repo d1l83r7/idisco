@@ -15,7 +15,14 @@ public class DiscotecaDTO implements Serializable {
 	private String airbopAppKey;
 	private String airbopAppSecret;
 	private String googleProjectNumber;
+	private String listaVipActiva;
 	
+	public String getListaVipActiva() {
+		return listaVipActiva;
+	}
+	public void setListaVipActiva(String listaVipActiva) {
+		this.listaVipActiva = listaVipActiva;
+	}
 	public String getAirbopAppKey() {
 		return airbopAppKey;
 	}
