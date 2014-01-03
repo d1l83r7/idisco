@@ -21,6 +21,7 @@
     <string name="detallediscoteca_tv_hint_nombreDiscoteca">Nombre discoteca</string>
     <string name="detallediscoteca_tv_hint_descripcionDiscoteca">Descripción discoteca</string>
     <string name="buscardiscoteca_bt_mostrarRuta">Mostrar ruta</string>
+    <string name="buscardiscoteca_bt_listaVIP">Lista Vip</string>
     <string name="detallediscoteca_rb_text_coche">Coche</string>
     <string name="detallediscoteca_rb_text_caminando">Caminando</string>
     <string name="detallediscoteca_rb_text_trans_publico">Transporte público</string>

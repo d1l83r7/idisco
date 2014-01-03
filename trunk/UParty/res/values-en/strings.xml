@@ -21,6 +21,7 @@
     <string name="detallediscoteca_tv_hint_nombreDiscoteca">Nightclub name</string>
     <string name="detallediscoteca_tv_hint_descripcionDiscoteca">Nightclub description</string>
     <string name="buscardiscoteca_bt_mostrarRuta">Show route</string>
+    <string name="buscardiscoteca_bt_listaVIP">Vip list</string>
     <string name="detallediscoteca_rb_text_coche">Car</string>
     <string name="detallediscoteca_rb_text_caminando">Walking</string>
     <string name="detallediscoteca_rb_text_trans_publico">Public transport</string>
