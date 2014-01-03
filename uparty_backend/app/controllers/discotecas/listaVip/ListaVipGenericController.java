@@ -1,30 +1,33 @@
 package controllers.discotecas.listaVip;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import play.db.DB;
-
 import models.ListaVipItem;
-import models.Mensaje;
+import play.db.DB;
 import controllers.usuarios.SecurityController;
 
 public class ListaVipGenericController extends SecurityController {
-	public static List<ListaVipItem> obtenerInscritosPorIdDiscoteca(long idDiscoteca){
+	public static List<ListaVipItem> obtenerListaVip(long idDiscoteca, Date d){
 		List<ListaVipItem> l = new ArrayList<ListaVipItem>();
 		Connection conn = DB.getConnection();
 		String sql = 	"SELECT lv.*, u.usuario "+
 						"FROM \"listas_VIP\" as lv "+
 						"inner join \"usuarios\" as u on u.\"idUsuario\" = lv.\"idUsuario\" " +
-						"where lv.\"idDiscoteca\" = " + String.valueOf(idDiscoteca);
+						"where lv.\"idDiscoteca\" = ? and fecha = ?";
 		
 		try{
-			Statement statement = conn.createStatement();
-			ResultSet rs = statement.executeQuery(sql);
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, idDiscoteca);
+			ps.setDate(2, new java.sql.Date(d.getTime()));
+			
+			ResultSet rs =ps.executeQuery();
 			
 			while (rs.next()) {
 				ListaVipItem dto = new ListaVipItem();
@@ -38,7 +41,7 @@ public class ListaVipGenericController extends SecurityController {
 			}
 			// close all the connections.
 			rs.close();
-			statement.close();
+			ps.close();
 			conn.close();
 		}catch(SQLException sqle){
 			sqle.printStackTrace();

@@ -13,15 +13,21 @@ function cambiaValor(check){
 	if(check.checked==true){
 		check.value='S';
 		document.getElementById('botonListaVip').disabled=false;
+		document.getElementById('datepicker').disabled=false;
 	}else{
 		check.value='N';
 		document.getElementById('botonListaVip').disabled=true;
+		document.getElementById('datepicker').disabled=true;
 	}
 }
 function verListaVip(){
-	document.getElementById('altaDiscotecaForm').action='/verListaVip?idDiscoteca=${discoteca.idDiscoteca}&name=${name}';
+	var fecha = $('#datepicker').val();
+	document.getElementById('altaDiscotecaForm').action='/verListaVip?idDiscoteca=${discoteca.idDiscoteca}&name=${name}&fechaListaVip='+fecha;
 	document.getElementById('altaDiscotecaForm').submit();
 }
+$(function() {
+	$( "#datepicker" ).datepicker( { dateFormat: 'dd/mm/yy' });
+});
 </script>
  
 <form id="altaDiscotecaForm" action="@{discotecas.GestionDiscoteca.modificaDiscoteca()}" method="POST" enctype="multipart/form-data">
@@ -77,22 +83,36 @@ function verListaVip(){
 			<td colspan="2"><input type="text" name="googleProjectNumber" value="${discoteca.googleProjectNumber}" /></td>
 		</tr>
 		<tr>
-			<td>Lista VIP</td>
-			<td colspan="1">
-				#{if discoteca.listaVipActiva =='S'}
-					<input type="checkbox" name="lva" value="S" checked="checked" onclick="javascript:cambiaValor(this);" />
-				#{/if}
-				#{else}
-					<input type="checkbox" name="lva" value="N" onclick="javascript:cambiaValor(this);" />
-				#{/else}
-			</td>
 			<td>
-				#{if discoteca.listaVipActiva =='S'}
-					<input type="button" id="botonListaVip" value="Ver lista VIP" onclick="javascript:verListaVip();"/>
-				#{/if}
-				#{else}
-					<input type="button" id="botonListaVip" disabled="disabled" value="Ver lista VIP" onclick="javascript:verListaVip();"/>
-				#{/else}
+				<table>
+					<tr>
+						<td>Lista VIP</td>
+						<td colspan="1">
+							#{if discoteca.listaVipActiva =='S'}
+								<input type="checkbox" name="lva" value="S" checked="checked" onclick="javascript:cambiaValor(this);" />
+							#{/if}
+							#{else}
+								<input type="checkbox" name="lva" value="N" onclick="javascript:cambiaValor(this);" />
+							#{/else}
+						</td>
+						<td>
+							#{if discoteca.listaVipActiva =='S'}
+								<input type="button" id="botonListaVip" value="Ver lista VIP" onclick="javascript:verListaVip();"/>
+							#{/if}
+							#{else}
+								<input type="button" id="botonListaVip" disabled="disabled" value="Ver lista VIP" onclick="javascript:verListaVip();"/>
+							#{/else}
+						</td>
+						<td colspan="1">
+							#{if discoteca.listaVipActiva =='S'}
+								<p>Fecha: <input type="text" size="10" name="fechaListaVip" value="${discoteca.fechaListaVip}" id="datepicker"/></p>
+							#{/if}
+							#{else}
+								<p>Fecha: <input type="text" size="10" name="fechaListaVip" value="${discoteca.fechaListaVip}" id="datepicker" disabled="disabled"/></p>
+							#{/else}
+							</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 		<tr>

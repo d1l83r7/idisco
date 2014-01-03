@@ -2,6 +2,9 @@ package es.uparty.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 
@@ -60,5 +63,15 @@ public class Utils {
             e.printStackTrace();
         }
         return encode;
+    }
+    
+    public static Date dateToString(String fecha)throws ParseException{
+    	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    	return formatter.parse(fecha);
+    }
+    
+    public static String dateToString(Date fecha)throws ParseException{
+    	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+    	return formatter.format(fecha);
     }
 }
