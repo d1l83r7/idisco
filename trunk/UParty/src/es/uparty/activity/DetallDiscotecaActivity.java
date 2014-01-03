@@ -200,6 +200,9 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 			btMuro.setBackgroundColor(Color.GRAY);
 			btListaVip.setEnabled(false);
 			btListaVip.setBackgroundColor(Color.GRAY);
+		}else if(dto.getListaVipActiva().equals("N")){
+			btListaVip.setEnabled(false);
+			btListaVip.setBackgroundColor(Color.GRAY);
 		}
 	}
 	

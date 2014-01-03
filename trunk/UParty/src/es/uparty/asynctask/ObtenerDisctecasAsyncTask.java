@@ -52,6 +52,7 @@ public class ObtenerDisctecasAsyncTask extends
 			discotecaDTO.setAirbopAppKey(json.getString("airbopAppKey"));
 			discotecaDTO.setAirbopAppSecret(json.getString("airbopAppSecret"));
 			discotecaDTO.setGoogleProjectNumber(json.getString("googleProjectNumber"));
+			discotecaDTO.setListaVipActiva(json.getString("listaVipActiva"));
 			l.add(discotecaDTO);
 		}
 		return l;
