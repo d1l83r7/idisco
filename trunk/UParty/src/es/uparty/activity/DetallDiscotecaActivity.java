@@ -7,13 +7,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import es.uparty.R;
+import es.uparty.asynctask.AltaEnListaVipAsyncTask;
 import es.uparty.comunes.Constants;
+import es.uparty.comunes.Utils;
 import es.uparty.dto.DiscotecaDTO;
 
 public class DetallDiscotecaActivity extends GPSGenericActivity {
@@ -22,12 +28,17 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 	private Button btAtras;
 	private Button btRuta;
 	private Button btMuro;
+	private Button btListaVip;
 	private DiscotecaDTO dto = null;
 	private RadioButton rbCoche = null;
 	private RadioButton rbPie = null;
 	private RadioButton rbTranPublico = null;
 	private String origen = null;
 	final Context context = this;
+	private int acompanyantes = 0;
+	
+	private final String DetallDiscotecaActivity_TAG = "DetallDiscotecaActivity_TAG";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -116,6 +127,69 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 			}
 		});
 		
+		btListaVip = (Button)findViewById(R.id.detallediscoteca_bt_listaVIP);
+		btListaVip.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				LayoutInflater layoutInflater = LayoutInflater.from(context);
+                View promptView = layoutInflater.inflate(R.layout.detallediscoteca_dialog_lista_vip, null);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+                alertDialogBuilder.setView(promptView);
+                Spinner sp = (Spinner)promptView.findViewById(R.id.acompanyantes_lista_vip);
+                ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getBaseContext(),
+                        R.array.acompanyantes_lista_vip, android.R.layout.simple_spinner_item);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                sp.setAdapter(adapter);
+                
+                sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+					@Override
+					public void onItemSelected(AdapterView<?> arg0, View arg1,
+							int arg2, long arg3) {
+						acompanyantes = arg2;
+						
+					}
+
+					@Override
+					public void onNothingSelected(AdapterView<?> arg0) {
+					}
+				});
+                
+                alertDialogBuilder
+                .setCancelable(false)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                            	AltaEnListaVipAsyncTask aelv = new AltaEnListaVipAsyncTask();
+                            	String[] params = new String[4];
+                            	
+                            	String nombreFichero = Constants.NOMBRE_FICHERO_PREFERENCIAS;
+                        		SharedPreferences sp = getBaseContext().getSharedPreferences(nombreFichero, Context.MODE_PRIVATE);
+                        		String valorUsuario = sp.getString(Constants.PREF_USUARIO, "");
+                        		String valorPassword = sp.getString(Constants.PREF_PASSWORD, "");
+                        		String user = valorUsuario;
+                        		String pass = valorPassword;
+                            	params[0] = user;
+                            	params[1] = pass;
+                            	params[2] = String.valueOf(dto.getId());
+                            	params[3] = String.valueOf(acompanyantes);
+                            	aelv.execute(params);
+                            	try{
+                            	aelv.get();
+                            	}catch(Exception e){e.printStackTrace();}
+                            }
+                        })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        // create an alert dialog
+        AlertDialog alertD = alertDialogBuilder.create();
+        alertD.show();
+			}
+		});
+		
 		String nombreFichero = Constants.NOMBRE_FICHERO_PREFERENCIAS;
 		SharedPreferences sp = getBaseContext().getSharedPreferences(nombreFichero, Context.MODE_PRIVATE);
 		String valorUsuario = sp.getString(Constants.PREF_USUARIO, "");
@@ -124,6 +198,8 @@ public class DetallDiscotecaActivity extends GPSGenericActivity {
 		if(valorUsuario.equals("")||valorPassword.equals("")){
 			btMuro.setEnabled(false);
 			btMuro.setBackgroundColor(Color.GRAY);
+			btListaVip.setEnabled(false);
+			btListaVip.setBackgroundColor(Color.GRAY);
 		}
 	}
 	
