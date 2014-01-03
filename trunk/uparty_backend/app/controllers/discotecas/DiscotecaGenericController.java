@@ -235,6 +235,7 @@ public class DiscotecaGenericController extends SecurityController {
 			ob.addProperty("airbopAppKey", dto.getAirbopAppKey());
 			ob.addProperty("airbopAppSecret", dto.getAirbopAppSecret());
 			ob.addProperty("googleProjectNumber", dto.getGoogleProjectNumber());
+			ob.addProperty("listaVipActiva", dto.getListaVipActiva());
 			array.add(ob);	
 		}
 		return array;
