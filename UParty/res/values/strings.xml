@@ -21,6 +21,7 @@
     <string name="detallediscoteca_tv_hint_nombreDiscoteca">Nombre discoteca</string>
     <string name="detallediscoteca_tv_hint_descripcionDiscoteca">Descripción discoteca</string>
     <string name="buscardiscoteca_bt_mostrarRuta">Mostrar ruta</string>
+    <string name="buscardiscoteca_bt_listaVIP">Lista Vip</string>
     <string name="detallediscoteca_rb_text_coche">Coche</string>
     <string name="detallediscoteca_rb_text_caminando">Caminando</string>
     <string name="detallediscoteca_rb_text_trans_publico">Transporte público</string>
@@ -40,4 +41,19 @@
     <string name="logologin_dialog_bt_aceptar">Aceptar</string>
     <string name="logologin_dialog_bt_cancelar">Cancelar</string>
     <string name="logologin_dialog_msg_error">Usuario o contraseña incorrecta!!</string>
+    
+    <string-array name="acompanyantes_lista_vip">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    
 </resources>
