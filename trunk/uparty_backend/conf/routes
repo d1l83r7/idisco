@@ -58,6 +58,8 @@ POST	/logout									usuarios.SecurityController.logout
 #Lista Vip
 GET 	/verListaVip							discotecas.listaVip.ListaVip.verListaVip
 POST	/verListaVip							discotecas.listaVip.ListaVip.verListaVip
+GET		/altaEnListaVIP							discotecas.listaVip.ListaVip.darAltaListaVIP
+POST	/altaEnListaVIP							discotecas.listaVip.ListaVip.darAltaListaVIP
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

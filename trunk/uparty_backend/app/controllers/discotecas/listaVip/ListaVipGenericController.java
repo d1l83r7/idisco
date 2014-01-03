@@ -49,4 +49,46 @@ public class ListaVipGenericController extends SecurityController {
 		
 		return l;
 	}
+	
+	private static long obtenerUltimoId(Connection conn){
+		long idMensaje = 0;
+		String sql = "SELECT \"idLista\" "+
+				"FROM \"listas_VIP\" order by \"idLista\" desc";
+		try{
+			Statement statement = conn.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			
+			rs.next();
+			idMensaje = rs.getLong("idLista");
+			// close all the connections.
+			rs.close();
+			statement.close();
+		}catch(SQLException sqle){
+			sqle.printStackTrace();
+		}
+		
+		return idMensaje;
+	}
+	
+	public static void insertarEnListaVip(ListaVipItem lvi){
+		String sql = "INSERT INTO \"listas_VIP\"( "+
+            "\"idLista\", \"idUsuario\", \"idDiscoteca\", acompanyantes, fecha) "+
+            "VALUES (?, ?, ?, ?, ?);";
+		Connection conn = DB.getConnection();
+		long id = obtenerUltimoId(conn);
+		id++; 
+		lvi.setIdListaVip(id);
+		try{
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, lvi.getIdListaVip());
+			ps.setLong(2, lvi.getIdUsuario());
+			ps.setLong(3, lvi.getIdDiscoteca());
+			ps.setInt(4, lvi.getAcompanyantes());
+			ps.setDate(5, new java.sql.Date(lvi.getFecha().getTime()));
+			
+			ps.executeUpdate();
+		}catch(SQLException sqle){
+			sqle.printStackTrace();
+		}
+	}
 }
