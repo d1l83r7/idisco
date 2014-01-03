@@ -5,57 +5,88 @@ function volver(){
 	document.getElementById('altaDiscotecaForm').action='/menuDiscotecas';
 	document.getElementById('altaDiscotecaForm').submit();
 }
+$(function() {
+	$( "#tabs" ).tabs();
+});
 </script>
  
 <form id="altaDiscotecaForm" action="@{discotecas.AltaDiscoteca.insertarDiscoteca()}" method="POST" enctype="multipart/form-data">
-	<table>
+	<table width="100%">
 		<tr>
 			<td colspan="2"><h1>Formulario de alta de discoteca</h1></td> 
 			<td><input type="button" value="Logout" onclick="javascript:logout();"/></td> 
 		</tr>
 		<tr>
-			<td>Nombre de la discoteca</td>
-			<td colspan="2"><input type="text" name="nombre"/></td>
+			<td colspan="3">
+				<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">Textos</a></li>
+					<li><a href="#tabs-2">Geoposici&oacute;n</a></li>
+					<li><a href="#tabs-3">Logo</a></li>
+					<li><a href="#tabs-4">Configuraci&oacute;n del Muro</a></li>
+				</ul>
+				<div id="tabs-1">
+					<table width="100%">
+						<tr>
+							<td>Nombre de la discoteca</td>
+							<td colspan="2"><input type="text" name="nombre"/></td>
+						</tr>
+						<tr>
+							<td>Descripci&oacute;n discoteca</td>
+							<td><textarea rows="3" cols="100" name="descripcion"></textarea></td>
+						</tr>
+						<tr>
+							<td>Descripcion discoteca catal&aacute;n</td>
+							<td><textarea rows="3" cols="100" name="descripcion_ca"></textarea></td>
+						</tr>
+						<tr>
+							<td>Descripcion discoteca ingl&eacute;s</td>
+							<td><textarea rows="3" cols="100" name="descripcion_en"></textarea></td>
+						</tr>
+					</table>
+				</div>
+				<div id="tabs-2">
+					<table width="100%">
+						<tr>
+							<td>Latitud</td>
+							<td><input type="text" name="latitud" /></td>
+						</tr>
+						<tr>
+							<td>Longitud</td>
+							<td><input type="text" name="longitud" /></td>
+						</tr>
+					</table>
+				</div>
+				<div id="tabs-3">
+					<table width="100%">
+						<tr>
+							<td>Imagen</td>
+							<td><input type="file" name="imagen" /></td>
+						</tr>
+					</table>
+				</div>
+				<div id="tabs-4">
+					<table width="100%">
+						<tr>
+							<td>Airbop App Key</td>
+							<td><input type="text" size="40" name="airbopAppKey" /></td>
+						</tr>
+						<tr>
+							<td>Airbop App Secret</td>
+							<td><input type="text" size="75" name="airbopAppSecret" /></td>
+						</tr>
+						<tr>
+							<td>Google Project Number</td>
+							<td><input type="text" name="googleProjectNumber" /></td>
+						</tr>
+					</table>
+				</div>
+			</td>
 		</tr>
 		<tr>
-			<td>Descripcion discoteca</td>
-			<td><textarea rows="10" cols="25" name="descripcion"></textarea></td>
-		</tr>
-		<tr>
-		<td>Descripcion discoteca catalan</td>
-			<td><textarea rows="10" cols="25" name="descripcion_ca"></textarea></td>
-		</tr>
-		<tr>
-		<td>Descripcion discoteca inglés</td>
-			<td><textarea rows="10" cols="25" name="descripcion_en"></textarea></td>
-		</tr>
-		<tr>
-			<td>Latitud</td>
-			<td><input type="text" name="latitud" /></td>
-		</tr>
-		<tr>
-			<td>Longitud</td>
-			<td><input type="text" name="longitud" /></td>
-		</tr>
-		<tr>
-			<td>Imagen</td>
-			<td><input type="file" name="imagen" /></td>
-		</tr>
-		<tr>
-			<td>Airbop App Key</td>
-			<td><input type="text" size="40" name="airbopAppKey" /></td>
-		</tr>
-		<tr>
-			<td>Airbop App Secret</td>
-			<td><input type="text" size="75" name="airbopAppSecret" /></td>
-		</tr>
-		<tr>
-			<td>Google Project Number</td>
-			<td><input type="text" name="googleProjectNumber" /></td>
-		</tr>
+	     	<td><input type="submit" value="Alta" /></td>
+	     	<td colspan="2"><input type="button" value="Volver" onclick="javascript:volver();"/></td>
+	     </tr>
 	</table>
-     
-    <input type="submit" value="Alta" />
-    <input type="button" value="Volver" onclick="javascript:volver();"/>
     <input type="hidden" name="nombreFormulario" id="nombreFormulario" value="altaDiscotecaForm"/>
 </form> 
