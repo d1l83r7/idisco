@@ -51,7 +51,7 @@ public class MapaActivity extends FragmentActivity {
         SharedPreferences sp = getSharedPreferences(Constants.NOMBRE_FICHERO_PREFERENCIAS, Context.MODE_PRIVATE);
         String dist = sp.getString(Constants.PREF_DISTANCIA, "10000");
         
-        String idioma = Locale.getDefault().getDisplayLanguage();
+        String idioma = Locale.getDefault().getLanguage();
         
         StringBuilder sb = new StringBuilder();
         sb.append("http://radiant-ravine-3483.herokuapp.com/");
